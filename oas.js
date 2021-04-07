@@ -1,6 +1,6 @@
 const SwaggerParser = require('@apidevtools/swagger-parser');
 
-class OAS {
+class OASTestSuite {
   constructor(path) {
     this.path = path;
     this.parser;
@@ -18,4 +18,4 @@ class OAS {
   }
 }
 
-module.exports = OAS;
+module.exports = OASTestSuite;
