@@ -10,10 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/mmohajer9/rtg-automated-bb.git"
   },
-  "author": "",
+  "author": "Mohammad Mahdi Mohajer",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mmohajer9/rtg-automated-bb/issues"
   },
-  "homepage": "https://github.com/mmohajer9/rtg-automated-bb#readme"
+  "homepage": "https://github.com/mmohajer9/rtg-automated-bb#readme",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.7"
+  }
 }
