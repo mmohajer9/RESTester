@@ -4,7 +4,8 @@
   "description": "This is the implementation of this [Article](https://ieeexplore.ieee.org/abstract/document/9159077)",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "clear;nodemon main.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
   },
   "homepage": "https://github.com/mmohajer9/rtg-automated-bb#readme",
   "dependencies": {
+    "jsonfile": "^6.1.0",
     "lodash": "^4.17.21",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "swagger-parser": "^10.0.2",
+    "yargs": "^16.2.0"
   }
 }
