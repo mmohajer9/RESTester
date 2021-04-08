@@ -1,0 +1,67 @@
+[
+  {
+    "endpoint": "/pet",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/pet/findByStatus",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/pet/findByTags",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/pet/{petId}",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/pet/{petId}/uploadImage",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/store/inventory",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/store/order",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/store/order/{orderId}",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/user",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/user/createWithList",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/user/login",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/user/logout",
+    "dependsOn": "",
+    "sharedProps": {}
+  },
+  {
+    "endpoint": "/user/{username}",
+    "dependsOn": "",
+    "sharedProps": {}
+  }
+]
