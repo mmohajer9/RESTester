@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const OASToolkit = require('./src/OASToolkit');
-const pathModule = require('path');
-const { argv } = require('yargs')
+const { argv, nargs } = require('yargs')
   .scriptName('main.js')
   .usage('Usage: $0 <command> [options]')
   .command(
@@ -13,10 +12,16 @@ const { argv } = require('yargs')
           'the path of the specific file to save the ODG File into it',
         alias: 'f',
       },
+      source: {
+        description: 'the path of the specific OAS source file : JSON or YAML',
+        alias: 's',
+      },
     }
   )
   .example('$0 generate-raw-odg')
+  .example('$0 generate-raw-odg -s myOAS.yaml')
   .example('$0 generate-raw-odg -f myODG.json')
+  .example('$0 generate-raw-odg -s myOAS.yaml -f myODG.json')
 
   .help()
   .alias('h', 'help')
@@ -26,10 +31,14 @@ const { argv } = require('yargs')
   .demandCommand();
 
 if (argv._.includes('generate-raw-odg')) {
-  const defaultPath = pathModule.join(__dirname, '/src/OASConfig/openapi.yaml');
-  const openApiSpec = argv.file ? argv.file : defaultPath;
+  const openApiSpecPath = argv.source ? argv.source : undefined;
+  const odgJsonConfigPath = argv.file ? argv.file : undefined;
 
-  const oas = new OASToolkit(openApiSpec, (oas) => {
-    oas.generateRawODG();
-  });
+  const oas = new OASToolkit(
+    (oas) => {
+      oas.generateRawODG();
+    },
+    openApiSpecPath,
+    odgJsonConfigPath
+  );
 }

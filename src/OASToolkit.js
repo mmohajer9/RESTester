@@ -5,20 +5,22 @@ const jf = require('jsonfile');
 
 class OASToolkit {
   constructor(
-    path,
     mainProgram,
+    path = pathModule.join(__dirname, '/OASConfig/openapi.yaml'),
+    odgJsonConfigPath = pathModule.join(__dirname, '/ODGConfig/odg.json'),
     config = {
       resolveHandler: undefined,
       rejectHandler: console.error,
-      odgJsonConfigPath: pathModule.join(__dirname, '/ODGConfig/odg.json'),
     }
   ) {
     // ? initializing fields
     this.path = path;
+    this.odgJsonConfigPath = odgJsonConfigPath;
+    this.mainProgram = mainProgram;
+
+    // ? initialize resolver/rejecter
     this.resolveHandler = config.resolveHandler;
     this.rejectHandler = config.rejectHandler;
-    this.odgJsonConfigPath = config.odgJsonConfigPath;
-    this.mainProgram = mainProgram;
 
     // ? will be initialize later
     this.parser;

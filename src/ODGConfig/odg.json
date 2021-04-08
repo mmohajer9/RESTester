@@ -1,67 +1,27 @@
 [
   {
     "endpoint": "/pet",
-    "dependsOn": [],
-    "derivedProps": {}
+    "dependsOn": ["/pet/findByStatus", "/pet/findByTags"],
+    "sharedProps": {}
   },
   {
     "endpoint": "/pet/findByStatus",
-    "dependsOn": [],
-    "derivedProps": {}
+    "dependsOn": null,
+    "sharedProps": {}
   },
   {
     "endpoint": "/pet/findByTags",
-    "dependsOn": [],
-    "derivedProps": {}
+    "dependsOn": null,
+    "sharedProps": {}
   },
   {
     "endpoint": "/pet/{petId}",
-    "dependsOn": [],
-    "derivedProps": {}
+    "dependsOn": ["/pet/findByStatus", "/pet/findByTags"],
+    "sharedProps": {}
   },
   {
     "endpoint": "/pet/{petId}/uploadImage",
-    "dependsOn": [],
-    "derivedProps": {}
-  },
-  {
-    "endpoint": "/store/inventory",
-    "dependsOn": [],
-    "derivedProps": {}
-  },
-  {
-    "endpoint": "/store/order",
-    "dependsOn": [],
-    "derivedProps": {}
-  },
-  {
-    "endpoint": "/store/order/{orderId}",
-    "dependsOn": [],
-    "derivedProps": {}
-  },
-  {
-    "endpoint": "/user",
-    "dependsOn": [],
-    "derivedProps": {}
-  },
-  {
-    "endpoint": "/user/createWithList",
-    "dependsOn": [],
-    "derivedProps": {}
-  },
-  {
-    "endpoint": "/user/login",
-    "dependsOn": [],
-    "derivedProps": {}
-  },
-  {
-    "endpoint": "/user/logout",
-    "dependsOn": [],
-    "derivedProps": {}
-  },
-  {
-    "endpoint": "/user/{username}",
-    "dependsOn": [],
-    "derivedProps": {}
+    "dependsOn": "",
+    "sharedProps": {}
   }
 ]
