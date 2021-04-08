@@ -1,8 +1,8 @@
 const argv = process.argv.splice(2);
-const OASTestSuite = require('./oas');
+const OASToolkit = require('./src/OASToolkit');
 
-const oas = new OASTestSuite(argv[0]);
+const openApiSpec = argv[0];
 
-oas.init(console.log, (err) => {
-  console.error('error : ', err);
+const oas = new OASToolkit(openApiSpec, (oas) => {
+  oas.createRawODG();
 });
