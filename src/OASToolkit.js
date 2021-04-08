@@ -1,6 +1,6 @@
 const SwaggerParser = require('@apidevtools/swagger-parser');
 const DepGraph = require('dependency-graph').DepGraph;
-const pathModule = require("path");
+const pathModule = require('path');
 const jf = require('jsonfile');
 
 class OASToolkit {
@@ -10,7 +10,7 @@ class OASToolkit {
     config = {
       resolveHandler: undefined,
       rejectHandler: console.error,
-      odgJsonConfigPath: pathModule.join(__dirname , "/ODGConfig/odg.json"),
+      odgJsonConfigPath: pathModule.join(__dirname, '/ODGConfig/odg.json'),
     }
   ) {
     // ? initializing fields
@@ -29,14 +29,14 @@ class OASToolkit {
     this.#init();
   }
 
-  async createRawODG(configPath) {
+  async generateRawODG(configPath) {
     const file = configPath || this.odgJsonConfigPath;
     const paths = Object.keys(this.api.paths);
     const configs = paths.map((item) => {
       return {
         endpoint: item,
-        dependsOn: '',
-        sharedProps: {},
+        dependsOn: [],
+        derivedProps: {},
       };
     });
     try {

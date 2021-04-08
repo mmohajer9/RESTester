@@ -5,8 +5,8 @@ const { argv } = require('yargs')
   .scriptName('main.js')
   .usage('Usage: $0 <command> [options]')
   .command(
-    'create-odg',
-    'Creates the Operation Dependency Graph file (odg.json) in the ODGConfig directory',
+    'generate-raw-odg',
+    'Creates the Raw Operation Dependency Graph file (odg.json) in the ODGConfig directory',
     {
       file: {
         description:
@@ -15,8 +15,8 @@ const { argv } = require('yargs')
       },
     }
   )
-  .example('$0 create-odg')
-  .example('$0 create-odg -f myODG.json')
+  .example('$0 generate-raw-odg')
+  .example('$0 generate-raw-odg -f myODG.json')
 
   .help()
   .alias('h', 'help')
@@ -25,11 +25,11 @@ const { argv } = require('yargs')
   .epilog('Copyright 2021 - OASToolkit/RESTester - Mohammad Mahdi Mohajer')
   .demandCommand();
 
-if (argv._.includes('create-odg')) {
+if (argv._.includes('generate-raw-odg')) {
   const defaultPath = pathModule.join(__dirname, '/src/OASConfig/openapi.yaml');
   const openApiSpec = argv.file ? argv.file : defaultPath;
 
   const oas = new OASToolkit(openApiSpec, (oas) => {
-    oas.createRawODG();
+    oas.generateRawODG();
   });
 }
