@@ -1,5 +1,7 @@
-# Implementation of RestTestGen : Automated Black-Box Testing of RESTful APIs
+# OpenAPI Specification Toolkit : RESTester
 
-This is the implementation of this [Article](https://ieeexplore.ieee.org/abstract/document/9159077)
+## Automated Black-box Tester for RESTful APIs
 
-All of the credits are given to the authors of this paper.
+Inspired by this [Article](https://ieeexplore.ieee.org/abstract/document/9159077) and tried to improve the methods which are used in this paper.
+
+**Author : [Mohammad Mahdi Mohajer](https://github.com/mmohajer9/)**
