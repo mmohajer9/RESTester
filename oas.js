@@ -11,9 +11,9 @@ class OASTestSuite {
     this.parser = new SwaggerParser();
     try {
       this.api = await this.parser.validate(this.path);
-      resolve(this.api);
+      resolve ? resolve(this.api) : null;
     } catch (err) {
-      reject(err);
+      err ? reject(err) : null;
     }
   }
 }

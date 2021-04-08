@@ -3,4 +3,6 @@ const OASTestSuite = require('./oas');
 
 const oas = new OASTestSuite(argv[0]);
 
-oas.init(console.log , console.error);
+oas.init(console.log, (err) => {
+  console.error('error : ', err);
+});
