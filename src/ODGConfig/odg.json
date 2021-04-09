@@ -1,17 +1,17 @@
 [
   {
     "endpoint": "/pet",
-    "dependsOn": [],
+    "dependsOn": ["/pet/findByStatus"],
     "derivedProps": {
       "head": null,
       "post": {
         "requestBody": {
-          "id": "",
-          "name": "",
-          "category": "",
-          "photoUrls": "",
-          "tags": "",
-          "status": ""
+          "id": "id",
+          "name": "name",
+          "category": "category",
+          "photoUrls": "photoUrls",
+          "tags": "tags",
+          "status": "status"
         },
         "urlParams": null,
         "queryParams": null,
@@ -20,12 +20,12 @@
       "get": null,
       "put": {
         "requestBody": {
-          "id": "",
-          "name": "",
-          "category": "",
-          "photoUrls": "",
-          "tags": "",
-          "status": ""
+          "id": "id",
+          "name": "name",
+          "category": "category",
+          "photoUrls": "photoUrls",
+          "tags": "tags",
+          "status": "status"
         },
         "urlParams": null,
         "queryParams": null,
@@ -37,7 +37,7 @@
   },
   {
     "endpoint": "/pet/findByStatus",
-    "dependsOn": [],
+    "dependsOn": null,
     "derivedProps": {
       "head": null,
       "post": null,
@@ -46,25 +46,6 @@
         "urlParams": null,
         "queryParams": {
           "status": ""
-        },
-        "headerParams": null
-      },
-      "put": null,
-      "patch": null,
-      "delete": null
-    }
-  },
-  {
-    "endpoint": "/pet/findByTags",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": null,
-      "get": {
-        "requestBody": null,
-        "urlParams": null,
-        "queryParams": {
-          "tags": ""
         },
         "headerParams": null
       },
@@ -75,13 +56,13 @@
   },
   {
     "endpoint": "/pet/{petId}",
-    "dependsOn": [],
+    "dependsOn": ["/pet/findByStatus"],
     "derivedProps": {
       "head": null,
       "post": {
         "requestBody": null,
         "urlParams": {
-          "petId": ""
+          "petId": "id"
         },
         "queryParams": {
           "name": "",
@@ -92,7 +73,7 @@
       "get": {
         "requestBody": null,
         "urlParams": {
-          "petId": ""
+          "petId": "id"
         },
         "queryParams": null,
         "headerParams": null
@@ -102,144 +83,13 @@
       "delete": {
         "requestBody": null,
         "urlParams": {
-          "petId": ""
+          "petId": "id"
         },
         "queryParams": null,
         "headerParams": {
           "api_key": ""
         }
       }
-    }
-  },
-  {
-    "endpoint": "/pet/{petId}/uploadImage",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": {
-        "requestBody": null,
-        "urlParams": {
-          "petId": ""
-        },
-        "queryParams": {
-          "additionalMetadata": ""
-        },
-        "headerParams": null
-      },
-      "get": null,
-      "put": null,
-      "patch": null,
-      "delete": null
-    }
-  },
-  {
-    "endpoint": "/store/inventory",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": null,
-      "get": {
-        "requestBody": null,
-        "urlParams": null,
-        "queryParams": null,
-        "headerParams": null
-      },
-      "put": null,
-      "patch": null,
-      "delete": null
-    }
-  },
-  {
-    "endpoint": "/store/order",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": {
-        "requestBody": {
-          "id": "",
-          "petId": "",
-          "quantity": "",
-          "shipDate": "",
-          "status": "",
-          "complete": ""
-        },
-        "urlParams": null,
-        "queryParams": null,
-        "headerParams": null
-      },
-      "get": null,
-      "put": null,
-      "patch": null,
-      "delete": null
-    }
-  },
-  {
-    "endpoint": "/store/order/{orderId}",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": null,
-      "get": {
-        "requestBody": null,
-        "urlParams": {
-          "orderId": ""
-        },
-        "queryParams": null,
-        "headerParams": null
-      },
-      "put": null,
-      "patch": null,
-      "delete": {
-        "requestBody": null,
-        "urlParams": {
-          "orderId": ""
-        },
-        "queryParams": null,
-        "headerParams": null
-      }
-    }
-  },
-  {
-    "endpoint": "/user",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": {
-        "requestBody": {
-          "id": "",
-          "username": "",
-          "firstName": "",
-          "lastName": "",
-          "email": "",
-          "password": "",
-          "phone": "",
-          "userStatus": ""
-        },
-        "urlParams": null,
-        "queryParams": null,
-        "headerParams": null
-      },
-      "get": null,
-      "put": null,
-      "patch": null,
-      "delete": null
-    }
-  },
-  {
-    "endpoint": "/user/createWithList",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": {
-        "requestBody": null,
-        "urlParams": null,
-        "queryParams": null,
-        "headerParams": null
-      },
-      "get": null,
-      "put": null,
-      "patch": null,
-      "delete": null
     }
   },
   {
@@ -260,65 +110,6 @@
       "put": null,
       "patch": null,
       "delete": null
-    }
-  },
-  {
-    "endpoint": "/user/logout",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": null,
-      "get": {
-        "requestBody": null,
-        "urlParams": null,
-        "queryParams": null,
-        "headerParams": null
-      },
-      "put": null,
-      "patch": null,
-      "delete": null
-    }
-  },
-  {
-    "endpoint": "/user/{username}",
-    "dependsOn": [],
-    "derivedProps": {
-      "head": null,
-      "post": null,
-      "get": {
-        "requestBody": null,
-        "urlParams": {
-          "username": ""
-        },
-        "queryParams": null,
-        "headerParams": null
-      },
-      "put": {
-        "requestBody": {
-          "id": "",
-          "username": "",
-          "firstName": "",
-          "lastName": "",
-          "email": "",
-          "password": "",
-          "phone": "",
-          "userStatus": ""
-        },
-        "urlParams": {
-          "username": ""
-        },
-        "queryParams": null,
-        "headerParams": null
-      },
-      "patch": null,
-      "delete": {
-        "requestBody": null,
-        "urlParams": {
-          "username": ""
-        },
-        "queryParams": null,
-        "headerParams": null
-      }
     }
   }
 ]
