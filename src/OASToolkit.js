@@ -2,6 +2,7 @@ const SwaggerParser = require('@apidevtools/swagger-parser');
 const DepGraph = require('dependency-graph').DepGraph;
 const pathModule = require('path');
 const jf = require('jsonfile');
+const _ = require('lodash');
 
 class OASToolkit {
   constructor(
@@ -33,14 +34,229 @@ class OASToolkit {
 
   async generateRawODG(configPath) {
     const file = configPath || this.odgJsonConfigPath;
-    const paths = Object.keys(this.api.paths);
-    const configs = paths.map((item) => {
-      return {
+    const configs = [];
+
+    const reqBodyToKeyMapping = (inObj) => {
+      const retObj = {};
+      for (const key in inObj) {
+        retObj[key] = '';
+      }
+      return inObj ? retObj : null;
+    };
+
+    for (const item in this.api.paths) {
+      configs.push({
         endpoint: item,
         dependsOn: [],
-        derivedProps: {},
-      };
-    });
+        derivedProps: {
+          head: {
+            requestBody: reqBodyToKeyMapping(
+              this.api.paths[item]?.head?.requestBody?.content[
+                'application/json'
+              ]?.schema?.properties
+            ),
+            urlParams: _.isEmpty(
+              this.api.paths[item]?.head?.parameters
+                ?.filter((param) => param.in === 'path')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.head?.parameters
+                  ?.filter((param) => param.in === 'path')
+                  .map((param) => param.name),
+            queryParams: _.isEmpty(
+              this.api.paths[item]?.head?.parameters
+                ?.filter((param) => param.in === 'query')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.head?.parameters
+                  ?.filter((param) => param.in === 'query')
+                  .map((param) => param.name),
+            headerParams: _.isEmpty(
+              this.api.paths[item]?.head?.parameters
+                ?.filter((param) => param.in === 'header')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.head?.parameters
+                  ?.filter((param) => param.in === 'header')
+                  .map((param) => param.name),
+          },
+          post: {
+            requestBody: reqBodyToKeyMapping(
+              this.api.paths[item]?.post?.requestBody?.content[
+                'application/json'
+              ]?.schema?.properties
+            ),
+            urlParams: _.isEmpty(
+              this.api.paths[item]?.post?.parameters
+                ?.filter((param) => param.in === 'path')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.post?.parameters
+                  ?.filter((param) => param.in === 'path')
+                  .map((param) => param.name),
+            queryParams: _.isEmpty(
+              this.api.paths[item]?.post?.parameters
+                ?.filter((param) => param.in === 'query')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.post?.parameters
+                  ?.filter((param) => param.in === 'query')
+                  .map((param) => param.name),
+            headerParams: _.isEmpty(
+              this.api.paths[item]?.post?.parameters
+                ?.filter((param) => param.in === 'header')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.post?.parameters
+                  ?.filter((param) => param.in === 'header')
+                  .map((param) => param.name),
+          },
+          get: {
+            requestBody: reqBodyToKeyMapping(
+              this.api.paths[item]?.get?.requestBody?.content[
+                'application/json'
+              ]?.schema?.properties
+            ),
+            urlParams: _.isEmpty(
+              this.api.paths[item]?.get?.parameters
+                ?.filter((param) => param.in === 'path')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.get?.parameters
+                  ?.filter((param) => param.in === 'path')
+                  .map((param) => param.name),
+            queryParams: _.isEmpty(
+              this.api.paths[item]?.get?.parameters
+                ?.filter((param) => param.in === 'query')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.get?.parameters
+                  ?.filter((param) => param.in === 'query')
+                  .map((param) => param.name),
+            headerParams: _.isEmpty(
+              this.api.paths[item]?.get?.parameters
+                ?.filter((param) => param.in === 'header')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.get?.parameters
+                  ?.filter((param) => param.in === 'header')
+                  .map((param) => param.name),
+          },
+          put: {
+            requestBody: reqBodyToKeyMapping(
+              this.api.paths[item]?.put?.requestBody?.content[
+                'application/json'
+              ]?.schema?.properties
+            ),
+            urlParams: _.isEmpty(
+              this.api.paths[item]?.put?.parameters
+                ?.filter((param) => param.in === 'path')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.put?.parameters
+                  ?.filter((param) => param.in === 'path')
+                  .map((param) => param.name),
+            queryParams: _.isEmpty(
+              this.api.paths[item]?.put?.parameters
+                ?.filter((param) => param.in === 'query')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.put?.parameters
+                  ?.filter((param) => param.in === 'query')
+                  .map((param) => param.name),
+            headerParams: _.isEmpty(
+              this.api.paths[item]?.put?.parameters
+                ?.filter((param) => param.in === 'header')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.put?.parameters
+                  ?.filter((param) => param.in === 'header')
+                  .map((param) => param.name),
+          },
+          patch: {
+            requestBody: reqBodyToKeyMapping(
+              this.api.paths[item]?.patch?.requestBody?.content[
+                'application/json'
+              ]?.schema?.properties
+            ),
+            urlParams: _.isEmpty(
+              this.api.paths[item]?.patch?.parameters
+                ?.filter((param) => param.in === 'path')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.patch?.parameters
+                  ?.filter((param) => param.in === 'path')
+                  .map((param) => param.name),
+            queryParams: _.isEmpty(
+              this.api.paths[item]?.patch?.parameters
+                ?.filter((param) => param.in === 'query')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.patch?.parameters
+                  ?.filter((param) => param.in === 'query')
+                  .map((param) => param.name),
+            headerParams: _.isEmpty(
+              this.api.paths[item]?.patch?.parameters
+                ?.filter((param) => param.in === 'header')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.patch?.parameters
+                  ?.filter((param) => param.in === 'header')
+                  .map((param) => param.name),
+          },
+          delete: {
+            requestBody: reqBodyToKeyMapping(
+              this.api.paths[item]?.delete?.requestBody?.content[
+                'application/json'
+              ]?.schema?.properties
+            ),
+            urlParams: _.isEmpty(
+              this.api.paths[item]?.delete?.parameters
+                ?.filter((param) => param.in === 'path')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.delete?.parameters
+                  ?.filter((param) => param.in === 'path')
+                  .map((param) => param.name),
+            queryParams: _.isEmpty(
+              this.api.paths[item]?.delete?.parameters
+                ?.filter((param) => param.in === 'query')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.delete?.parameters
+                  ?.filter((param) => param.in === 'query')
+                  .map((param) => param.name),
+            headerParams: _.isEmpty(
+              this.api.paths[item]?.delete?.parameters
+                ?.filter((param) => param.in === 'header')
+                .map((param) => param.name)
+            )
+              ? null
+              : this.api.paths[item]?.delete?.parameters
+                  ?.filter((param) => param.in === 'header')
+                  .map((param) => param.name),
+          },
+        },
+      });
+    }
+
     try {
       await jf.writeFile(file, configs, { spaces: 2, EOL: '\r\n' });
     } catch (err) {

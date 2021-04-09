@@ -18,6 +18,16 @@ const { argv, nargs } = require('yargs')
       },
     }
   )
+  .command(
+    'print',
+    'print the Open API Specification which have been validated and parsed',
+    {
+      source: {
+        description: 'the path of the specific OAS source file : JSON or YAML',
+        alias: 's',
+      },
+    }
+  )
   .example('$0 generate-raw-odg')
   .example('$0 generate-raw-odg -s myOAS.yaml')
   .example('$0 generate-raw-odg -f myODG.json')
@@ -41,4 +51,13 @@ if (argv._.includes('generate-raw-odg')) {
     openApiSpecPath,
     odgJsonConfigPath
   );
+} else if (argv._.includes('print')) {
+  const openApiSpecPath = argv.source ? argv.source : undefined;
+
+  const oas = new OASToolkit((oas) => {}, openApiSpecPath, undefined, {
+    resolveHandler: (api) => {
+      console.log(api.paths['/pet'].put?.requestBody?.content['application/json']?.schema.properties)
+    },
+    rejectHandler: console.error,
+  });
 }

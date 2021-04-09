@@ -1,0 +1,42 @@
+[
+  {
+    "endpoint": "/pet",
+    "dependsOn": ["/pet/findByStatus", "/pet/findByTags"],
+    "derivedProps": {
+      "urlParams": null,
+      "requestBody": {
+        "id": "id",
+        "name": "name",
+        "category": "category",
+        "photoUrls": "photoUrls",
+        "tags": "tags",
+        "status": "status"
+      },
+      "queryParams": null
+    }
+  },
+  {
+    "endpoint": "/pet/findByStatus",
+    "dependsOn": null,
+    "derivedProps": null
+  },
+  {
+    "endpoint": "/pet/findByTags",
+    "dependsOn": null,
+    "derivedProps": null
+  },
+  {
+    "endpoint": "/pet/{petId}",
+    "dependsOn": ["/pet/findByStatus", "/pet/findByTags"],
+    "derivedProps": {
+      "urlParams": {
+        "petId": "id"
+      },
+      "requestBody": null,
+      "queryParams": {
+        "name": "name",
+        "status": "status"
+      }
+    }
+  }
+]
