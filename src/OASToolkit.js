@@ -40,44 +40,54 @@ class OASToolkit {
   }
 
   getUrlParams(path, method) {
-    return _.isEmpty(
-      this.api.paths[path]?.[method]?.parameters
-        ?.filter((param) => param.in === 'path')
-        .map((param) => param.name)
-    )
-      ? null
-      : this.api.paths[path]?.[method]?.parameters
-          ?.filter((param) => param.in === 'path')
-          .map((param) => param.name);
+    const params = this.api.paths[path]?.[method]?.parameters
+      ?.filter((param) => param.in === 'path')
+      .map((param) => param.name);
+
+    if (_.isEmpty(params)) {
+      return null;
+    } else {
+      const retObj = {};
+      params.forEach((element) => {
+        retObj[element] = '';
+      });
+      return retObj;
+    }
   }
 
   getQueryParams(path, method) {
-    return _.isEmpty(
-      this.api.paths[path]?.[method]?.parameters
-        ?.filter((param) => param.in === 'query')
-        .map((param) => param.name)
-    )
-      ? null
-      : this.api.paths[path]?.[method]?.parameters
-          ?.filter((param) => param.in === 'query')
-          .map((param) => param.name);
+    const params = this.api.paths[path]?.[method]?.parameters
+      ?.filter((param) => param.in === 'query')
+      .map((param) => param.name);
+
+    if (_.isEmpty(params)) {
+      return null;
+    } else {
+      const retObj = {};
+      params.forEach((element) => {
+        retObj[element] = '';
+      });
+      return retObj;
+    }
   }
 
   getHeaderParams(path, method) {
-    return _.isEmpty(
-      this.api.paths[path]?.[method]?.parameters
-        ?.filter((param) => param.in === 'header')
-        .map((param) => param.name)
-    )
-      ? null
-      : this.api.paths[path]?.[method]?.parameters
-          ?.filter((param) => param.in === 'header')
-          .map((param) => param.name);
+    const params = this.api.paths[path]?.[method]?.parameters
+      ?.filter((param) => param.in === 'header')
+      .map((param) => param.name);
+
+    if (_.isEmpty(params)) {
+      return null;
+    } else {
+      const retObj = {};
+      params.forEach((element) => {
+        retObj[element] = '';
+      });
+      return retObj;
+    }
   }
 
-  async generateRawODG(configPath) {
-    const file = configPath || this.odgJsonConfigPath;
-    const configs = [];
+  getMethodProps(path, method) {
     const reqBodyToKeyMapping = (inObj) => {
       const retObj = {};
       for (const key in inObj) {
@@ -86,59 +96,32 @@ class OASToolkit {
       return inObj ? retObj : null;
     };
 
+    const props = {
+      requestBody: reqBodyToKeyMapping(
+        this.getJsonRequestBodyProperties(path, method)
+      ),
+      urlParams: this.getUrlParams(path, method),
+      queryParams: this.getQueryParams(path, method),
+      headerParams: this.getHeaderParams(path, method),
+    };
+    return this.api.paths[path]?.[method] ? props : null;
+  }
+
+  async generateRawODG(configPath) {
+    const file = configPath || this.odgJsonConfigPath;
+    const configs = [];
+
     for (const item in this.api.paths) {
       configs.push({
         endpoint: item,
         dependsOn: [],
         derivedProps: {
-          head: {
-            requestBody: reqBodyToKeyMapping(
-              this.getJsonRequestBodyProperties(item, 'head')
-            ),
-            urlParams: this.getUrlParams(item, 'head'),
-            queryParams: this.getQueryParams(item, 'head'),
-            headerParams: this.getHeaderParams(item, 'head'),
-          },
-          post: {
-            requestBody: reqBodyToKeyMapping(
-              this.getJsonRequestBodyProperties(item, 'post')
-            ),
-            urlParams: this.getUrlParams(item, 'post'),
-            queryParams: this.getQueryParams(item, 'post'),
-            headerParams: this.getHeaderParams(item, 'post'),
-          },
-          get: {
-            requestBody: reqBodyToKeyMapping(
-              this.getJsonRequestBodyProperties(item, 'get')
-            ),
-            urlParams: this.getUrlParams(item, 'get'),
-            queryParams: this.getQueryParams(item, 'get'),
-            headerParams: this.getHeaderParams(item, 'get'),
-          },
-          put: {
-            requestBody: reqBodyToKeyMapping(
-              this.getJsonRequestBodyProperties(item, 'put')
-            ),
-            urlParams: this.getUrlParams(item, 'put'),
-            queryParams: this.getQueryParams(item, 'put'),
-            headerParams: this.getHeaderParams(item, 'put'),
-          },
-          patch: {
-            requestBody: reqBodyToKeyMapping(
-              this.getJsonRequestBodyProperties(item, 'patch')
-            ),
-            urlParams: this.getUrlParams(item, 'patch'),
-            queryParams: this.getQueryParams(item, 'patch'),
-            headerParams: this.getHeaderParams(item, 'patch'),
-          },
-          delete: {
-            requestBody: reqBodyToKeyMapping(
-              this.getJsonRequestBodyProperties(item, 'delete')
-            ),
-            urlParams: this.getUrlParams(item, 'delete'),
-            queryParams: this.getQueryParams(item, 'delete'),
-            headerParams: this.getHeaderParams(item, 'delete'),
-          },
+          head: this.getMethodProps(item, 'head'),
+          post: this.getMethodProps(item, 'post'),
+          get: this.getMethodProps(item, 'get'),
+          put: this.getMethodProps(item, 'put'),
+          patch: this.getMethodProps(item, 'patch'),
+          delete: this.getMethodProps(item, 'delete'),
         },
       });
     }
