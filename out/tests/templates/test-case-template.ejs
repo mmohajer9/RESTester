@@ -1,0 +1,12 @@
+const axios = require('axios');
+const JSONConfig = require('./config.json');
+
+const instance = axios.create({
+  baseURL: '<%= baseURL %>',
+});
+
+instance.<%= method %>('<%= path %>' , {...JSONConfig.requestBody} , {
+  params : {...JSONConfig.queryParams}
+}).then(res => {
+  console.log(res);
+}).catch(console.error)

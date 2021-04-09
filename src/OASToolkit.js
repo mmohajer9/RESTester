@@ -3,6 +3,8 @@ const DepGraph = require('dependency-graph').DepGraph;
 const pathModule = require('path');
 const jf = require('jsonfile');
 const _ = require('lodash');
+const ejs = require('ejs');
+const fse = require('fs-extra');
 
 class OASToolkit {
   constructor(
@@ -18,7 +20,8 @@ class OASToolkit {
     this.path = path;
     this.odgJsonConfigPath = odgJsonConfigPath;
     this.mainProgram = mainProgram;
-    this.order = ['head', 'post', 'get', 'put', 'patch', 'delete'];
+    this.httpMethodOrder = ['head', 'post', 'get', 'put', 'patch', 'delete'];
+    this.graph = new DepGraph();
 
     // ? initialize resolver/rejecter
     this.resolveHandler = config.resolveHandler;
@@ -27,11 +30,96 @@ class OASToolkit {
     // ? will be initialize later
     this.parser;
     this.api;
-    this.opDepGraph;
+    this.odgConfig;
+    this.apiCallOrder;
 
     // ? initializer module
     this.#init();
   }
+
+  generateTestCases(iterationNumber) {
+    this.setApiCallOrder();
+    for (let index = 0; index < iterationNumber; index++) {
+      if (+Math.random().toFixed(3) < 0.2) {
+        this.generateErrorTestCases();
+      } else {
+        this.generateNominalTestCases();
+      }
+    }
+  }
+
+  generateNominalTestCases() {
+    const baseURL = this.api.servers[0].url;
+    this.apiCallOrder.forEach((item) => {
+      for (const method in this.api.paths[item]) {
+        ejs.renderFile(
+          pathModule.join(
+            __dirname,
+            '../out/tests/templates/test-case-template.ejs'
+          ),
+          {
+            baseURL,
+            method: method,
+            path: item,
+          },
+          (err, str) => {
+            if (err) {
+              console.error(err);
+            } else {
+              function makeid(length) {
+                var result = [];
+                var characters =
+                  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                  result.push(
+                    characters.charAt(
+                      Math.floor(Math.random() * charactersLength)
+                    )
+                  );
+                }
+                return result.join('');
+              }
+
+              const outputFile = pathModule.join(
+                process.cwd(),
+                `/out/tests/nominals/test-case-${makeid(10)}.js`
+              );
+              console.log(outputFile)
+              fse.ensureFileSync(outputFile);
+              fse.outputFileSync(outputFile, str);
+              // console.log(str);
+            }
+          }
+        );
+      }
+    });
+  }
+
+  generateErrorTestCases() {}
+
+  setApiCallOrder() {
+    // ? first we justify how to call the api in the correct order
+    const odgConfig = require(this.odgJsonConfigPath);
+    odgConfig.forEach((element) => {
+      this.graph.addNode(element.endpoint, element.derivedProps);
+    });
+    odgConfig.forEach((element) => {
+      if (!_.isEmpty(element.dependsOn)) {
+        element.dependsOn.forEach((dependencyEndpoint) => {
+          this.graph.addDependency(element.endpoint, dependencyEndpoint);
+        });
+      }
+    });
+    this.apiCallOrder = this.graph.overallOrder();
+    this.odgConfig = odgConfig;
+  }
+
+  statusCodeOracle() {}
+
+  responseValidationOracle() {}
+
+  // * ------------------------------------------------ *
 
   getJsonRequestBodyProperties(path, method) {
     return this.api.paths[path]?.[method]?.requestBody?.content[
@@ -107,7 +195,7 @@ class OASToolkit {
     return this.api.paths[path]?.[method] ? props : null;
   }
 
-  async generateRawODG(configPath) {
+  async generateRawODGConfig(configPath) {
     const file = configPath || this.odgJsonConfigPath;
     const configs = [];
 
@@ -137,13 +225,8 @@ class OASToolkit {
 
   async #init() {
     await this.#initParser(this.resolveHandler, this.rejectHandler);
-    await this.#initODG(this.resolveHandler, this.rejectHandler);
     // ? user main callback
     this.mainProgram ? this.mainProgram(this) : null;
-  }
-
-  async #initODG(resolve, reject) {
-    this.opDepGraph = new DepGraph();
   }
 
   async #initParser(resolve, reject) {

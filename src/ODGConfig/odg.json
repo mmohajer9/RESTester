@@ -6,12 +6,12 @@
       "head": null,
       "post": {
         "requestBody": {
-          "id": "id",
-          "name": "name",
-          "category": "category",
-          "photoUrls": "photoUrls",
-          "tags": "tags",
-          "status": "status"
+          "id": "/pet/findByStatus >> id",
+          "name": "/pet/findByStatus >> name",
+          "category": "/pet/findByStatus >> category",
+          "photoUrls": "/pet/findByStatus >> photoUrls",
+          "tags": "/pet/findByStatus >> tags",
+          "status": "/pet/findByStatus >> status"
         },
         "urlParams": null,
         "queryParams": null,
@@ -20,12 +20,12 @@
       "get": null,
       "put": {
         "requestBody": {
-          "id": "id",
-          "name": "name",
-          "category": "category",
-          "photoUrls": "photoUrls",
-          "tags": "tags",
-          "status": "status"
+          "id": "/pet/findByStatus >> id",
+          "name": "/pet/findByStatus >> name",
+          "category": "/pet/findByStatus >> category",
+          "photoUrls": "/pet/findByStatus >> photoUrls",
+          "tags": "/pet/findByStatus >> tags",
+          "status": "/pet/findByStatus >> status"
         },
         "urlParams": null,
         "queryParams": null,
@@ -62,7 +62,7 @@
       "post": {
         "requestBody": null,
         "urlParams": {
-          "petId": "id"
+          "petId": "/pet/findByStatus >> id"
         },
         "queryParams": {
           "name": "",
@@ -83,7 +83,7 @@
       "delete": {
         "requestBody": null,
         "urlParams": {
-          "petId": "id"
+          "petId": "/pet/findByStatus >> id"
         },
         "queryParams": null,
         "headerParams": {
@@ -94,7 +94,7 @@
   },
   {
     "endpoint": "/user/login",
-    "dependsOn": [],
+    "dependsOn": null,
     "derivedProps": {
       "head": null,
       "post": null,
