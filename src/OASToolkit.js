@@ -50,7 +50,7 @@ class OASToolkit {
 
   generateNominalTestCases() {
     const baseURL = this.api.servers[0].url;
-    this.apiCallOrder.forEach((item) => {
+    this.apiCallOrder.forEach((item, index) => {
       for (const method in this.api.paths[item]) {
         ejs.renderFile(
           pathModule.join(
@@ -83,9 +83,23 @@ class OASToolkit {
 
               const outputFile = pathModule.join(
                 process.cwd(),
-                `/out/tests/nominals/test-case-${makeid(10)}.js`
+                `/out/tests/nominals/test-order-${index}/test-case-${
+                  method === 'head'
+                    ? 1
+                    : method === 'post'
+                    ? 2
+                    : method === 'get'
+                    ? 3
+                    : method === 'put'
+                    ? 4
+                    : method === 'patch'
+                    ? 5
+                    : method === 'delete'
+                    ? 6
+                    : 'x'
+                }-${makeid(10)}.js`
               );
-              console.log(outputFile)
+              console.log(outputFile);
               fse.ensureFileSync(outputFile);
               fse.outputFileSync(outputFile, str);
               // console.log(str);
