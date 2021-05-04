@@ -1,11 +1,29 @@
 {
   "/pet/findByStatus": {
-    "responses": []
+    "responses": {
+      "get": [1,2,3,4],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
   },
   "/pet": {
-    "responses": []
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
   },
   "/pet/{petId}": {
-    "responses": []
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
   }
 }

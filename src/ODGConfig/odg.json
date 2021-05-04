@@ -6,12 +6,12 @@
       "head": null,
       "post": {
         "requestBody": {
-          "id": "/pet/findByStatus >> id",
-          "name": "/pet/findByStatus >> name",
-          "category": "/pet/findByStatus >> category",
-          "photoUrls": "/pet/findByStatus >> photoUrls",
-          "tags": "/pet/findByStatus >> tags",
-          "status": "/pet/findByStatus >> status"
+          "id": "/pet/findByStatus >> get >> id",
+          "name": "/pet/findByStatus >> get >> name",
+          "category": "/pet/findByStatus >> get >> category",
+          "photoUrls": "/pet/findByStatus >> get >> photoUrls",
+          "tags": "/pet/findByStatus >> get >> tags",
+          "status": "/pet/findByStatus >> get >> status"
         },
         "urlParams": null,
         "queryParams": null,
@@ -20,12 +20,12 @@
       "get": null,
       "put": {
         "requestBody": {
-          "id": "/pet/findByStatus >> id",
-          "name": "/pet/findByStatus >> name",
-          "category": "/pet/findByStatus >> category",
-          "photoUrls": "/pet/findByStatus >> photoUrls",
-          "tags": "/pet/findByStatus >> tags",
-          "status": "/pet/findByStatus >> status"
+          "id": "/pet/findByStatus >> get >> id",
+          "name": "/pet/findByStatus >> get >> name",
+          "category": "/pet/findByStatus >> get >> category",
+          "photoUrls": "/pet/findByStatus >> get >> photoUrls",
+          "tags": "/pet/findByStatus >> get >> tags",
+          "status": "/pet/findByStatus >> get >> status"
         },
         "urlParams": null,
         "queryParams": null,
@@ -62,7 +62,7 @@
       "post": {
         "requestBody": null,
         "urlParams": {
-          "petId": "/pet/findByStatus >> id"
+          "petId": "/pet/findByStatus >> get >> id"
         },
         "queryParams": {
           "name": "",

@@ -191,7 +191,7 @@ class ODGInitializer extends BaseInitializer {
   }
 }
 
-class BaseRESTester extends ODGInitializer {
+class AbstractBaseRESTester extends ODGInitializer {
   constructor(...props) {
     super(...props);
     // http method order for testing
@@ -325,7 +325,7 @@ class BaseRESTester extends ODGInitializer {
     return output;
   }
   // generate query param object
-  QueryParamSchemaGenerator(apiPath, method, useExample = false) {
+  queryParamSchemaGenerator(apiPath, method, useExample = false) {
     const parameters = this.api.paths[apiPath]?.[method]?.parameters;
 
     if (!parameters) {
@@ -349,7 +349,7 @@ class BaseRESTester extends ODGInitializer {
     return output;
   }
   // generate header param object
-  HeaderParamSchemaGenerator(apiPath, method, useExample = false) {
+  headerParamSchemaGenerator(apiPath, method, useExample = false) {
     const parameters = this.api.paths[apiPath]?.[method]?.parameters;
 
     if (!parameters) {
@@ -396,8 +396,19 @@ class BaseRESTester extends ODGInitializer {
 
     return output;
   }
+  // response dictionary methods
+
+  responseDictionaryRandomSeek(apiPath, method) {
+    // will return undefined if the list is empty
+    const list = this.responseDictionary[apiPath].responses[method];
+    const output = list[Math.floor(Math.random() * list.length)];
+    return output;
+  }
 
   async initiateResponseDictionary(apiName) {
+    // check for the existence of response dictionary
+    // if it is existed , then it will fetch it into the program
+    // if it is not existed , it will create a new one
     const paths = this.apiCallOrder;
     const responseDictionary = await this.readJSONConfig(
       config.apiCommonDir(apiName),
@@ -410,7 +421,13 @@ class BaseRESTester extends ODGInitializer {
       const jsonConfig = {};
       paths.forEach((path) => {
         jsonConfig[path] = {
-          responses: [],
+          responses: {
+            get: [],
+            post: [],
+            put: [],
+            patch: [],
+            delete: [],
+          },
         };
       });
       this.responseDictionary = await this.createJSONConfig(
@@ -420,33 +437,91 @@ class BaseRESTester extends ODGInitializer {
       );
     }
   }
+
+  async updateResponseDictionary(apiName, newJSONConfig) {
+    // updating the response dictionary both in the disk and program
+    this.responseDictionary = await this.createJSONConfig(
+      newJSONConfig,
+      config.apiCommonDir(apiName),
+      'responseDictionary.json'
+    );
+  }
+}
+
+class BaseRESTester extends AbstractBaseRESTester {
+  constructor(...props) {
+    super(...props);
+    // initiating response dictionary
+    this.initiateResponseDictionary('petStore');
+    // for storing generated test cases
+    this.nominalTestCases = [];
+    this.errorTestCases = [];
+  }
+
+  generateSchemaBasedTestCase(path, method) {
+    // if the method of the path is not existed then it will return null
+    if (!this.api.paths[path][method]) {
+      return null;
+    }
+
+    // generating schema-based request body and parameters
+    const requestBody = this.requestBodySchemaValueGenerator(path, method, 'application/json');
+    const urlParams = this.URLParamSchemaGenerator(path, method);
+    const queryParams = this.queryParamSchemaGenerator(path, method);
+    const headers = this.headerParamSchemaGenerator(path, method);
+
+    // stocking all values into a one output as a test data object
+    const testData = { requestBody, urlParams, queryParams, headers };
+    return testData;
+  }
+
+  generateNominalTestCase() {
+    //TODO response-dictionary -> search-based approach
+    // if it is empty , it won't proceed anymore and will use other approach
+    // this.responseDictionaryRandomSeek('/pet/findByStatus', 'get')
+
+    // schema-based test case generation - random approach
+    // generate one test data for each of the api calls based on the http method order
+    for (const path of this.apiCallOrder) {
+      for (const method of this.httpMethodOrder) {
+        if (!this.api.paths[path][method]) {
+          continue;
+        } else {
+          const testData = this.generateSchemaBasedTestCase(path, method);
+          this.nominalTestCases.push({
+            path,
+            method,
+            data: testData,
+          });
+        }
+      }
+    }
+  }
+
+  generateErrorTestCase() {
+    //TODO mutation of the nominal test cases to generate error test cases
+  }
+
+  async statusCodeOracle() {
+    //TODO check for the output and generate test files
+  }
+
+  async responseValidationOracle() {
+    //TODO check for the output and generate test files
+  }
 }
 
 class RESTester extends BaseRESTester {
-  async generateTestCases() {
-    // const out = await this.requestBodySchemaValueGenerator('/pet', 'post', 'application/json');
-    // this.URLParamSchemaGenerator('/pet/{petId}', 'get', 'application/json');
+  async generateTestCases(testCaseNumber = 1) {
+    for (let index = 0; index < testCaseNumber; index++) {
+      // nominalTestCases
+      this.generateNominalTestCase();
+      // errorTestCases
+      this.generateErrorTestCase();
 
-    // nominalTestCases
-    this.generateNominalTestCases();
-    // errorTestCases
-    this.generateErrorTestCases();
+      console.log(this.nominalTestCases);
+    }
   }
-
-  async generateNominalTestCases() {
-    // response-dictionary -> search-based
-    this.initiateResponseDictionary('petStore');
-
-    // schema-based test case generation
-  }
-
-  async generateErrorTestCases() {
-    // mutation of the nominal test cases to generate error test cases
-  }
-
-  async statusCodeOracle() {}
-
-  async responseValidationOracle() {}
 }
 
 module.exports = RESTester;
