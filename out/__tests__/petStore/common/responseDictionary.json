@@ -1,10 +1,11 @@
 {
-  "/pet": {
-    "responses": [{}, {}, {}]
-  },
   "/pet/findByStatus": {
-    "responses": [[], [], []]
+    "responses": []
   },
-  "/pet/{petId}": {},
-  "/user/login": {}
+  "/pet": {
+    "responses": []
+  },
+  "/pet/{petId}": {
+    "responses": []
+  }
 }

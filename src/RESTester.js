@@ -198,6 +198,7 @@ class BaseRESTester extends ODGInitializer {
     this.httpMethodOrder = ['head', 'post', 'get', 'put', 'patch', 'delete'];
     this.chance = new Chance();
     this.faker = faker;
+    this.responseDictionary = {};
   }
 
   // wrapper method for easy rendering templates
@@ -211,12 +212,24 @@ class BaseRESTester extends ODGInitializer {
     fse.outputFileSync(outputPath, fileContent);
   }
   // wrapper method for creating json config files
+
+  async readJSONConfig(outputDir, outputName) {
+    const outputPath = pathModule.join(outputDir, outputName);
+    if (fse.existsSync(outputPath)) {
+      return fse.readJsonSync(outputPath);
+    } else {
+      return null;
+    }
+  }
+
   async createJSONConfig(jsonConfig, outputDir, outputName) {
     const outputPath = pathModule.join(outputDir, outputName);
     try {
       await jf.writeFile(outputPath, jsonConfig, { spaces: 2, EOL: '\r\n' });
+      return jsonConfig;
     } catch (err) {
       this.rejectHandler(err);
+      return null;
     }
   }
   typeValueGenerator(property, useExample = false) {
@@ -274,7 +287,7 @@ class BaseRESTester extends ODGInitializer {
     return result;
   }
   // generate a request body object
-  async requestBodySchemaValueGenerator(apiPath, method, contentType, useExample = false) {
+  requestBodySchemaValueGenerator(apiPath, method, contentType, useExample = false) {
     const requestBody = this.api.paths[apiPath]?.[method]?.requestBody;
     if (!requestBody) {
       // if the api path for the given method does not have the request body,
@@ -312,7 +325,7 @@ class BaseRESTester extends ODGInitializer {
     return output;
   }
   // generate query param object
-  async QueryParamSchemaGenerator(apiPath, method, useExample = false) {
+  QueryParamSchemaGenerator(apiPath, method, useExample = false) {
     const parameters = this.api.paths[apiPath]?.[method]?.parameters;
 
     if (!parameters) {
@@ -336,7 +349,7 @@ class BaseRESTester extends ODGInitializer {
     return output;
   }
   // generate header param object
-  async HeaderParamSchemaGenerator(apiPath, method, useExample = false) {
+  HeaderParamSchemaGenerator(apiPath, method, useExample = false) {
     const parameters = this.api.paths[apiPath]?.[method]?.parameters;
 
     if (!parameters) {
@@ -360,7 +373,7 @@ class BaseRESTester extends ODGInitializer {
     return output;
   }
   // generate URL parameter value
-  async URLParamSchemaGenerator(apiPath, method, useExample = false) {
+  URLParamSchemaGenerator(apiPath, method, useExample = false) {
     const parameters = this.api.paths[apiPath]?.[method]?.parameters;
 
     if (!parameters) {
@@ -383,19 +396,47 @@ class BaseRESTester extends ODGInitializer {
 
     return output;
   }
+
+  async initiateResponseDictionary(apiName) {
+    const paths = this.apiCallOrder;
+    const responseDictionary = await this.readJSONConfig(
+      config.apiCommonDir(apiName),
+      'responseDictionary.json'
+    );
+
+    if (responseDictionary) {
+      this.responseDictionary = responseDictionary;
+    } else {
+      const jsonConfig = {};
+      paths.forEach((path) => {
+        jsonConfig[path] = {
+          responses: [],
+        };
+      });
+      this.responseDictionary = await this.createJSONConfig(
+        jsonConfig,
+        config.apiCommonDir(apiName),
+        'responseDictionary.json'
+      );
+    }
+  }
 }
 
 class RESTester extends BaseRESTester {
   async generateTestCases() {
-    const out = await this.requestBodySchemaValueGenerator('/pet', 'post', 'application/json');
-    console.log(out);
+    // const out = await this.requestBodySchemaValueGenerator('/pet', 'post', 'application/json');
     // this.URLParamSchemaGenerator('/pet/{petId}', 'get', 'application/json');
+
     // nominalTestCases
+    this.generateNominalTestCases();
     // errorTestCases
+    this.generateErrorTestCases();
   }
 
   async generateNominalTestCases() {
     // response-dictionary -> search-based
+    this.initiateResponseDictionary('petStore');
+
     // schema-based test case generation
   }
 
