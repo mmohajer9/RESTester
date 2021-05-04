@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node main.js"
   },
   "repository": {
@@ -18,13 +18,17 @@
   "homepage": "https://github.com/mmohajer9/RESTester#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "chance": "^1.1.7",
     "dependency-graph": "^0.11.0",
     "ejs": "^3.1.6",
+    "faker": "^5.5.3",
     "fs-extra": "^9.1.0",
+    "jest": "^26.6.3",
     "jsonfile": "^6.1.0",
     "lodash": "^4.17.21",
     "swagger-model-validator": "^3.0.20",
     "swagger-parser": "^10.0.2",
+    "uuid": "^8.3.2",
     "yargs": "^16.2.0"
   },
   "devDependencies": {

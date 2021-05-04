@@ -1,0 +1,17 @@
+const JSONConfig = require('./config.json');
+const instance = require('./axiosInstance');
+
+test("<%= testCaseDescription %>", async () => {
+    try {
+        const data = await instance.<%= method %>(
+            '<%= path %>',
+            {...JSONConfig.requestBody},
+            {
+                params : {...JSONConfig.queryParams},
+                headers : {...JSONConfig.headers}
+            }
+        )
+    } catch (e) {
+        expect(e).toMatch('error');
+    }
+});

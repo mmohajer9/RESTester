@@ -1,0 +1,14 @@
+import axios from "axios";
+const JSONConfig = require('./config.json');
+
+const instance = axios.create({
+    baseURL: '<%= baseURL %>',
+  });
+
+instance.defaults.headers.common["Authorization"] = "<%= apiKey %>";
+instance.defaults.headers.common["<%= apiKeyHeader %>"] = "<%= apiKey %>";
+
+export default instance;
+
+
+

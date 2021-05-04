@@ -84,7 +84,7 @@ commands = {
   print: () => {
     const oas = new OASToolkit((oas) => {}, oasConfPath, undefined, {
       resolveHandler: (api) => {
-        const inspected = util.inspect(api, false, null, true);
+        const inspected = util.inspect(api, false, 2, true);
         console.log(inspected);
       },
       rejectHandler: console.error,

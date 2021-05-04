@@ -1,12 +1,11 @@
-const axios = require('axios');
 const JSONConfig = require('./config.json');
+const instance = require('./axiosInstance');
 
-const instance = axios.create({
-  baseURL: '<%= baseURL %>',
-});
 
+// request which is going to be sent in the test case
 instance.<%= method %>('<%= path %>' , {...JSONConfig.requestBody} , {
-  params : {...JSONConfig.queryParams}
+  params : {...JSONConfig.queryParams},
+  headers : {...JSONConfig.headers}
 }).then(res => {
   console.log(res);
 }).catch(console.error)
