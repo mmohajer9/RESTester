@@ -1,3 +1,5 @@
 #!/usr/bin/env node
-const prompt = require('./src/prompt')
+const config = require('./src/config');
+global.config = config;
 
+const prompt = require('./src/prompt');

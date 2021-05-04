@@ -14,9 +14,9 @@ class BaseInitializer {
   constructor(
     // primary parameters
     mainProgram,
-    oasConfPath = pathModule.join(__dirname, '/OASConfig/openapi.yaml'),
-    odgConfPath = pathModule.join(__dirname, '/ODGConfig/odg.json'),
-    config = {
+    oasConfPath = pathModule.join(config.oasConfDir, 'openapi.yaml'),
+    odgConfPath = pathModule.join(config.odgConfDir, 'odg.json'),
+    configOpts = {
       resolveHandler: undefined,
       rejectHandler: console.error,
     }
@@ -27,8 +27,8 @@ class BaseInitializer {
     this.mainProgram = mainProgram;
 
     // initialize resolver/rejecter
-    this.resolveHandler = config.resolveHandler;
-    this.rejectHandler = config.rejectHandler;
+    this.resolveHandler = configOpts.resolveHandler;
+    this.rejectHandler = configOpts.rejectHandler;
 
     // will be initialized later
     this.parser = {};
@@ -211,10 +211,10 @@ class BaseRESTester extends ODGInitializer {
     fse.outputFileSync(outputPath, fileContent);
   }
   // wrapper method for creating json config files
-  async createJSONConfig(config, outputDir, outputName) {
+  async createJSONConfig(jsonConfig, outputDir, outputName) {
     const outputPath = pathModule.join(outputDir, outputName);
     try {
-      await jf.writeFile(outputPath, config, { spaces: 2, EOL: '\r\n' });
+      await jf.writeFile(outputPath, jsonConfig, { spaces: 2, EOL: '\r\n' });
     } catch (err) {
       this.rejectHandler(err);
     }
@@ -387,18 +387,16 @@ class BaseRESTester extends ODGInitializer {
 
 class RESTester extends BaseRESTester {
   async generateTestCases() {
-    // this.requestBodySchemaValueGenerator('/pet', 'post', 'application/json');
+    const out = await this.requestBodySchemaValueGenerator('/pet', 'post', 'application/json');
+    console.log(out);
     // this.URLParamSchemaGenerator('/pet/{petId}', 'get', 'application/json');
-
-    
-
     // nominalTestCases
     // errorTestCases
   }
 
   async generateNominalTestCases() {
+    // response-dictionary -> search-based
     // schema-based test case generation
-    // response-dictionary
   }
 
   async generateErrorTestCases() {

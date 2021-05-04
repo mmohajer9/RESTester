@@ -10,8 +10,7 @@ const { argv, nargs } = require('yargs')
     'Creates the Raw Operation Dependency Graph file (odg.json) in the ODGConfig directory',
     {
       file: {
-        description:
-          'the path of the specific file to save the ODG File into it',
+        description: 'the path of the specific file to save the ODG File into it',
         alias: 'f',
       },
       source: {
@@ -25,8 +24,7 @@ const { argv, nargs } = require('yargs')
     'Generate nominal test cases based on the given ODG JSON Config',
     {
       file: {
-        description:
-          'the path of the specific file to save the ODG File into it',
+        description: 'the path of the specific file to save the ODG File into it',
         alias: 'f',
       },
       source: {
@@ -35,16 +33,12 @@ const { argv, nargs } = require('yargs')
       },
     }
   )
-  .command(
-    'print',
-    'print the Open API Specification which have been validated and parsed',
-    {
-      source: {
-        description: 'the path of the specific OAS source file : JSON or YAML',
-        alias: 's',
-      },
-    }
-  )
+  .command('print', 'print the Open API Specification which have been validated and parsed', {
+    source: {
+      description: 'the path of the specific OAS source file : JSON or YAML',
+      alias: 's',
+    },
+  })
   // examples
   .example('$0 generate-raw-odg-config')
   .example('$0 generate-raw-odg-config -s myOAS.yaml')
