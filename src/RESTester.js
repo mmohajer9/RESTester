@@ -458,7 +458,7 @@ class BaseRESTester extends AbstractBaseRESTester {
     this.errorTestCases = [];
   }
 
-  generateSchemaBasedTestCase(path, method) {
+  generateSchemaBasedTestData(path, method) {
     // if the method of the path is not existed then it will return null
     if (!this.api.paths[path][method]) {
       return null;
@@ -487,7 +487,7 @@ class BaseRESTester extends AbstractBaseRESTester {
         if (!this.api.paths[path][method]) {
           continue;
         } else {
-          const testData = this.generateSchemaBasedTestCase(path, method);
+          const testData = this.generateSchemaBasedTestData(path, method);
           this.nominalTestCases.push({
             path,
             method,
@@ -502,12 +502,19 @@ class BaseRESTester extends AbstractBaseRESTester {
     //TODO mutation of the nominal test cases to generate error test cases
   }
 
+  async oracle() {
+    await this.statusCodeOracle();
+    await this.responseValidationOracle();
+  }
+
   async statusCodeOracle() {
     //TODO check for the output and generate test files
+    //* then the response should be added to response dictionary
   }
 
   async responseValidationOracle() {
     //TODO check for the output and generate test files
+    //* then the response should be added to response dictionary
   }
 }
 
@@ -518,7 +525,8 @@ class RESTester extends BaseRESTester {
       this.generateNominalTestCase();
       // errorTestCases
       this.generateErrorTestCase();
-
+      // calling the oracle
+      await this.oracle();
       console.log(this.nominalTestCases);
     }
   }
