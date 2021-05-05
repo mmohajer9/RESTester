@@ -1,0 +1,40 @@
+{
+  "requestBody": {
+    "id": 10,
+    "name": "doggie",
+    "category": {
+      "id": 1,
+      "name": "Dogs"
+    },
+    "photoUrls": [
+      "African Buffalo Emilie McCormick",
+      "Turkey Agnes Montgomery"
+    ],
+    "tags": [
+      {
+        "id": 201,
+        "name": "Guanaco Blanche Patton"
+      },
+      {
+        "id": 702,
+        "name": "Bluefish Hulda Patton"
+      },
+      {
+        "id": 729,
+        "name": "Gundi Martin Peters"
+      },
+      {
+        "id": 473,
+        "name": "Snowy Owl Landon Brooks"
+      },
+      {
+        "id": 319,
+        "name": "Buffalo Marion Becker"
+      }
+    ],
+    "status": "available"
+  },
+  "urlParams": {},
+  "queryParams": {},
+  "headers": {}
+}

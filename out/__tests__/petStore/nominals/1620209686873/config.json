@@ -1,0 +1,33 @@
+{
+  "requestBody": {
+    "id": 10,
+    "name": "doggie",
+    "category": {
+      "id": 1,
+      "name": "Dogs"
+    },
+    "photoUrls": [
+      "Bush Dog Georgia Williamson",
+      "Banded Sea Krait Gilbert Shelton",
+      "Matschies Tree Kangaroo May Frank"
+    ],
+    "tags": [
+      {
+        "id": 592,
+        "name": "Gayal Rosie Hanson"
+      },
+      {
+        "id": 278,
+        "name": "Chameleons Adeline Craig"
+      },
+      {
+        "id": 324,
+        "name": "Fish Lillian Wells"
+      }
+    ],
+    "status": "sold"
+  },
+  "urlParams": {},
+  "queryParams": {},
+  "headers": {}
+}

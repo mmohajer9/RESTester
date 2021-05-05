@@ -7,43 +7,27 @@ const { argv, nargs } = require('yargs')
   // commands
   .command(
     'generate-raw-odg-config',
-    'Creates the Raw Operation Dependency Graph file (odg.json) in the ODGConfig directory',
-    {
-      file: {
-        description: 'the path of the specific file to save the ODG File into it',
-        alias: 'f',
-      },
-      source: {
-        description: 'the path of the specific OAS source file : JSON or YAML',
-        alias: 's',
-      },
-    }
+    'Creates the Raw Operation Dependency Graph file (odg.json) in the ODGConfig directory'
   )
   .command(
     'generate-test-cases',
     'Generate nominal test cases based on the given ODG JSON Config',
     {
-      file: {
-        description: 'the path of the specific file to save the ODG File into it',
-        alias: 'f',
+      number: {
+        description: 'the number of the test cases that is going to be generated',
+        alias: 'n',
       },
-      source: {
-        description: 'the path of the specific OAS source file : JSON or YAML',
-        alias: 's',
+      useExample: {
+        description: 'use the examples of schema specification',
+        alias: 'e',
       },
     }
   )
-  .command('print', 'print the Open API Specification which have been validated and parsed', {
-    source: {
-      description: 'the path of the specific OAS source file : JSON or YAML',
-      alias: 's',
-    },
-  })
+  .command('print', 'print the Open API Specification which have been validated and parsed')
+
   // examples
   .example('$0 generate-raw-odg-config')
-  .example('$0 generate-raw-odg-config -s myOAS.yaml')
-  .example('$0 generate-raw-odg-config -f myODG.json')
-  .example('$0 generate-raw-odg-config -s myOAS.yaml -f myODG.json')
+
   // helps
   .help()
   .alias('h', 'help')
@@ -52,28 +36,17 @@ const { argv, nargs } = require('yargs')
   .epilog('Copyright 2021 - RESTester - Mohammad Mahdi Mohajer')
   .demandCommand();
 
-const oasConfPath = argv.source ? argv.source : undefined;
-const odgConfPath = argv.file ? argv.file : undefined;
-
 commands = {
   'generate-odg-config': () => {},
   'generate-raw-odg-config': () => {
-    const oas = new OASToolkit(
-      (oas) => {
-        oas.generateRawODGConfig();
-      },
-      oasConfPath,
-      odgConfPath
-    );
+    const oas = new OASToolkit((oas) => {
+      oas.generateRawODGConfig();
+    });
   },
   'generate-test-cases': () => {
-    const oas = new OASToolkit(
-      (oas) => {
-        oas.generateTestCases();
-      },
-      oasConfPath,
-      odgConfPath
-    );
+    const oas = new OASToolkit((oas) => {
+      oas.generateTestCases(+argv._[1] , true);
+    });
   },
   print: () => {
     const oas = new OASToolkit((oas) => {}, oasConfPath, undefined, {

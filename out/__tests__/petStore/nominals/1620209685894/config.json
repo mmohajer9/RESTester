@@ -1,0 +1,8 @@
+{
+  "requestBody": {},
+  "urlParams": {},
+  "queryParams": {
+    "status": "sold"
+  },
+  "headers": {}
+}

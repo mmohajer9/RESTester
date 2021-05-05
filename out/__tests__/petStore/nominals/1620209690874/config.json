@@ -1,0 +1,10 @@
+{
+  "requestBody": {},
+  "urlParams": {
+    "petId": 391
+  },
+  "queryParams": {},
+  "headers": {
+    "api_key": "Tufted Puffin Troy Poole"
+  }
+}

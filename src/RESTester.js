@@ -9,6 +9,7 @@ const util = require('util');
 const fse = require('fs-extra');
 const Chance = require('chance');
 const faker = require('faker');
+const axios = require('axios');
 
 class BaseInitializer {
   constructor(
@@ -205,9 +206,7 @@ class AbstractBaseRESTester extends ODGInitializer {
   async renderTemplateToFile(templateDir, templateName, context, outputDir, outputName) {
     const templatePath = pathModule.join(templateDir, templateName);
     const fileContent = await ejs.renderFile(templatePath, context);
-    const uuidv1 = uuid.v1();
-    const outputFileName = `test-${outputName}-${uuidv1}.test.js`;
-    const outputPath = pathModule.join(outputDir, outputFileName);
+    const outputPath = pathModule.join(outputDir, outputName);
     fse.ensureFileSync(outputPath);
     fse.outputFileSync(outputPath, fileContent);
   }
@@ -339,8 +338,8 @@ class AbstractBaseRESTester extends ODGInitializer {
     for (const param of queryParams) {
       if (!param.required) {
         const useEmptyParam = this.chance.bool({ likelihood: 20 });
-        if (useEmptyParam) {
-          return {};
+        if (useEmptyParam && param.schema.default) {
+          return { [param.name]: param.schema.default };
         }
       }
       output[param.name] = this.typeValueGenerator(param.schema, useExample);
@@ -453,29 +452,81 @@ class BaseRESTester extends AbstractBaseRESTester {
     super(...props);
     // initiating response dictionary
     this.initiateResponseDictionary('petStore');
+
     // for storing generated test cases
     this.nominalTestCases = [];
     this.errorTestCases = [];
+
+    // for storing request handler instance
+    this.axios = {};
   }
 
-  generateSchemaBasedTestData(path, method) {
+  initiateRequestHandler() {
+    const instance = axios.create({
+      baseURL: this.api.servers[0].url,
+    });
+    this.axios = instance;
+  }
+
+  async generateRequest(testCase) {
+    try {
+      const urlParams = testCase.data.urlParams;
+      let path = testCase.path;
+      for (const parameter in urlParams) {
+        path = path.replace(/({|})/g, '').replace(parameter, urlParams[parameter]);
+      }
+      console.log('PATH ::: ', path);
+
+      if (testCase.method === 'get') {
+        const response = await this.axios[testCase.method](path, {
+          params: testCase.data.queryParams,
+          headers: testCase.data.headers,
+        });
+        return {
+          responseData: response.data,
+          responseStatus: response.status,
+        };
+      } else {
+        const response = await this.axios[testCase.method](path, testCase.data.requestBody, {
+          params: testCase.data.queryParams,
+          headers: testCase.data.headers,
+        });
+        return {
+          responseData: response.data,
+          responseStatus: response.status,
+        };
+      }
+    } catch (error) {
+      return {
+        responseData: error.response.data,
+        responseStatus: error.response.status,
+      };
+    }
+  }
+
+  generateSchemaBasedTestData(path, method, useExample = false) {
     // if the method of the path is not existed then it will return null
     if (!this.api.paths[path][method]) {
       return null;
     }
 
     // generating schema-based request body and parameters
-    const requestBody = this.requestBodySchemaValueGenerator(path, method, 'application/json');
-    const urlParams = this.URLParamSchemaGenerator(path, method);
-    const queryParams = this.queryParamSchemaGenerator(path, method);
-    const headers = this.headerParamSchemaGenerator(path, method);
+    const requestBody = this.requestBodySchemaValueGenerator(
+      path,
+      method,
+      'application/json',
+      useExample
+    );
+    const urlParams = this.URLParamSchemaGenerator(path, method, useExample);
+    const queryParams = this.queryParamSchemaGenerator(path, method, useExample);
+    const headers = this.headerParamSchemaGenerator(path, method, useExample);
 
     // stocking all values into a one output as a test data object
     const testData = { requestBody, urlParams, queryParams, headers };
     return testData;
   }
 
-  generateNominalTestCase() {
+  generateNominalTestCase(useExample = false) {
     //TODO response-dictionary -> search-based approach
     // if it is empty , it won't proceed anymore and will use other approach
     // this.responseDictionaryRandomSeek('/pet/findByStatus', 'get')
@@ -487,7 +538,7 @@ class BaseRESTester extends AbstractBaseRESTester {
         if (!this.api.paths[path][method]) {
           continue;
         } else {
-          const testData = this.generateSchemaBasedTestData(path, method);
+          const testData = this.generateSchemaBasedTestData(path, method, useExample);
           this.nominalTestCases.push({
             path,
             method,
@@ -498,37 +549,94 @@ class BaseRESTester extends AbstractBaseRESTester {
     }
   }
 
-  generateErrorTestCase() {
+  generateErrorTestCase(useExample) {
     //TODO mutation of the nominal test cases to generate error test cases
   }
 
-  async oracle() {
-    await this.statusCodeOracle();
-    await this.responseValidationOracle();
+  async oracle(mode) {
+    await this.statusCodeOracle(mode);
+    await this.responseValidationOracle(mode);
   }
 
-  async statusCodeOracle() {
-    //TODO check for the output and generate test files
-    //* then the response should be added to response dictionary
+  async statusCodeOracle(mode) {
+    // check for the output and generate test files
+    // then the response should be added to response dictionary if the status is 200 (OK)
+
+    const list =
+      mode === 'nominals' ? this.nominalTestCases : mode === 'errors' ? this.errorTestCases : null;
+    for (const [index , testCase] of list.entries()) {
+      const result = await this.generateRequest(testCase);
+      if (result.responseStatus >= 200) {
+        // creating axios config
+        let context = {
+          baseURL: this.api.servers[0].url,
+        };
+        // generate unique number
+        let uniqueNumber = Date.now();
+        await this.renderTemplateToFile(
+          config.apiTemplatesDir('petStore'),
+          'axios-config-template.ejs',
+          context,
+          config.apiNominalTestCasesDir('petStore'),
+          `/${uniqueNumber}/axiosInstance.js`
+        );
+        // creating JSON config file
+        this.createJSONConfig(
+          { ...testCase.data },
+          config.apiNominalTestCasesDir('petStore'),
+          `/${uniqueNumber}/config.json`
+        );
+        // creating request file
+
+        context = {
+          path: testCase.path,
+          method: testCase.method,
+          testCaseDescription: `test case generated by RESTester - ${uniqueNumber}`,
+        };
+
+        // await this.renderTemplateToFile(
+        //   config.apiTemplatesDir('petStore'),
+        //   'axios-request-file.ejs',
+        //   context,
+        //   config.apiNominalTestCasesDir('petStore'),
+        //   `/${uniqueNumber}/request-${index}.js`
+        // );
+
+        await this.renderTemplateToFile(
+          config.apiTemplatesDir('petStore'),
+          'jest-test-case-template.ejs',
+          context,
+          config.apiNominalTestCasesDir('petStore'),
+          `/${uniqueNumber}/${index}.test.js`
+        );
+      } else if (result.responseStatus >= 500) {
+      }
+    }
   }
 
-  async responseValidationOracle() {
+  async responseValidationOracle(mode) {
     //TODO check for the output and generate test files
-    //* then the response should be added to response dictionary
+    // console.log(this.api.paths['/pet'].post.responses['200'].content);
   }
 }
 
 class RESTester extends BaseRESTester {
-  async generateTestCases(testCaseNumber = 1) {
+  async generateTestCases(testCaseNumber = 1, useExample = false) {
+    // initiate request handler like axios
+    this.initiateRequestHandler();
+    // iterate for amount of test case number
+    // create a set of test cases for all api paths per each iteration
     for (let index = 0; index < testCaseNumber; index++) {
-      // nominalTestCases
-      this.generateNominalTestCase();
-      // errorTestCases
-      this.generateErrorTestCase();
-      // calling the oracle
-      await this.oracle();
-      console.log(this.nominalTestCases);
+      // nominal test cases
+      this.generateNominalTestCase(useExample);
+      // error test cases
+      this.generateErrorTestCase(useExample);
     }
+    // call oracles for nominal and error test cases
+    await this.oracle('nominals');
+    await this.oracle('errors');
+    // const inspected = util.inspect(this.nominalTestCases, false, 4, true);
+    // console.log(inspected);
   }
 }
 

@@ -1,6 +1,17 @@
 const JSONConfig = require('./config.json');
 const instance = require('./axiosInstance');
 
+<% if (method === 'get') { %>
+
+// request which is going to be sent in the test case
+instance.<%= method %>('<%= path %>', {
+  params : {...JSONConfig.queryParams},
+  headers : {...JSONConfig.headers}
+}).then(res => {
+  console.log(res);
+}).catch(console.error)
+
+<%} else { %>
 
 // request which is going to be sent in the test case
 instance.<%= method %>('<%= path %>' , {...JSONConfig.requestBody} , {
@@ -9,3 +20,6 @@ instance.<%= method %>('<%= path %>' , {...JSONConfig.requestBody} , {
 }).then(res => {
   console.log(res);
 }).catch(console.error)
+
+<% } %>
+ 
