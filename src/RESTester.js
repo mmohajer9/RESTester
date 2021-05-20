@@ -1,196 +1,13 @@
-const SwaggerParser = require('@apidevtools/swagger-parser');
-const DepGraph = require('dependency-graph').DepGraph;
 const pathModule = require('path');
 const jf = require('jsonfile');
-const _ = require('lodash');
 const ejs = require('ejs');
-const uuid = require('uuid');
-const util = require('util');
 const fse = require('fs-extra');
 const Chance = require('chance');
 const faker = require('faker');
 const axios = require('axios');
+const util = require('util');
 
-class BaseInitializer {
-  constructor(
-    // primary parameters
-    mainProgram,
-    oasConfPath = pathModule.join(config.oasConfDir, 'openapi.yaml'),
-    odgConfPath = pathModule.join(config.odgConfDir, 'odg.json'),
-    configOpts = {
-      resolveHandler: undefined,
-      rejectHandler: console.error,
-    }
-  ) {
-    // initializing fields
-    this.oasConfPath = oasConfPath;
-    this.odgConfPath = odgConfPath;
-    this.mainProgram = mainProgram;
-
-    // initialize resolver/rejecter
-    this.resolveHandler = configOpts.resolveHandler;
-    this.rejectHandler = configOpts.rejectHandler;
-
-    // will be initialized later
-    this.parser = {};
-    this.api = {};
-    this.odgConfig = {};
-    this.apiCallOrder = [];
-    this.httpMethodOrder = [];
-    this.graph = {};
-
-    // initializing parser and validator
-    this.#init();
-  }
-
-  async #init() {
-    await this.#initParser(this.resolveHandler, this.rejectHandler);
-    // call main callback
-    this.mainProgram ? this.mainProgram(this) : null;
-  }
-
-  async #initParser(resolve, reject) {
-    this.parser = new SwaggerParser();
-    try {
-      this.api = await this.parser.validate(this.oasConfPath);
-      resolve ? resolve(this.api) : null;
-    } catch (err) {
-      err ? reject(err) : null;
-    }
-  }
-}
-
-class ODGInitializer extends BaseInitializer {
-  constructor(...props) {
-    super(...props);
-
-    // initialize a operation dependency graph (empty)
-    this.graph = new DepGraph();
-    // calculate api call order based on dependencies in odg.json
-    this.#setApiCallOrder();
-  }
-
-  // set api call order based on dependecies in odg.json
-  #setApiCallOrder() {
-    // first we justify how to call the api in the correct order
-    const odgConfig = require(this.odgConfPath);
-    odgConfig.forEach((element) => {
-      this.graph.addNode(element.endpoint, element.derivedProps);
-    });
-    odgConfig.forEach((element) => {
-      if (!_.isEmpty(element.dependsOn)) {
-        element.dependsOn.forEach((dependencyEndpoint) => {
-          this.graph.addDependency(element.endpoint, dependencyEndpoint);
-        });
-      }
-    });
-    this.apiCallOrder = this.graph.overallOrder();
-    this.odgConfig = odgConfig;
-  }
-
-  // TODO Generate ODG config automatically based on similarity measures
-  async generateODGConfig(configPath) {}
-
-  // enerate raw ODG config which has no selected dependencies
-  async generateRawODGConfig(configPath) {
-    const file = configPath || this.odgConfPath;
-    const configs = [];
-
-    for (const item in this.api.paths) {
-      configs.push({
-        endpoint: item,
-        dependsOn: [],
-        derivedProps: {
-          head: this.getMethodProps(item, 'head'),
-          post: this.getMethodProps(item, 'post'),
-          get: this.getMethodProps(item, 'get'),
-          put: this.getMethodProps(item, 'put'),
-          patch: this.getMethodProps(item, 'patch'),
-          delete: this.getMethodProps(item, 'delete'),
-        },
-      });
-    }
-
-    try {
-      await jf.writeFile(file, configs, { spaces: 2, EOL: '\r\n' });
-    } catch (err) {
-      this.rejectHandler(err);
-    }
-  }
-
-  // helper methods which were used in other methods<- *
-
-  getJsonRequestBodyProperties(path, method) {
-    return this.api.paths[path]?.[method]?.requestBody?.content['application/json']?.schema
-      ?.properties;
-  }
-
-  getUrlParams(path, method) {
-    const params = this.api.paths[path]?.[method]?.parameters
-      ?.filter((param) => param.in === 'path')
-      .map((param) => param.name);
-
-    if (_.isEmpty(params)) {
-      return null;
-    } else {
-      const retObj = {};
-      params.forEach((element) => {
-        retObj[element] = '';
-      });
-      return retObj;
-    }
-  }
-
-  getQueryParams(path, method) {
-    const params = this.api.paths[path]?.[method]?.parameters
-      ?.filter((param) => param.in === 'query')
-      .map((param) => param.name);
-
-    if (_.isEmpty(params)) {
-      return null;
-    } else {
-      const retObj = {};
-      params.forEach((element) => {
-        retObj[element] = '';
-      });
-      return retObj;
-    }
-  }
-
-  getHeaderParams(path, method) {
-    const params = this.api.paths[path]?.[method]?.parameters
-      ?.filter((param) => param.in === 'header')
-      .map((param) => param.name);
-
-    if (_.isEmpty(params)) {
-      return null;
-    } else {
-      const retObj = {};
-      params.forEach((element) => {
-        retObj[element] = '';
-      });
-      return retObj;
-    }
-  }
-
-  getMethodProps(path, method) {
-    const reqBodyToKeyMapping = (inObj) => {
-      const retObj = {};
-      for (const key in inObj) {
-        retObj[key] = '';
-      }
-      return inObj ? retObj : null;
-    };
-
-    const props = {
-      requestBody: reqBodyToKeyMapping(this.getJsonRequestBodyProperties(path, method)),
-      urlParams: this.getUrlParams(path, method),
-      queryParams: this.getQueryParams(path, method),
-      headerParams: this.getHeaderParams(path, method),
-    };
-    return this.api.paths[path]?.[method] ? props : null;
-  }
-}
+const ODGInitializer = require('./odg');
 
 class AbstractBaseRESTester extends ODGInitializer {
   constructor(...props) {
@@ -564,7 +381,7 @@ class BaseRESTester extends AbstractBaseRESTester {
 
     const list =
       mode === 'nominals' ? this.nominalTestCases : mode === 'errors' ? this.errorTestCases : null;
-    for (const [index , testCase] of list.entries()) {
+    for (const [index, testCase] of list.entries()) {
       const result = await this.generateRequest(testCase);
       if (result.responseStatus >= 200) {
         // creating axios config
