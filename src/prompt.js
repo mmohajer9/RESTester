@@ -1,5 +1,4 @@
 const RESTester = require('./RESTester');
-const util = require('util');
 
 // initializing command line program
 const { Command } = require('commander');
@@ -8,9 +7,12 @@ program.version('0.0.1');
 
 program
   .command('print')
+  .option('-d, --depth <level>', 'depth of nesting')
   .description('print the validated and parsed open api specification (swagger)')
-  .action(() => {
-    console.log('print');
+  .action((options) => {
+    const restester = new RESTester((instance) => {
+      instance.print(options.depth);
+    });
   });
 
 program

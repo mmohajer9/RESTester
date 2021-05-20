@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "npm start generate-test-cases",
+            "command": "npm start print",
             "name": "Run npm start",
             "request": "launch",
             "trace": true,

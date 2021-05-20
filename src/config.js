@@ -4,6 +4,7 @@ const configuration = {
   // handlers
   resolveHandler: console.log,
   rejectHandler: console.error,
+  logHandler : console.log,
 
   // general directories
   testsDir: path.resolve('out', '__tests__'),
