@@ -24,7 +24,7 @@ class BaseInitializer {
     this.graph = {};
 
     // metadata placeholder
-    this.openapiVersion = '';
+    this.openApiVersion = '';
     this.apiInfo = {};
     this.servers = [];
 
@@ -36,7 +36,7 @@ class BaseInitializer {
     await this.#initParser(this.resolveHandler, this.rejectHandler);
     // fetch metadatas
     this.servers = this.api.servers;
-    this.openapiVersion = this.api.openapi;
+    this.openApiVersion = this.api.openapi;
     this.apiInfo = this.api.info;
     // call main callback
     this.mainProgram ? this.mainProgram(this) : null;
@@ -46,7 +46,9 @@ class BaseInitializer {
     this.parser = new SwaggerParser();
     try {
       this.api = await this.parser.validate(this.oasConfPath);
-      console.log(chalk.green('Open API Specification has been validated and parsed'));
+      console.log(
+        chalk.green('Open API Specification has been validated and parsed')
+      );
     } catch (err) {
       err ? reject(err) : null;
     }

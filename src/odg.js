@@ -1,5 +1,6 @@
 const DepGraph = require('dependency-graph').DepGraph;
 const _ = require('lodash');
+const chalk = require('chalk');
 const BaseInitializer = require('./initializer');
 
 class ODGInitializer extends BaseInitializer {
@@ -15,19 +16,26 @@ class ODGInitializer extends BaseInitializer {
   // set api call order based on dependecies in odg.json
   #setApiCallOrder() {
     // first we justify how to call the api in the correct order
-    const odgConfig = require(this.odgConfPath);
-    odgConfig.forEach((element) => {
-      this.graph.addNode(element.endpoint, element.derivedProps);
-    });
-    odgConfig.forEach((element) => {
-      if (!_.isEmpty(element.dependsOn)) {
-        element.dependsOn.forEach((dependencyEndpoint) => {
-          this.graph.addDependency(element.endpoint, dependencyEndpoint);
-        });
-      }
-    });
-    this.apiCallOrder = this.graph.overallOrder();
-    this.odgConfig = odgConfig;
+    try {
+      const odgConfig = require(this.odgConfPath);
+
+      odgConfig.forEach((element) => {
+        this.graph.addNode(element.endpoint, element.derivedProps);
+      });
+      odgConfig.forEach((element) => {
+        if (!_.isEmpty(element.dependsOn)) {
+          element.dependsOn.forEach((dependencyEndpoint) => {
+            this.graph.addDependency(element.endpoint, dependencyEndpoint);
+          });
+        }
+      });
+      this.apiCallOrder = this.graph.overallOrder();
+      this.odgConfig = odgConfig;
+    } catch (error) {
+      console.log(chalk.redBright('No ODG Configuration Has Been Provided'));
+      console.log(chalk.yellowBright('Check ODG Config Directory'));
+      return;
+    }
   }
 
   // TODO Generate ODG config automatically based on similarity measures
@@ -63,8 +71,9 @@ class ODGInitializer extends BaseInitializer {
   // helper methods which were used in other methods<- *
 
   getJsonRequestBodyProperties(path, method) {
-    return this.api.paths[path]?.[method]?.requestBody?.content['application/json']?.schema
-      ?.properties;
+    return this.api.paths[path]?.[method]?.requestBody?.content[
+      'application/json'
+    ]?.schema?.properties;
   }
 
   getUrlParams(path, method) {
@@ -125,7 +134,9 @@ class ODGInitializer extends BaseInitializer {
     };
 
     const props = {
-      requestBody: reqBodyToKeyMapping(this.getJsonRequestBodyProperties(path, method)),
+      requestBody: reqBodyToKeyMapping(
+        this.getJsonRequestBodyProperties(path, method)
+      ),
       urlParams: this.getUrlParams(path, method),
       queryParams: this.getQueryParams(path, method),
       headerParams: this.getHeaderParams(path, method),
