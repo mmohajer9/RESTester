@@ -39,11 +39,11 @@ class ODGInitializer extends BaseInitializer {
   }
 
   // TODO Generate ODG config automatically based on similarity measures
-  async generateODGConfig(configPath) {}
+  async generateODGConfig() {}
 
   // enerate raw ODG config which has no selected dependencies
-  async generateRawODGConfig(configPath) {
-    const file = configPath || this.odgConfPath;
+  async generateRawODGConfig() {
+    const file = this.odgConfPath;
     const configs = [];
 
     for (const item in this.api.paths) {
@@ -68,7 +68,26 @@ class ODGInitializer extends BaseInitializer {
     }
   }
 
-  // helper methods which were used in other methods<- *
+  // helper methods which were used in other methods
+  getMethodProps(path, method) {
+    const reqBodyToKeyMapping = (inObj) => {
+      const retObj = {};
+      for (const key in inObj) {
+        retObj[key] = '';
+      }
+      return inObj ? retObj : null;
+    };
+
+    const props = {
+      requestBody: reqBodyToKeyMapping(
+        this.getJsonRequestBodyProperties(path, method)
+      ),
+      urlParams: this.getUrlParams(path, method),
+      queryParams: this.getQueryParams(path, method),
+      headerParams: this.getHeaderParams(path, method),
+    };
+    return this.api.paths[path]?.[method] ? props : null;
+  }
 
   getJsonRequestBodyProperties(path, method) {
     return this.api.paths[path]?.[method]?.requestBody?.content[
@@ -122,26 +141,6 @@ class ODGInitializer extends BaseInitializer {
       });
       return retObj;
     }
-  }
-
-  getMethodProps(path, method) {
-    const reqBodyToKeyMapping = (inObj) => {
-      const retObj = {};
-      for (const key in inObj) {
-        retObj[key] = '';
-      }
-      return inObj ? retObj : null;
-    };
-
-    const props = {
-      requestBody: reqBodyToKeyMapping(
-        this.getJsonRequestBodyProperties(path, method)
-      ),
-      urlParams: this.getUrlParams(path, method),
-      queryParams: this.getQueryParams(path, method),
-      headerParams: this.getHeaderParams(path, method),
-    };
-    return this.api.paths[path]?.[method] ? props : null;
   }
 }
 
