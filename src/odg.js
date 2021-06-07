@@ -1,20 +1,17 @@
 const DepGraph = require('dependency-graph').DepGraph;
 const _ = require('lodash');
 const chalk = require('chalk');
-const BaseInitializer = require('./initializer');
+const Initializer = require('./initializer');
 
-class ODGInitializer extends BaseInitializer {
+class ODGInitializer extends Initializer {
   constructor(...props) {
     super(...props);
-
     // initialize a operation dependency graph (empty)
     this.graph = new DepGraph();
-    // calculate api call order based on dependencies in odg.json
-    this.#setApiCallOrder();
   }
 
   // set api call order based on dependecies in odg.json
-  #setApiCallOrder() {
+  setApiCallOrder() {
     // first we justify how to call the api in the correct order
     try {
       const odgConfig = require(this.odgConfPath);
@@ -37,9 +34,21 @@ class ODGInitializer extends BaseInitializer {
       return;
     }
   }
+}
 
-  // TODO Generate ODG config automatically based on similarity measures
-  async generateODGConfig() {}
+class ODGConfigGenerator extends ODGInitializer {
+  createODG() {
+    //TODO creating odg.json config
+    // in the end, we calculate the order of api calls
+    this.setApiCallOrder();
+  }
+  createRawODG() {
+    //TODO creating raw (empty) odg.json config
+    // in the end, we calculate the order of api calls
+    this.setApiCallOrder();
+  }
+
+  // FIXME: fix the following functions and convert them into the top ones
 
   // enerate raw ODG config which has no selected dependencies
   async generateRawODGConfig() {
@@ -144,4 +153,4 @@ class ODGInitializer extends BaseInitializer {
   }
 }
 
-module.exports = ODGInitializer;
+module.exports = ODGConfigGenerator;

@@ -2,7 +2,7 @@ const SwaggerParser = require('@apidevtools/swagger-parser');
 const chalk = require('chalk');
 const util = require('util');
 
-class BaseInitializer {
+class Initializer {
   constructor(mainProgram) {
     // initializing fields
     this.oasConfPath = config.oasConfPath;
@@ -60,4 +60,4 @@ class BaseInitializer {
   }
 }
 
-module.exports = BaseInitializer;
+module.exports = Initializer;

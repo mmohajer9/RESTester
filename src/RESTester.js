@@ -5,11 +5,10 @@ const fse = require('fs-extra');
 const Chance = require('chance');
 const faker = require('faker');
 const axios = require('axios');
-const util = require('util');
 
-const ODGInitializer = require('./odg');
+const ODGConfigGenerator = require('./odg');
 
-class AbstractBaseRESTester extends ODGInitializer {
+class AbstractBaseRESTester extends ODGConfigGenerator {
   constructor(...props) {
     super(...props);
     // http method order for testing
@@ -20,7 +19,13 @@ class AbstractBaseRESTester extends ODGInitializer {
   }
 
   // wrapper method for easy rendering templates
-  async renderTemplateToFile(templateDir, templateName, context, outputDir, outputName) {
+  async renderTemplateToFile(
+    templateDir,
+    templateName,
+    context,
+    outputDir,
+    outputName
+  ) {
     const templatePath = pathModule.join(templateDir, templateName);
     const fileContent = await ejs.renderFile(templatePath, context);
     const outputPath = pathModule.join(outputDir, outputName);
@@ -74,7 +79,11 @@ class AbstractBaseRESTester extends ODGInitializer {
       case 'array':
         // this will be another array nested inside the object
         result = [];
-        for (let index = 0; index < this.chance.integer({ min: 0, max: 10 }); index++) {
+        for (
+          let index = 0;
+          index < this.chance.integer({ min: 0, max: 10 });
+          index++
+        ) {
           result[index] = this.typeValueGenerator(property.items, useExample);
         }
         break;
@@ -82,7 +91,10 @@ class AbstractBaseRESTester extends ODGInitializer {
         // this will be another object nested inside the object
         result = {};
         for (const key in property.properties) {
-          result[key] = this.typeValueGenerator(property.properties[key], useExample);
+          result[key] = this.typeValueGenerator(
+            property.properties[key],
+            useExample
+          );
         }
         break;
       default:
@@ -103,7 +115,12 @@ class AbstractBaseRESTester extends ODGInitializer {
     return result;
   }
   // generate a request body object
-  requestBodySchemaValueGenerator(apiPath, method, contentType, useExample = false) {
+  requestBodySchemaValueGenerator(
+    apiPath,
+    method,
+    contentType,
+    useExample = false
+  ) {
     const requestBody = this.api.paths[apiPath]?.[method]?.requestBody;
     if (!requestBody) {
       // if the api path for the given method does not have the request body,
@@ -290,7 +307,9 @@ class BaseRESTester extends AbstractBaseRESTester {
       const urlParams = testCase.data.urlParams;
       let path = testCase.path;
       for (const parameter in urlParams) {
-        path = path.replace(/({|})/g, '').replace(parameter, urlParams[parameter]);
+        path = path
+          .replace(/({|})/g, '')
+          .replace(parameter, urlParams[parameter]);
       }
       console.log('PATH ::: ', path);
 
@@ -304,10 +323,14 @@ class BaseRESTester extends AbstractBaseRESTester {
           responseStatus: response.status,
         };
       } else {
-        const response = await this.axios[testCase.method](path, testCase.data.requestBody, {
-          params: testCase.data.queryParams,
-          headers: testCase.data.headers,
-        });
+        const response = await this.axios[testCase.method](
+          path,
+          testCase.data.requestBody,
+          {
+            params: testCase.data.queryParams,
+            headers: testCase.data.headers,
+          }
+        );
         return {
           responseData: response.data,
           responseStatus: response.status,
@@ -335,7 +358,11 @@ class BaseRESTester extends AbstractBaseRESTester {
       useExample
     );
     const urlParams = this.URLParamSchemaGenerator(path, method, useExample);
-    const queryParams = this.queryParamSchemaGenerator(path, method, useExample);
+    const queryParams = this.queryParamSchemaGenerator(
+      path,
+      method,
+      useExample
+    );
     const headers = this.headerParamSchemaGenerator(path, method, useExample);
 
     // stocking all values into a one output as a test data object
@@ -355,7 +382,11 @@ class BaseRESTester extends AbstractBaseRESTester {
         if (!this.api.paths[path][method]) {
           continue;
         } else {
-          const testData = this.generateSchemaBasedTestData(path, method, useExample);
+          const testData = this.generateSchemaBasedTestData(
+            path,
+            method,
+            useExample
+          );
           this.nominalTestCases.push({
             path,
             method,
@@ -380,7 +411,11 @@ class BaseRESTester extends AbstractBaseRESTester {
     // then the response should be added to response dictionary if the status is 200 (OK)
 
     const list =
-      mode === 'nominals' ? this.nominalTestCases : mode === 'errors' ? this.errorTestCases : null;
+      mode === 'nominals'
+        ? this.nominalTestCases
+        : mode === 'errors'
+        ? this.errorTestCases
+        : null;
     for (const [index, testCase] of list.entries()) {
       const result = await this.generateRequest(testCase);
       if (result.responseStatus >= 200) {
