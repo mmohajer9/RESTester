@@ -92,9 +92,6 @@ class ODGConfigGenerator extends ODGInitializer {
     for (const path in paths) {
       result.push(this.odgEntry(path, paths));
     }
-
-    // this.inspect(paths, 7);
-
     // create JSON Config File
     this.createJSONFile(this.odgConfPath, result);
   }
