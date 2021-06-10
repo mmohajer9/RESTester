@@ -473,7 +473,35 @@ class BaseRESTester extends AbstractBaseRESTester {
 }
 
 class RESTester extends BaseRESTester {
+  // set api call order based on dependecies in odg.json
+  setApiCallOrder() {
+    // first we justify how to call the api in the correct order
+    try {
+      const odgConfig = require(this.odgConfPath);
+
+      odgConfig.forEach((element) => {
+        this.graph.addNode(element.endpoint, element.derivedProps);
+      });
+      odgConfig.forEach((element) => {
+        if (!_.isEmpty(element.dependsOn)) {
+          element.dependsOn.forEach((dependencyEndpoint) => {
+            this.graph.addDependency(element.endpoint, dependencyEndpoint);
+          });
+        }
+      });
+      this.apiCallOrder = this.graph.overallOrder();
+      this.odgConfig = odgConfig;
+      console.log(chalk.cyan('API Call Order Has Been Set'));
+    } catch (error) {
+      console.log(chalk.redBright('No ODG Configuration Has Been Provided'));
+      console.log(chalk.yellowBright('Check ODG Config Directory'));
+      return;
+    }
+  }
+
   async generateTestCases(testCaseNumber = 1, useExample = false) {
+    // set api call order based on dependecies in odg.json
+    this.setApiCallOrder();
     // initiate request handler like axios
     this.initiateRequestHandler();
     // iterate for amount of test case number

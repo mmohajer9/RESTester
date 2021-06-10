@@ -5,8 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "npm start print",
-            "name": "Run npm start",
+            "command": "node main.js init -r",
+            "name": "node main.js init -r",
             "request": "launch",
             "trace": true,
             "type": "node-terminal"

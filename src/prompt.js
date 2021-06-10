@@ -29,7 +29,9 @@ program
   )
   .action((options) => {
     if (options.raw) {
-      console.log('init-raw');
+      const restester = new RESTester((instance) => {
+        instance.createRawODG();
+      });
     } else {
       console.log('init');
     }

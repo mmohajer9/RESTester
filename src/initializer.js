@@ -1,6 +1,7 @@
 const SwaggerParser = require('@apidevtools/swagger-parser');
 const chalk = require('chalk');
 const util = require('util');
+const jf = require('jsonfile');
 
 class Initializer {
   constructor(mainProgram) {
@@ -57,6 +58,22 @@ class Initializer {
   print(depth) {
     const inspected = util.inspect(this.api, false, depth, true);
     console.log(inspected);
+  }
+
+  inspect(obj, depth) {
+    const inspected = util.inspect(obj, false, depth, true);
+    console.log(inspected);
+  }
+
+  async createJSONFile(path, object) {
+    try {
+      await jf.writeFile(path, object, {
+        spaces: 2,
+        EOL: '\r\n',
+      });
+    } catch (err) {
+      this.rejectHandler(err);
+    }
   }
 }
 
