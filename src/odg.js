@@ -10,23 +10,30 @@ class ODGInitializer extends Initializer {
     this.graph = new DepGraph();
   }
 
-  odgEntry(path, paths) {
+  odgEntry(path, paths, smart = false) {
+    const parser = smart
+      ? this.smartParseParameters.bind(this)
+      : this.parseParameters.bind(this);
     const entry = {
       endpoint: path,
       dependsOn: [],
       props: {
-        head: this.parseMethodProps('head', paths[path]),
-        get: this.parseMethodProps('get', paths[path]),
-        post: this.parseMethodProps('post', paths[path]),
-        put: this.parseMethodProps('put', paths[path]),
-        patch: this.parseMethodProps('patch', paths[path]),
-        delete: this.parseMethodProps('delete', paths[path]),
+        head: parser('head', paths[path]),
+        get: parser('get', paths[path]),
+        post: parser('post', paths[path]),
+        put: parser('put', paths[path]),
+        patch: parser('patch', paths[path]),
+        delete: parser('delete', paths[path]),
       },
     };
     return entry;
   }
 
-  parseMethodProps(methodName, methods) {
+  smartParseParameters(methodName, methods) {
+    return 'smart parsers has not completed yet';
+  }
+
+  parseParameters(methodName, methods) {
     const result = {
       requestBody: this.onlyKeysObject(
         methods[methodName]?.requestBody?.content['application/json']?.schema
@@ -83,17 +90,24 @@ class ODGInitializer extends Initializer {
 }
 
 class ODGConfigGenerator extends ODGInitializer {
-  createODG() {
-    //TODO creating odg.json config
-  }
-  createRawODG() {
+  /**
+   * @param  {boolean} smart
+   * create odg entries for odg.json
+   * null value will be inserted for the parameters
+   * who were not on the open api specification file
+   * and when smart is true it tries to find data dependencies between
+   * different api paths of the specification unless it generate emtpy values
+   * by default smart is false
+   */
+  async createODG(smart = false) {
     const paths = this.api.paths;
     const result = [];
     for (const path in paths) {
-      result.push(this.odgEntry(path, paths));
+      result.push(this.odgEntry(path, paths, smart));
     }
     // create JSON Config File
-    this.createJSONFile(this.odgConfPath, result);
+    await this.createJSONFile(this.odgConfPath, result);
+    console.log(chalk.blueBright('ODG Configuration Has Been Created'));
   }
 }
 

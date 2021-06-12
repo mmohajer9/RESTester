@@ -28,13 +28,9 @@ program
     'initialize operation dependency graph - will find some dependencies automatically'
   )
   .action((options) => {
-    if (options.raw) {
-      const restester = new RESTester((instance) => {
-        instance.createRawODG();
-      });
-    } else {
-      console.log('init');
-    }
+    const restester = new RESTester((instance) => {
+      instance.createODG(!options.raw);
+    });
   });
 
 program
