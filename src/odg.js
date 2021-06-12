@@ -11,55 +11,100 @@ class ODGInitializer extends Initializer {
   }
 
   odgEntry(path, paths, smart = false) {
+    // first flush all dependencies for the new entry
+    const dependencies = [];
     const parser = smart
       ? this.smartParseParameters.bind(this)
       : this.parseParameters.bind(this);
     const entry = {
       endpoint: path,
-      dependsOn: [],
+      dependsOn: dependencies,
       props: {
-        head: parser('head', paths[path]),
-        get: parser('get', paths[path]),
-        post: parser('post', paths[path]),
-        put: parser('put', paths[path]),
-        patch: parser('patch', paths[path]),
-        delete: parser('delete', paths[path]),
+        head: parser('head', paths[path], dependencies, path, paths),
+        get: parser('get', paths[path], dependencies, path, paths),
+        post: parser('post', paths[path], dependencies, path, paths),
+        put: parser('put', paths[path], dependencies, path, paths),
+        patch: parser('patch', paths[path], dependencies, path, paths),
+        delete: parser('delete', paths[path], dependencies, path, paths),
       },
     };
     return entry;
   }
 
-  smartParseParameters(methodName, methods) {
-    return 'smart parsers has not completed yet';
+  smartParseParameters(
+    currentMethodName,
+    currentPathMethods,
+    dependencies,
+    currentPath,
+    paths
+  ) {
+    // create raw result and add parameters keys
+    const inputParams = this.parseParameters(
+      currentMethodName,
+      currentPathMethods
+    );
+
+    if (currentPathMethods[currentMethodName]) {
+      // meta data that helps us to get the right dependencies among apis
+      const tags = currentPathMethods[currentMethodName]?.tags;
+      const operationId = currentPathMethods[currentMethodName]?.operationId;
+      const keys = Object.keys(inputParams);
+
+      // logging the values
+      console.log(
+        `${currentPath} >> ${currentMethodName}`,
+        tags,
+        operationId,
+        keys
+      );
+
+      // searching other apis for similarities
+      for (const path in paths) {
+        // not considering the current path
+        if (path === currentPath) {
+          continue;
+        }
+        //TODO **Complete This Part** ---> processing the other paths
+      }
+    }
+
+    // this actually returns the modified inputParams with dependencies
+    return inputParams;
   }
 
-  parseParameters(methodName, methods) {
-    const result = {
-      requestBody: this.onlyKeysObject(
-        methods[methodName]?.requestBody?.content['application/json']?.schema
-          ?.properties
+  parseParameters(currentMethodName, currentPathMethods, dependencies) {
+    dependencies = [];
+
+    if (!currentPathMethods[currentMethodName]) {
+      return null;
+    }
+
+    const inputParams = {
+      requestBody: this.onlyKeysObjectFromObject(
+        currentPathMethods[currentMethodName]?.requestBody?.content[
+          'application/json'
+        ]?.schema?.properties
       ),
       urlParams: this.onlyKeysObjectFromArray(
-        methods[methodName]?.parameters
+        currentPathMethods[currentMethodName]?.parameters
           ?.filter((item) => item.in === 'path')
           ?.map((item) => item.name)
       ),
       queryParams: this.onlyKeysObjectFromArray(
-        methods[methodName]?.parameters
+        currentPathMethods[currentMethodName]?.parameters
           ?.filter((item) => item.in === 'query')
           ?.map((item) => item.name)
       ),
       headerParams: this.onlyKeysObjectFromArray(
-        methods[methodName]?.parameters
+        currentPathMethods[currentMethodName]?.parameters
           ?.filter((item) => item.in === 'header')
           ?.map((item) => item.name)
       ),
     };
-
-    return result;
+    return inputParams;
   }
 
-  onlyKeysObject(object) {
+  onlyKeysObjectFromObject(object) {
     try {
       const newObject = {};
       const keysArray = Object.keys(object);
