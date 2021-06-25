@@ -2,8 +2,6 @@ const SwaggerParser = require('@apidevtools/swagger-parser');
 const chalk = require('chalk');
 const util = require('util');
 const jf = require('jsonfile');
-const Chance = require('chance');
-const faker = require('faker');
 
 class Initializer {
   constructor(mainProgram) {
@@ -25,7 +23,7 @@ class Initializer {
     this.apiCallOrder = [];
     this.httpMethodOrder = [];
     this.graph = {};
-    this.chance = new Chance();
+    this.chance = {};
 
     // metadata placeholder
     this.openApiVersion = '';
@@ -76,6 +74,16 @@ class Initializer {
       });
     } catch (err) {
       this.rejectHandler(err);
+    }
+  }
+
+  async readJSONFile(path) {
+    try {
+      const object = await jf.readFile(path);
+      return object;
+    } catch (error) {
+      this.rejectHandler(err);
+      return null;
     }
   }
 }

@@ -17,107 +17,126 @@
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 85
             },
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 85
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "id"
-            },
-            {
-              "path": "/store/order/{orderId}",
-              "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 85
             }
           ],
           "name": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 85
             },
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 85
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 85
             },
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "username"
+              "field": "username",
+              "likelihood": 24
             }
           ],
           "category": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "category"
+              "field": "category",
+              "likelihood": 85
             },
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "category"
+              "field": "category",
+              "likelihood": 85
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "category"
+              "field": "category",
+              "likelihood": 85
             }
           ],
           "photoUrls": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "photoUrls"
+              "field": "photoUrls",
+              "likelihood": 85
             },
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "photoUrls"
+              "field": "photoUrls",
+              "likelihood": 85
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "photoUrls"
-            },
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "phone"
+              "field": "photoUrls",
+              "likelihood": 85
             }
           ],
           "tags": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "tags"
+              "field": "tags",
+              "likelihood": 85
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "tags",
+              "likelihood": 85
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "tags",
+              "likelihood": 85
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status",
+              "likelihood": 10
             }
           ],
           "status": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "status"
-            },
-            {
-              "path": "/pet/findByTags",
-              "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 85
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 85
             }
           ]
         },
@@ -131,82 +150,90 @@
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 85
             },
             {
-              "path": "/pet/{petId}",
+              "path": "/pet/findByTags",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 85
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "id",
+              "likelihood": 40
             }
           ],
           "name": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 85
             },
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 85
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 85
             }
           ],
           "category": [
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "category"
-            },
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "category"
+              "field": "category",
+              "likelihood": 85
             }
           ],
           "photoUrls": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "photoUrls"
+              "field": "photoUrls",
+              "likelihood": 85
             },
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "photoUrls"
-            },
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "photoUrls"
+              "field": "photoUrls",
+              "likelihood": 85
             }
           ],
           "tags": [
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "tags"
+              "field": "tags",
+              "likelihood": 85
             }
           ],
           "status": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 85
             },
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 85
             },
             {
-              "path": "/store/order/{orderId}",
+              "path": "/pet/{petId}",
               "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 85
             }
           ]
         },
@@ -222,8 +249,7 @@
     "endpoint": "/pet/findByStatus",
     "dependsOn": [
       "/pet/findByTags",
-      "/pet/{petId}",
-      "/store/order/{orderId}"
+      "/pet/{petId}"
     ],
     "props": {
       "head": null,
@@ -235,17 +261,14 @@
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 90
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "status"
-            },
-            {
-              "path": "/store/order/{orderId}",
-              "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 78.89
             }
           ]
         },
@@ -260,7 +283,8 @@
   {
     "endpoint": "/pet/findByTags",
     "dependsOn": [
-      "/pet/findByStatus"
+      "/pet/findByStatus",
+      "/pet/{petId}"
     ],
     "props": {
       "head": null,
@@ -272,7 +296,14 @@
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "tags"
+              "field": "tags",
+              "likelihood": 90
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "tags",
+              "likelihood": 79.6
             }
           ]
         },
@@ -287,8 +318,8 @@
   {
     "endpoint": "/pet/{petId}",
     "dependsOn": [
-      "/pet/findByTags",
       "/pet/findByStatus",
+      "/pet/findByTags",
       "/pet/{petId}",
       "/store/order/{orderId}"
     ],
@@ -299,9 +330,10 @@
         "urlParams": {
           "petId": [
             {
-              "path": "/pet/findByTags",
+              "path": "/pet/findByStatus",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 38.89
             }
           ]
         },
@@ -313,19 +345,16 @@
         "urlParams": {
           "petId": [
             {
-              "path": "/pet/findByStatus",
+              "path": "/pet/findByTags",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 39.6
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "id"
-            },
-            {
-              "path": "/store/order/{orderId}",
-              "method": "get",
-              "field": "petId"
+              "field": "id",
+              "likelihood": 45
             }
           ]
         },
@@ -334,29 +363,40 @@
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 78.89
             },
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "name"
-            },
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 79.6
             }
           ],
           "status": [
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 78.89
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status",
+              "likelihood": 79.6
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 85
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status",
+              "likelihood": 45.63
             }
           ]
         },
@@ -371,12 +411,14 @@
             {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 39.6
             },
             {
               "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "petId"
+              "field": "petId",
+              "likelihood": 45.63
             }
           ]
         },
@@ -386,12 +428,20 @@
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 38.89
             },
             {
-              "path": "/pet/findByTags",
+              "path": "/pet/{petId}",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 45
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "id",
+              "likelihood": 5.62
             }
           ]
         }
@@ -403,6 +453,7 @@
     "dependsOn": [
       "/pet/findByStatus",
       "/pet/findByTags",
+      "/pet/{petId}",
       "/store/order/{orderId}"
     ],
     "props": {
@@ -413,24 +464,34 @@
         "urlParams": {
           "petId": [
             {
-              "path": "/pet/findByStatus",
+              "path": "/pet/{petId}",
               "method": "get",
-              "field": "id"
-            },
-            {
-              "path": "/pet/findByTags",
-              "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 45
             },
             {
               "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "petId"
+              "field": "petId",
+              "likelihood": 44.09
             }
           ]
         },
         "queryParams": {
-          "additionalMetadata": []
+          "additionalMetadata": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "status",
+              "likelihood": 43.43
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status",
+              "likelihood": 45.38
+            }
+          ]
         },
         "headerParams": null
       },
@@ -473,56 +534,66 @@
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 40
             },
             {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 40
             },
             {
               "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 85
             },
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 42.31
             }
           ],
-          "petId": [],
+          "petId": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "petId",
+              "likelihood": 85
+            }
+          ],
           "quantity": [
             {
               "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "quantity"
+              "field": "quantity",
+              "likelihood": 85
             }
           ],
           "shipDate": [
             {
               "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "shipDate"
+              "field": "shipDate",
+              "likelihood": 85
             }
           ],
           "status": [
             {
-              "path": "/pet/findByStatus",
-              "method": "get",
-              "field": "status"
-            },
-            {
               "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "status"
+              "field": "status",
+              "likelihood": 85
             }
           ],
           "complete": [
             {
               "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "complete"
+              "field": "complete",
+              "likelihood": 85
             }
           ]
         },
@@ -538,7 +609,8 @@
   {
     "endpoint": "/store/order/{orderId}",
     "dependsOn": [
-      "/pet/findByTags"
+      "/user/{username}",
+      "/store/order/{orderId}"
     ],
     "props": {
       "head": null,
@@ -547,9 +619,10 @@
         "urlParams": {
           "orderId": [
             {
-              "path": "/pet/findByTags",
+              "path": "/user/{username}",
               "method": "get",
-              "field": "category"
+              "field": "password",
+              "likelihood": 18.97
             }
           ]
         },
@@ -562,7 +635,14 @@
       "delete": {
         "requestBody": null,
         "urlParams": {
-          "orderId": []
+          "orderId": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "petId",
+              "likelihood": 53
+            }
+          ]
         },
         "queryParams": null,
         "headerParams": null
@@ -573,8 +653,6 @@
     "endpoint": "/user",
     "dependsOn": [
       "/pet/findByStatus",
-      "/pet/findByTags",
-      "/pet/{petId}",
       "/store/order/{orderId}",
       "/user/{username}"
     ],
@@ -587,106 +665,88 @@
             {
               "path": "/pet/findByStatus",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 43
             },
             {
-              "path": "/pet/findByTags",
+              "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 42.4
             },
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 85
             }
           ],
           "username": [
             {
-              "path": "/pet/findByStatus",
-              "method": "get",
-              "field": "name"
-            },
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "name"
-            },
-            {
               "path": "/user/{username}",
               "method": "get",
-              "field": "username"
+              "field": "username",
+              "likelihood": 85
             }
           ],
           "firstName": [
             {
-              "path": "/pet/{petId}",
+              "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "name"
+              "field": "status",
+              "likelihood": 8.55
             },
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "firstName"
+              "field": "firstName",
+              "likelihood": 85
             }
           ],
           "lastName": [
             {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status",
+              "likelihood": 9.07
+            },
+            {
               "path": "/user/{username}",
               "method": "get",
-              "field": "lastName"
+              "field": "lastName",
+              "likelihood": 85
             }
           ],
           "email": [
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "email"
+              "field": "email",
+              "likelihood": 85
             }
           ],
           "password": [
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "password"
+              "field": "password",
+              "likelihood": 85
             }
           ],
           "phone": [
             {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "photoUrls"
-            },
-            {
-              "path": "/store/order/{orderId}",
-              "method": "get",
-              "field": "id"
-            },
-            {
               "path": "/user/{username}",
               "method": "get",
-              "field": "phone"
+              "field": "phone",
+              "likelihood": 85
             }
           ],
           "userStatus": [
             {
-              "path": "/pet/findByTags",
-              "method": "get",
-              "field": "status"
-            },
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "status"
-            },
-            {
-              "path": "/store/order/{orderId}",
-              "method": "get",
-              "field": "status"
-            },
-            {
               "path": "/user/{username}",
               "method": "get",
-              "field": "userStatus"
+              "field": "userStatus",
+              "likelihood": 85
             }
           ]
         },
@@ -718,14 +778,23 @@
   },
   {
     "endpoint": "/user/login",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/{petId}"
+    ],
     "props": {
       "head": null,
       "get": {
         "requestBody": null,
         "urlParams": null,
         "queryParams": {
-          "username": [],
+          "username": [
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "name",
+              "likelihood": 24
+            }
+          ],
           "password": []
         },
         "headerParams": null
@@ -756,10 +825,9 @@
   {
     "endpoint": "/user/{username}",
     "dependsOn": [
-      "/pet/findByTags",
-      "/pet/findByStatus",
       "/pet/{petId}",
-      "/store/order/{orderId}",
+      "/pet/findByStatus",
+      "/pet/findByTags",
       "/user/{username}"
     ],
     "props": {
@@ -769,9 +837,10 @@
         "urlParams": {
           "username": [
             {
-              "path": "/pet/findByTags",
+              "path": "/pet/{petId}",
               "method": "get",
-              "field": "name"
+              "field": "name",
+              "likelihood": 26.31
             }
           ]
         },
@@ -783,127 +852,80 @@
         "requestBody": {
           "id": [
             {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id",
+              "likelihood": 41.94
+            },
+            {
               "path": "/pet/findByTags",
               "method": "get",
-              "field": "id"
-            },
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "id"
-            },
-            {
-              "path": "/store/order/{orderId}",
-              "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 40
             },
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "id"
+              "field": "id",
+              "likelihood": 85
             }
           ],
           "username": [
             {
-              "path": "/pet/findByStatus",
-              "method": "get",
-              "field": "name"
-            },
-            {
-              "path": "/pet/findByTags",
-              "method": "get",
-              "field": "name"
-            },
-            {
               "path": "/pet/{petId}",
               "method": "get",
-              "field": "name"
-            },
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "username"
+              "field": "name",
+              "likelihood": 26.31
             }
           ],
-          "firstName": [
-            {
-              "path": "/pet/findByStatus",
-              "method": "get",
-              "field": "name"
-            },
-            {
-              "path": "/pet/findByTags",
-              "method": "get",
-              "field": "name"
-            },
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "firstName"
-            }
-          ],
+          "firstName": [],
           "lastName": [
             {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "name"
-            },
-            {
-              "path": "/store/order/{orderId}",
-              "method": "get",
-              "field": "status"
-            },
-            {
               "path": "/user/{username}",
               "method": "get",
-              "field": "lastName"
+              "field": "lastName",
+              "likelihood": 85
             }
           ],
           "email": [
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "email"
+              "field": "email",
+              "likelihood": 85
             }
           ],
           "password": [
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "password"
+              "field": "password",
+              "likelihood": 85
             }
           ],
-          "phone": [
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "phone"
-            }
-          ],
+          "phone": [],
           "userStatus": [
             {
-              "path": "/store/order/{orderId}",
+              "path": "/pet/findByTags",
               "method": "get",
-              "field": "status"
-            },
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "userStatus"
+              "field": "status",
+              "likelihood": 22.86
             }
           ]
         },
         "urlParams": {
           "username": [
             {
-              "path": "/store/order/{orderId}",
+              "path": "/pet/findByStatus",
               "method": "get",
-              "field": "status"
+              "field": "name",
+              "likelihood": 25.94
             },
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "username"
+              "field": "username",
+              "likelihood": 85
             }
           ]
         },
@@ -916,14 +938,10 @@
         "urlParams": {
           "username": [
             {
-              "path": "/pet/findByStatus",
-              "method": "get",
-              "field": "name"
-            },
-            {
               "path": "/user/{username}",
               "method": "get",
-              "field": "username"
+              "field": "username",
+              "likelihood": 85
             }
           ]
         },

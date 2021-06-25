@@ -3,12 +3,14 @@ const _ = require('lodash');
 const chalk = require('chalk');
 const Initializer = require('./initializer');
 const stringSimilarity = require('string-similarity');
+const Chance = require('chance');
 
 class ODGInitializer extends Initializer {
   constructor(...props) {
     super(...props);
     // initialize a operation dependency graph (empty)
     this.graph = new DepGraph();
+    this.chance = new Chance();
   }
 
   odgEntry(path, paths, smart = false) {
@@ -105,7 +107,7 @@ class ODGInitializer extends Initializer {
             const relatedURLRate = this.relatedURLRate(currentPath, targetPath);
 
             // creating a selector function
-            const selector = this.makeSelector(0.5, 0.2, 0.3);
+            const selector = this.makeSelector(0.4, 0.3, 0.3);
 
             for (const paramName in paramsKeys) {
               if (paramsKeys[paramName]) {
@@ -119,9 +121,9 @@ class ODGInitializer extends Initializer {
                     commonTagsRate,
                     relatedURLRate
                   );
-
+                  const selectionRatePercent = +(selectionRate * 100).toFixed(2);
                   const selected = this.chance.bool({
-                    likelihood: (selectionRate * 100).toFixed(2),
+                    likelihood: selectionRatePercent,
                   });
                   console.log(
                     'SELECTION RATE : ',
@@ -141,6 +143,7 @@ class ODGInitializer extends Initializer {
                       path: targetPath,
                       method: targetMethod,
                       field: target,
+                      likelihood: selectionRatePercent,
                     });
                   }
                 }
@@ -191,6 +194,7 @@ class ODGInitializer extends Initializer {
       commonTagsRate = 0,
       relatedURLRate = 0
     ) => {
+      //* logging the values
       console.log('---------------------------------------------');
       console.log('FIELD SIMILARITY : ', fieldSimilarityRate);
       console.log('COMMON TAGS : ', commonTagsRate);

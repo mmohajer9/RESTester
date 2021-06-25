@@ -2,7 +2,6 @@ const pathModule = require('path');
 const jf = require('jsonfile');
 const ejs = require('ejs');
 const fse = require('fs-extra');
-const faker = require('faker');
 const axios = require('axios');
 
 const ODGConfigGenerator = require('./odg');
@@ -12,7 +11,6 @@ class AbstractBaseRESTester extends ODGConfigGenerator {
     super(...props);
     // http method order for testing
     this.httpMethodOrder = ['head', 'post', 'get', 'put', 'patch', 'delete'];
-    this.faker = faker;
     this.responseDictionary = {};
   }
 
