@@ -1,7 +1,9 @@
 const SwaggerParser = require('@apidevtools/swagger-parser');
 const chalk = require('chalk');
 const util = require('util');
+const fse = require('fs-extra');
 const jf = require('jsonfile');
+const ejs = require('ejs');
 
 class Initializer {
   constructor(mainProgram) {
@@ -85,6 +87,20 @@ class Initializer {
       this.rejectHandler(err);
       return null;
     }
+  }
+
+  async renderTemplateToFile(
+    apiName,
+    templateName,
+    context,
+    outputDir,
+    outputName
+  ) {
+    const templatePath = config.apiTempatePath(apiName, templateName);
+    const fileContent = await ejs.renderFile(templatePath, context);
+    const outputPath = pathModule.join(outputDir, outputName);
+    await fse.ensureFile(outputPath);
+    await fse.outputFile(outputPath, fileContent);
   }
 }
 

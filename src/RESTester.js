@@ -1,6 +1,5 @@
 const pathModule = require('path');
 const jf = require('jsonfile');
-const ejs = require('ejs');
 const fse = require('fs-extra');
 const axios = require('axios');
 
@@ -14,20 +13,6 @@ class AbstractBaseRESTester extends ODGConfigGenerator {
     this.responseDictionary = {};
   }
 
-  // wrapper method for easy rendering templates
-  async renderTemplateToFile(
-    templateDir,
-    templateName,
-    context,
-    outputDir,
-    outputName
-  ) {
-    const templatePath = pathModule.join(templateDir, templateName);
-    const fileContent = await ejs.renderFile(templatePath, context);
-    const outputPath = pathModule.join(outputDir, outputName);
-    fse.ensureFileSync(outputPath);
-    fse.outputFileSync(outputPath, fileContent);
-  }
   // wrapper method for creating json config files
 
   async readJSONConfig(outputDir, outputName) {

@@ -28,6 +28,8 @@ const configuration = {
   apiNominalTestCasesDir: (apiName) => path.resolve('out', '__tests__', apiName, 'nominals'),
 
   // test file paths
+  apiTempatePath : (apiName , templateName) => 
+    path.resolve('out', '__tests__', apiName, 'templates', templateName, '.ejs'),
   apiResponseDictionaryPath: (apiName) =>
     path.resolve('out', '__tests__', apiName, 'common', 'responseDictionary.json'),
 };
