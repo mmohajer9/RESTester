@@ -44,7 +44,7 @@ class ODGInitializer extends Initializer {
 
     if (currentPathMethods[currentMethod]) {
       // meta data that helps us to get the right dependencies among apis
-      const tags = currentPathMethods[currentMethod]?.tags;
+      const currentTags = currentPathMethods[currentMethod]?.tags;
 
       // get keys for each parameter type
       const currentRequestBodykeys = this.objectKeysArray(
@@ -58,12 +58,20 @@ class ODGInitializer extends Initializer {
         inputParams.headerParams
       );
 
-      // logging the values
-      console.log(`CURRENT : ${currentPath} >> ${currentMethod}`, tags);
-      console.log(`REQUEST BODY : ${currentRequestBodykeys}`);
-      console.log(`URL PARAMS : ${currentUrlParamskeys}`);
-      console.log(`QUERY PARAMS : ${currentQueryParamskeys}`);
-      console.log(`HEADER PARAMS : ${currentHeaderParamskeys}`);
+      const paramsKeys = {
+        requestBody: currentRequestBodykeys,
+        urlParams: currentUrlParamskeys,
+        queryParams: currentQueryParamskeys,
+        headerParams: currentHeaderParamskeys,
+      };
+
+      //* logging the values
+      // console.log(`CURRENT : ${currentPath} >> ${currentMethod}`, currentTags);
+      // console.log(`REQUEST BODY : ${currentRequestBodykeys}`);
+      // console.log(`URL PARAMS : ${currentUrlParamskeys}`);
+      // console.log(`QUERY PARAMS : ${currentQueryParamskeys}`);
+      // console.log(`HEADER PARAMS : ${currentHeaderParamskeys}`);
+
       // searching other apis for similarities
       for (const targetPath in paths) {
         for (const targetMethod in paths[targetPath]) {
@@ -74,34 +82,69 @@ class ODGInitializer extends Initializer {
           // do not consider current path for processing and no response apis
           if (
             (targetPath === currentPath && targetMethod === currentMethod) ||
-            !response
+            !response ||
+            targetMethod !== 'get'
           ) {
             continue;
           } else {
             const responseKeys = this.objectKeysArray(response);
-            console.log(
-              `TARGET : ${targetPath} >> ${targetMethod}`,
-              responseKeys,
-              targetTags
-            );
+
+            //* logging the values
+            // console.log(
+            //   `TARGET : ${targetPath} >> ${targetMethod}`,
+            //   responseKeys,
+            //   targetTags
+            // );
 
             // then we should apply our similarity algorithm
             // between each parameter keys and response keys
             // but before we continue, we measure two other
             // values , tags intersection rate and url substring rate
 
-            // reqBody of current vs Response
-            // urlParams of current vs Response
-            // queryParams vs Response
+            const commonTagsRate = this.commonTagsRate(currentTags, targetTags);
+            const relatedURLRate = this.relatedURLRate(currentPath, targetPath);
 
-            if (currentRequestBodykeys) {
-              // check request Body
-            } else if (currentUrlParamskeys) {
-              // check url params
-            } else if (currentQueryParamskeys) {
-              // check query params
-            } else if (currentHeaderParamskeys) {
-              // check header params
+            // creating a selector function
+            const selector = this.makeSelector(0.5, 0.2, 0.3);
+
+            for (const paramName in paramsKeys) {
+              if (paramsKeys[paramName]) {
+                for (const field of paramsKeys[paramName]) {
+                  const { target, rating } = this.fieldSimilarityRate(
+                    field,
+                    responseKeys
+                  );
+                  const selectionRate = selector(
+                    rating,
+                    commonTagsRate,
+                    relatedURLRate
+                  );
+
+                  const selected = this.chance.bool({
+                    likelihood: (selectionRate * 100).toFixed(2),
+                  });
+                  console.log(
+                    'SELECTION RATE : ',
+                    selectionRate,
+                    'SELECTED ? :',
+                    selected
+                  );
+                  if (selected) {
+                    // adding dependency path to the list
+                    dependencies.push(targetPath);
+                    const duplicateFreeDependencies = _.uniq(dependencies);
+                    _.remove(dependencies, () => true);
+                    dependencies.push(...duplicateFreeDependencies);
+
+                    // adding dependency details
+                    inputParams[paramName][field].push({
+                      path: targetPath,
+                      method: targetMethod,
+                      field: target,
+                    });
+                  }
+                }
+              }
             }
           }
         }
@@ -113,8 +156,6 @@ class ODGInitializer extends Initializer {
   }
 
   parseParameters(currentMethod, currentPathMethods, dependencies) {
-    dependencies = [];
-
     if (!currentPathMethods[currentMethod]) {
       return null;
     }
@@ -149,11 +190,27 @@ class ODGInitializer extends Initializer {
       fieldSimilarityRate = 0,
       commonTagsRate = 0,
       relatedURLRate = 0
-    ) =>
-      fieldCoef * fieldSimilarityRate +
-      tagCoef * commonTagsRate +
-      urlCoef * relatedURLRate;
+    ) => {
+      console.log('---------------------------------------------');
+      console.log('FIELD SIMILARITY : ', fieldSimilarityRate);
+      console.log('COMMON TAGS : ', commonTagsRate);
+      console.log('RELATED URL : ', relatedURLRate);
+      const totalRate =
+        fieldCoef * fieldSimilarityRate +
+        tagCoef * commonTagsRate +
+        urlCoef * relatedURLRate;
+      return totalRate;
+    };
     return selector;
+  }
+
+  fieldSimilarityRate(inputField, responseFields) {
+    const { bestMatch } = stringSimilarity.findBestMatch(
+      inputField,
+      responseFields
+    );
+
+    return bestMatch;
   }
 
   commonTagsRate(tags1 = [], tags2 = []) {
@@ -201,7 +258,7 @@ class ODGInitializer extends Initializer {
       const newObject = {};
       const keysArray = Object.keys(object);
       for (const key of keysArray) {
-        newObject[key] = '';
+        newObject[key] = [];
       }
       return newObject;
     } catch (error) {
@@ -217,7 +274,7 @@ class ODGInitializer extends Initializer {
       const newObject = {};
       const keysArray = array;
       for (const key of keysArray) {
-        newObject[key] = '';
+        newObject[key] = [];
       }
       return newObject;
     } catch (error) {

@@ -1,18 +1,125 @@
 [
   {
     "endpoint": "/pet",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByStatus",
+      "/pet/findByTags",
+      "/pet/{petId}",
+      "/store/order/{orderId}",
+      "/user/{username}"
+    ],
     "props": {
       "head": null,
       "get": null,
       "post": {
         "requestBody": {
-          "id": "",
-          "name": "",
-          "category": "",
-          "photoUrls": "",
-          "tags": "",
-          "status": ""
+          "id": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "id"
+            }
+          ],
+          "name": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "username"
+            }
+          ],
+          "category": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "category"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "category"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "category"
+            }
+          ],
+          "photoUrls": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "photoUrls"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "photoUrls"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "photoUrls"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "phone"
+            }
+          ],
+          "tags": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "tags"
+            }
+          ],
+          "status": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "status"
+            }
+          ]
         },
         "urlParams": null,
         "queryParams": null,
@@ -20,12 +127,88 @@
       },
       "put": {
         "requestBody": {
-          "id": "",
-          "name": "",
-          "category": "",
-          "photoUrls": "",
-          "tags": "",
-          "status": ""
+          "id": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "id"
+            }
+          ],
+          "name": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "name"
+            }
+          ],
+          "category": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "category"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "category"
+            }
+          ],
+          "photoUrls": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "photoUrls"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "photoUrls"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "photoUrls"
+            }
+          ],
+          "tags": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "tags"
+            }
+          ],
+          "status": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status"
+            }
+          ]
         },
         "urlParams": null,
         "queryParams": null,
@@ -37,14 +220,34 @@
   },
   {
     "endpoint": "/pet/findByStatus",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByTags",
+      "/pet/{petId}",
+      "/store/order/{orderId}"
+    ],
     "props": {
       "head": null,
       "get": {
         "requestBody": null,
         "urlParams": null,
         "queryParams": {
-          "status": ""
+          "status": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status"
+            }
+          ]
         },
         "headerParams": null
       },
@@ -56,14 +259,22 @@
   },
   {
     "endpoint": "/pet/findByTags",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByStatus"
+    ],
     "props": {
       "head": null,
       "get": {
         "requestBody": null,
         "urlParams": null,
         "queryParams": {
-          "tags": ""
+          "tags": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "tags"
+            }
+          ]
         },
         "headerParams": null
       },
@@ -75,13 +286,24 @@
   },
   {
     "endpoint": "/pet/{petId}",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByTags",
+      "/pet/findByStatus",
+      "/pet/{petId}",
+      "/store/order/{orderId}"
+    ],
     "props": {
       "head": null,
       "get": {
         "requestBody": null,
         "urlParams": {
-          "petId": ""
+          "petId": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "id"
+            }
+          ]
         },
         "queryParams": null,
         "headerParams": null
@@ -89,11 +311,54 @@
       "post": {
         "requestBody": null,
         "urlParams": {
-          "petId": ""
+          "petId": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "petId"
+            }
+          ]
         },
         "queryParams": {
-          "name": "",
-          "status": ""
+          "name": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "name"
+            }
+          ],
+          "status": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "status"
+            }
+          ]
         },
         "headerParams": null
       },
@@ -102,28 +367,70 @@
       "delete": {
         "requestBody": null,
         "urlParams": {
-          "petId": ""
+          "petId": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "petId"
+            }
+          ]
         },
         "queryParams": null,
         "headerParams": {
-          "api_key": ""
+          "api_key": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "id"
+            }
+          ]
         }
       }
     }
   },
   {
     "endpoint": "/pet/{petId}/uploadImage",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByStatus",
+      "/pet/findByTags",
+      "/store/order/{orderId}"
+    ],
     "props": {
       "head": null,
       "get": null,
       "post": {
         "requestBody": null,
         "urlParams": {
-          "petId": ""
+          "petId": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "petId"
+            }
+          ]
         },
         "queryParams": {
-          "additionalMetadata": ""
+          "additionalMetadata": []
         },
         "headerParams": null
       },
@@ -151,18 +458,73 @@
   },
   {
     "endpoint": "/store/order",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByStatus",
+      "/pet/{petId}",
+      "/store/order/{orderId}",
+      "/user/{username}"
+    ],
     "props": {
       "head": null,
       "get": null,
       "post": {
         "requestBody": {
-          "id": "",
-          "petId": "",
-          "quantity": "",
-          "shipDate": "",
-          "status": "",
-          "complete": ""
+          "id": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "id"
+            }
+          ],
+          "petId": [],
+          "quantity": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "quantity"
+            }
+          ],
+          "shipDate": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "shipDate"
+            }
+          ],
+          "status": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status"
+            }
+          ],
+          "complete": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "complete"
+            }
+          ]
         },
         "urlParams": null,
         "queryParams": null,
@@ -175,13 +537,21 @@
   },
   {
     "endpoint": "/store/order/{orderId}",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByTags"
+    ],
     "props": {
       "head": null,
       "get": {
         "requestBody": null,
         "urlParams": {
-          "orderId": ""
+          "orderId": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "category"
+            }
+          ]
         },
         "queryParams": null,
         "headerParams": null
@@ -192,7 +562,7 @@
       "delete": {
         "requestBody": null,
         "urlParams": {
-          "orderId": ""
+          "orderId": []
         },
         "queryParams": null,
         "headerParams": null
@@ -201,20 +571,124 @@
   },
   {
     "endpoint": "/user",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByStatus",
+      "/pet/findByTags",
+      "/pet/{petId}",
+      "/store/order/{orderId}",
+      "/user/{username}"
+    ],
     "props": {
       "head": null,
       "get": null,
       "post": {
         "requestBody": {
-          "id": "",
-          "username": "",
-          "firstName": "",
-          "lastName": "",
-          "email": "",
-          "password": "",
-          "phone": "",
-          "userStatus": ""
+          "id": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "id"
+            }
+          ],
+          "username": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "username"
+            }
+          ],
+          "firstName": [
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "firstName"
+            }
+          ],
+          "lastName": [
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "lastName"
+            }
+          ],
+          "email": [
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "email"
+            }
+          ],
+          "password": [
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "password"
+            }
+          ],
+          "phone": [
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "photoUrls"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "phone"
+            }
+          ],
+          "userStatus": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "userStatus"
+            }
+          ]
         },
         "urlParams": null,
         "queryParams": null,
@@ -251,8 +725,8 @@
         "requestBody": null,
         "urlParams": null,
         "queryParams": {
-          "username": "",
-          "password": ""
+          "username": [],
+          "password": []
         },
         "headerParams": null
       },
@@ -281,13 +755,25 @@
   },
   {
     "endpoint": "/user/{username}",
-    "dependsOn": [],
+    "dependsOn": [
+      "/pet/findByTags",
+      "/pet/findByStatus",
+      "/pet/{petId}",
+      "/store/order/{orderId}",
+      "/user/{username}"
+    ],
     "props": {
       "head": null,
       "get": {
         "requestBody": null,
         "urlParams": {
-          "username": ""
+          "username": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "name"
+            }
+          ]
         },
         "queryParams": null,
         "headerParams": null
@@ -295,17 +781,131 @@
       "post": null,
       "put": {
         "requestBody": {
-          "id": "",
-          "username": "",
-          "firstName": "",
-          "lastName": "",
-          "email": "",
-          "password": "",
-          "phone": "",
-          "userStatus": ""
+          "id": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "id"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "id"
+            }
+          ],
+          "username": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "username"
+            }
+          ],
+          "firstName": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "firstName"
+            }
+          ],
+          "lastName": [
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "lastName"
+            }
+          ],
+          "email": [
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "email"
+            }
+          ],
+          "password": [
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "password"
+            }
+          ],
+          "phone": [
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "phone"
+            }
+          ],
+          "userStatus": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "userStatus"
+            }
+          ]
         },
         "urlParams": {
-          "username": ""
+          "username": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "status"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "username"
+            }
+          ]
         },
         "queryParams": null,
         "headerParams": null
@@ -314,7 +914,18 @@
       "delete": {
         "requestBody": null,
         "urlParams": {
-          "username": ""
+          "username": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "name"
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "username"
+            }
+          ]
         },
         "queryParams": null,
         "headerParams": null
