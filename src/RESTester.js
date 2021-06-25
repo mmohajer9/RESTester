@@ -13,27 +13,6 @@ class AbstractBaseRESTester extends ODGConfigGenerator {
     this.responseDictionary = {};
   }
 
-  // wrapper method for creating json config files
-
-  async readJSONConfig(outputDir, outputName) {
-    const outputPath = pathModule.join(outputDir, outputName);
-    if (fse.existsSync(outputPath)) {
-      return fse.readJsonSync(outputPath);
-    } else {
-      return null;
-    }
-  }
-
-  async createJSONConfig(jsonConfig, outputDir, outputName) {
-    const outputPath = pathModule.join(outputDir, outputName);
-    try {
-      await jf.writeFile(outputPath, jsonConfig, { spaces: 2, EOL: '\r\n' });
-      return jsonConfig;
-    } catch (err) {
-      this.rejectHandler(err);
-      return null;
-    }
-  }
   typeValueGenerator(property, useExample = false) {
     let result = null;
     switch (property.type) {
@@ -85,6 +64,7 @@ class AbstractBaseRESTester extends ODGConfigGenerator {
     const defaultItem = property.default;
     const enumItems = property.enum;
 
+    // TODO: fix this, it will always choose default value
     if (defaultItem) {
       result = defaultItem;
     }
