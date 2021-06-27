@@ -19,6 +19,16 @@ program
   });
 
 program
+  .command('show')
+  .option('-d, --depth <level>', 'depth of nesting')
+  .description('print the actual instance of RESTester')
+  .action((options) => {
+    const restester = new RESTester((instance) => {
+      instance.show(options.depth);
+    });
+  });
+
+program
   .command('init')
   .option(
     '-r, --raw',

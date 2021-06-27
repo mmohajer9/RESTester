@@ -5,7 +5,6 @@ class SchemaValueGenerator extends ODGConfigGenerator {
     super(...props);
     // http method order for testing
     this.httpMethodOrder = ['head', 'post', 'get', 'put', 'patch', 'delete'];
-    this.responseDictionary = {};
   }
 
   typeValueGenerator(property, useExample = false) {
@@ -71,66 +70,69 @@ class SchemaValueGenerator extends ODGConfigGenerator {
 
     return result;
   }
+
   // generate a request body object
   requestBodySchemaValueGenerator(
-    apiPath,
+    path,
     method,
-    contentType,
-    useExample = false
+    useExample = false,
+    contentType = 'application/json'
   ) {
-    const requestBody = this.api.paths[apiPath]?.[method]?.requestBody;
+    // if the api path for the given method does not have the request body,
+    // the generated request body should be empty
+    const requestBody = this.api.paths[path]?.[method]?.requestBody;
     if (!requestBody) {
-      // if the api path for the given method does not have the request body,
-      // the generated request body should be empty
       return {};
     }
 
+    // check for request body required, if it is, then we should generate one absolutely
     const requestBodyRequired = requestBody.required;
-    // generate empty request with likelihood of 20%
+    // if it is not required, then we can use both empty and non-empty request body
+    // so we decide with a probability of 20% to choose between these two options
     if (!requestBodyRequired) {
       const useEmptyRequestBody = this.chance.bool({ likelihood: 20 });
       if (useEmptyRequestBody) {
         return {};
       }
     }
+
     // request body schema
     const schema = requestBody.content[contentType]?.schema;
 
-    // these variables has not been used yet
-    const schemaRequiredFields = schema.required;
-
-    // type of schema
-    const schemaType = schema.type;
-
     // generated output
-    let output = {};
-
-    if (schemaType === 'object') {
-      // request body properties for the given schema
-      output = this.typeValueGenerator(schema, useExample);
-    } else if (schemaType === 'array') {
-      output = this.typeValueGenerator(schema, useExample);
-    }
+    const output = this.typeValueGenerator(schema, useExample);
 
     return output;
   }
-  // generate query param object
-  queryParamSchemaGenerator(apiPath, method, useExample = false) {
-    const parameters = this.api.paths[apiPath]?.[method]?.parameters;
 
+  // generate query param object
+  queryParamSchemaGenerator(path, method, useExample = false) {
+    // if the api path for the given method does not have query parameter,
+    // the generated query parameter should be empty
+    const parameters = this.api.paths[path]?.[method]?.parameters;
     if (!parameters) {
       // no parameters is specified
       return {};
     }
+
     const output = {};
 
     const queryParams = parameters.filter((param) => param.in === 'query');
 
     for (const param of queryParams) {
-      if (!param.required) {
+      const paramRequired = param.required;
+      const paramName = param.name;
+
+      if (!paramRequired) {
+        // check for empty param
         const useEmptyParam = this.chance.bool({ likelihood: 20 });
-        if (useEmptyParam && param.schema.default) {
-          return { [param.name]: param.schema.default };
+        if (useEmptyParam) {
+          return {};
+        }
+        // check for default param
+        const useDefaultParam = this.chance.bool({ likelihood: 40 });
+        if (useDefaultParam) {
+          return { [paramName]: param.schema.default };
         }
       }
       output[param.name] = this.typeValueGenerator(param.schema, useExample);
@@ -138,9 +140,10 @@ class SchemaValueGenerator extends ODGConfigGenerator {
 
     return output;
   }
+
   // generate header param object
-  headerParamSchemaGenerator(apiPath, method, useExample = false) {
-    const parameters = this.api.paths[apiPath]?.[method]?.parameters;
+  headerParamSchemaGenerator(path, method, useExample = false) {
+    const parameters = this.api.paths[path]?.[method]?.parameters;
 
     if (!parameters) {
       // no parameters is specified
@@ -163,8 +166,8 @@ class SchemaValueGenerator extends ODGConfigGenerator {
     return output;
   }
   // generate URL parameter value
-  URLParamSchemaGenerator(apiPath, method, useExample = false) {
-    const parameters = this.api.paths[apiPath]?.[method]?.parameters;
+  URLParamSchemaGenerator(path, method, useExample = false) {
+    const parameters = this.api.paths[path]?.[method]?.parameters;
 
     if (!parameters) {
       // no parameters is specified

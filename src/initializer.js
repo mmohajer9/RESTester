@@ -61,9 +61,12 @@ class Initializer {
 
   // general purpose methods for further usages
 
+  show(depth) {
+    this.inspect(this, depth);
+  }
+
   print(depth) {
-    const inspected = util.inspect(this.api, false, depth, true);
-    console.log(inspected);
+    this.inspect(this.api, depth);
   }
 
   inspect(obj, depth) {
