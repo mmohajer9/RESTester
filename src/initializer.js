@@ -4,6 +4,7 @@ const util = require('util');
 const fse = require('fs-extra');
 const jf = require('jsonfile');
 const ejs = require('ejs');
+const pathModule = require('path');
 
 class Initializer {
   constructor(mainProgram) {
@@ -57,6 +58,8 @@ class Initializer {
       err ? reject(err) : null;
     }
   }
+
+  // general purpose methods for further usages
 
   print(depth) {
     const inspected = util.inspect(this.api, false, depth, true);

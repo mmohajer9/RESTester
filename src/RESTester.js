@@ -1,11 +1,6 @@
-const pathModule = require('path');
-const jf = require('jsonfile');
-const fse = require('fs-extra');
-const axios = require('axios');
-
 const ODGConfigGenerator = require('./odg');
 
-class AbstractBaseRESTester extends ODGConfigGenerator {
+class SchemaValueGenerator extends ODGConfigGenerator {
   constructor(...props) {
     super(...props);
     // http method order for testing
@@ -64,11 +59,12 @@ class AbstractBaseRESTester extends ODGConfigGenerator {
     const defaultItem = property.default;
     const enumItems = property.enum;
 
-    // TODO: fix this, it will always choose default value
-    if (defaultItem) {
+    // pick default value if default value was available with the chance of 50%
+    if (defaultItem && this.chance.bool()) {
       result = defaultItem;
     }
 
+    // pick a random element from enum items if enum items were available
     if (enumItems) {
       result = enumItems[Math.floor(Math.random() * enumItems.length)];
     }
@@ -190,119 +186,12 @@ class AbstractBaseRESTester extends ODGConfigGenerator {
 
     return output;
   }
-  // response dictionary methods
-
-  responseDictionaryRandomSeek(apiPath, method) {
-    // will return undefined if the list is empty
-    const list = this.responseDictionary[apiPath].responses[method];
-    const output = list[Math.floor(Math.random() * list.length)];
-    return output;
-  }
-
-  async initiateResponseDictionary(apiName) {
-    // check for the existence of response dictionary
-    // if it is existed , then it will fetch it into the program
-    // if it is not existed , it will create a new one
-    const paths = this.apiCallOrder;
-    const responseDictionary = await this.readJSONConfig(
-      config.apiCommonDir(apiName),
-      'responseDictionary.json'
-    );
-
-    if (responseDictionary) {
-      this.responseDictionary = responseDictionary;
-    } else {
-      const jsonConfig = {};
-      paths.forEach((path) => {
-        jsonConfig[path] = {
-          responses: {
-            get: [],
-            post: [],
-            put: [],
-            patch: [],
-            delete: [],
-          },
-        };
-      });
-      this.responseDictionary = await this.createJSONConfig(
-        jsonConfig,
-        config.apiCommonDir(apiName),
-        'responseDictionary.json'
-      );
-    }
-  }
-
-  async updateResponseDictionary(apiName, newJSONConfig) {
-    // updating the response dictionary both in the disk and program
-    this.responseDictionary = await this.createJSONConfig(
-      newJSONConfig,
-      config.apiCommonDir(apiName),
-      'responseDictionary.json'
-    );
-  }
 }
 
-class BaseRESTester extends AbstractBaseRESTester {
+class BaseRESTester extends SchemaValueGenerator {
   constructor(...props) {
     super(...props);
-    // initiating response dictionary
-    this.initiateResponseDictionary('petStore');
-
-    // for storing generated test cases
-    this.nominalTestCases = [];
-    this.errorTestCases = [];
-
-    // for storing request handler instance
-    this.axios = {};
-  }
-
-  initiateRequestHandler() {
-    const instance = axios.create({
-      baseURL: this.api.servers[0].url,
-    });
-    this.axios = instance;
-  }
-
-  async generateRequest(testCase) {
-    try {
-      const urlParams = testCase.data.urlParams;
-      let path = testCase.path;
-      for (const parameter in urlParams) {
-        path = path
-          .replace(/({|})/g, '')
-          .replace(parameter, urlParams[parameter]);
-      }
-      console.log('PATH ::: ', path);
-
-      if (testCase.method === 'get') {
-        const response = await this.axios[testCase.method](path, {
-          params: testCase.data.queryParams,
-          headers: testCase.data.headers,
-        });
-        return {
-          responseData: response.data,
-          responseStatus: response.status,
-        };
-      } else {
-        const response = await this.axios[testCase.method](
-          path,
-          testCase.data.requestBody,
-          {
-            params: testCase.data.queryParams,
-            headers: testCase.data.headers,
-          }
-        );
-        return {
-          responseData: response.data,
-          responseStatus: response.status,
-        };
-      }
-    } catch (error) {
-      return {
-        responseData: error.response.data,
-        responseStatus: error.response.status,
-      };
-    }
+    // TODO: fix this
   }
 
   generateSchemaBasedTestData(path, method, useExample = false) {
@@ -361,76 +250,6 @@ class BaseRESTester extends AbstractBaseRESTester {
   generateErrorTestCase(useExample) {
     //TODO mutation of the nominal test cases to generate error test cases
   }
-
-  async oracle(mode) {
-    await this.statusCodeOracle(mode);
-    await this.responseValidationOracle(mode);
-  }
-
-  async statusCodeOracle(mode) {
-    // check for the output and generate test files
-    // then the response should be added to response dictionary if the status is 200 (OK)
-
-    const list =
-      mode === 'nominals'
-        ? this.nominalTestCases
-        : mode === 'errors'
-        ? this.errorTestCases
-        : null;
-    for (const [index, testCase] of list.entries()) {
-      const result = await this.generateRequest(testCase);
-      if (result.responseStatus >= 200) {
-        // creating axios config
-        let context = {
-          baseURL: this.api.servers[0].url,
-        };
-        // generate unique number
-        let uniqueNumber = Date.now();
-        await this.renderTemplateToFile(
-          config.apiTemplatesDir('petStore'),
-          'axios-config-template.ejs',
-          context,
-          config.apiNominalTestCasesDir('petStore'),
-          `/${uniqueNumber}/axiosInstance.js`
-        );
-        // creating JSON config file
-        this.createJSONConfig(
-          { ...testCase.data },
-          config.apiNominalTestCasesDir('petStore'),
-          `/${uniqueNumber}/config.json`
-        );
-        // creating request file
-
-        context = {
-          path: testCase.path,
-          method: testCase.method,
-          testCaseDescription: `test case generated by RESTester - ${uniqueNumber}`,
-        };
-
-        // await this.renderTemplateToFile(
-        //   config.apiTemplatesDir('petStore'),
-        //   'axios-request-file.ejs',
-        //   context,
-        //   config.apiNominalTestCasesDir('petStore'),
-        //   `/${uniqueNumber}/request-${index}.js`
-        // );
-
-        await this.renderTemplateToFile(
-          config.apiTemplatesDir('petStore'),
-          'jest-test-case-template.ejs',
-          context,
-          config.apiNominalTestCasesDir('petStore'),
-          `/${uniqueNumber}/${index}.test.js`
-        );
-      } else if (result.responseStatus >= 500) {
-      }
-    }
-  }
-
-  async responseValidationOracle(mode) {
-    //TODO check for the output and generate test files
-    // console.log(this.api.paths['/pet'].post.responses['200'].content);
-  }
 }
 
 class RESTester extends BaseRESTester {
@@ -458,26 +277,6 @@ class RESTester extends BaseRESTester {
       console.log(chalk.yellowBright('Check ODG Config Directory'));
       return;
     }
-  }
-
-  async generateTestCases(testCaseNumber = 1, useExample = false) {
-    // set api call order based on dependecies in odg.json
-    this.setApiCallOrder();
-    // initiate request handler like axios
-    this.initiateRequestHandler();
-    // iterate for amount of test case number
-    // create a set of test cases for all api paths per each iteration
-    for (let index = 0; index < testCaseNumber; index++) {
-      // nominal test cases
-      this.generateNominalTestCase(useExample);
-      // error test cases
-      this.generateErrorTestCase(useExample);
-    }
-    // call oracles for nominal and error test cases
-    await this.oracle('nominals');
-    await this.oracle('errors');
-    // const inspected = util.inspect(this.nominalTestCases, false, 4, true);
-    // console.log(inspected);
   }
 }
 
