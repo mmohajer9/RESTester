@@ -174,7 +174,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
 }
 
 class SearchBasedValueGenerator extends SchemaValueGenerator {
-  createResponseDictionary(){
+  createResponseDictionary() {
     // const apiName = this.api.
   }
 }

@@ -5,6 +5,7 @@ const fse = require('fs-extra');
 const jf = require('jsonfile');
 const ejs = require('ejs');
 const pathModule = require('path');
+const _ = require('lodash');
 
 class Initializer {
   constructor(mainProgram) {
@@ -34,6 +35,9 @@ class Initializer {
 
   async #init() {
     await this.#initParser(this.resolveHandler, this.rejectHandler);
+
+    // set api name
+    this.setApiName();
 
     // call main callback
     this.mainProgram ? this.mainProgram(this) : null;
@@ -107,6 +111,12 @@ class Initializer {
     const outputPath = pathModule.join(outputDir, outputName);
     await fse.ensureFile(outputPath);
     await fse.outputFile(outputPath, fileContent);
+  }
+
+  setApiName() {
+    const { title, version } = this.api.info;
+    const apiName = _.kebabCase(`${title}-version${version}`);
+    this.api.name = apiName;
   }
 }
 
