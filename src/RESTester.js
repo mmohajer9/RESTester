@@ -1,6 +1,6 @@
-const TestDataGenerator = require('./generator');
+const SearchBasedValueGenerator = require('./generator');
 
-class TestCaseGenerator extends TestDataGenerator {
+class TestCaseGenerator extends SearchBasedValueGenerator {
   constructor(...props) {
     super(...props);
     // TODO: fix this
@@ -65,8 +65,14 @@ class TestCaseGenerator extends TestDataGenerator {
 }
 
 class RESTester extends TestCaseGenerator {
-  generate(number, useExample = false) {
-    // first set the api call order
+  async generate(number, useExample = false) {
+    // create related directories for outputs
+    await this.initiateOutputDirectories();
+
+    // initiate response dictionary
+    await this.initiateResponseDictionary();
+
+    // set the api call order
     this.setApiCallOrder();
 
     // this.show(3);

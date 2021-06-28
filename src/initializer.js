@@ -2,7 +2,6 @@ const SwaggerParser = require('@apidevtools/swagger-parser');
 const chalk = require('chalk');
 const util = require('util');
 const fse = require('fs-extra');
-const jf = require('jsonfile');
 const ejs = require('ejs');
 const pathModule = require('path');
 const _ = require('lodash');
@@ -80,7 +79,8 @@ class Initializer {
 
   async createJSONFile(path, object) {
     try {
-      await jf.writeFile(path, object, {
+      await fse.ensureFile(path);
+      await fse.writeJson(path, object, {
         spaces: 2,
         EOL: '\r\n',
       });
@@ -91,10 +91,10 @@ class Initializer {
 
   async readJSONFile(path) {
     try {
-      const object = await jf.readFile(path);
+      const object = await fse.readJson(path);
       return object;
     } catch (error) {
-      this.rejectHandler(err);
+      this.rejectHandler(error);
       return null;
     }
   }
@@ -111,6 +111,37 @@ class Initializer {
     const outputPath = pathModule.join(outputDir, outputName);
     await fse.ensureFile(outputPath);
     await fse.outputFile(outputPath, fileContent);
+  }
+
+  async initiateOutputDirectories() {
+    const apiName = this.api.name;
+
+    const testsDir = config.testsDir;
+    const logsDir = config.logsDir;
+    const oasConfDir = config.oasConfDir;
+    const odgConfDir = config.odgConfDir;
+
+    const apiTestsDir = config.apiTestsDir(apiName);
+    const apiCommonDir = config.apiCommonDir(apiName);
+    const apiTemplatesDir = config.apiTemplatesDir(apiName);
+    const apiErrorTestCasesDir = config.apiErrorTestCasesDir(apiName);
+    const apiNominalTestCasesDir = config.apiNominalTestCasesDir(apiName);
+
+    const allDirs = [
+      testsDir,
+      logsDir,
+      oasConfDir,
+      odgConfDir,
+      apiTestsDir,
+      apiCommonDir,
+      apiTemplatesDir,
+      apiErrorTestCasesDir,
+      apiNominalTestCasesDir,
+    ];
+
+    allDirs.forEach(async (dir) => {
+      await fse.ensureDir(dir);
+    });
   }
 
   setApiName() {

@@ -173,12 +173,46 @@ class SchemaValueGenerator extends ODGConfigGenerator {
   }
 }
 
-class SearchBasedValueGenerator extends SchemaValueGenerator {
-  createResponseDictionary() {
-    // const apiName = this.api.
+class ResponseDictionaryTools extends SchemaValueGenerator {
+  constructor(...props) {
+    super(...props);
+
+    this.responseDictionary = {};
+  }
+
+  async createResponseDictionary(object) {
+    const apiName = this.api.name;
+    const rdPath = config.apiResponseDictionaryPath(apiName);
+    await this.createJSONFile(rdPath, object);
+  }
+
+  async loadResponseDictionary() {
+    const apiName = this.api.name;
+    const rdPath = config.apiResponseDictionaryPath(apiName);
+    const rd = await this.readJSONFile(rdPath);
+    this.responseDictionary = rd;
+    return rd;
+  }
+
+  async updateResponseDictionary(object) {
+    const rd = await this.loadResponseDictionary();
+    const newObject = {
+      ...rd,
+      ...object,
+    };
+    await this.createResponseDictionary(newObject);
+  }
+
+  async initiateResponseDictionary() {
+    const rd = await this.loadResponseDictionary();
+    if (!rd) {
+      const emptyRd = {};
+
+      this.createResponseDictionary(emptyRd);
+    }
   }
 }
 
-class TestDataGenerator extends SearchBasedValueGenerator {}
+class SearchBasedValueGenerator extends ResponseDictionaryTools {}
 
-module.exports = TestDataGenerator;
+module.exports = SearchBasedValueGenerator;

@@ -107,7 +107,7 @@ class ODGInitializer extends Initializer {
             const relatedURLRate = this.relatedURLRate(currentPath, targetPath);
 
             // creating a selector function
-            const selector = this.makeSelector(0.4, 0.3, 0.3);
+            const selector = this.makeSelector(0.1, 0.4, 0.3);
 
             for (const paramName in paramsKeys) {
               if (paramsKeys[paramName]) {
