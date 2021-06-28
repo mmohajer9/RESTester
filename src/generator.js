@@ -1,5 +1,9 @@
 const ODGConfigGenerator = require('./odg');
 
+// note that in this modules we are trying to create appropriate values
+// for each of these schemas because our purpose here is not mutating values
+// into an erroneous values that we are going use in error test case generator
+
 class SchemaValueGenerator extends ODGConfigGenerator {
   constructor(...props) {
     super(...props);
@@ -7,27 +11,27 @@ class SchemaValueGenerator extends ODGConfigGenerator {
     this.httpMethodOrder = ['head', 'post', 'get', 'put', 'patch', 'delete'];
   }
 
-  typeValueGenerator(property, useExample = false) {
+  schemaTypeValueGenerator(propertySchema, useExample = false) {
     let result = null;
-    switch (property.type) {
+    switch (propertySchema.type) {
       case 'integer':
-        useExample && property.example
-          ? (result = property.example)
+        useExample && propertySchema.example
+          ? (result = propertySchema.example)
           : (result = this.chance.integer({ min: 1, max: 1000 }));
         break;
       case 'number':
-        useExample && property.example
-          ? (result = property.example)
+        useExample && propertySchema.example
+          ? (result = propertySchema.example)
           : (result = this.chance.floating({ min: 0, max: 100, fixed: 2 }));
         break;
       case 'string':
-        useExample && property.example
-          ? (result = property.example)
+        useExample && propertySchema.example
+          ? (result = propertySchema.example)
           : (result = `${this.chance.animal()} ${this.chance.name()}`);
         break;
       case 'boolean':
-        useExample && property.example
-          ? (result = property.example)
+        useExample && propertySchema.example
+          ? (result = propertySchema.example)
           : (result = this.chance.bool());
         break;
       case 'array':
@@ -38,15 +42,18 @@ class SchemaValueGenerator extends ODGConfigGenerator {
           index < this.chance.integer({ min: 0, max: 10 });
           index++
         ) {
-          result[index] = this.typeValueGenerator(property.items, useExample);
+          result[index] = this.schemaValueGenerator(
+            propertySchema.items,
+            useExample
+          );
         }
         break;
       case 'object':
         // this will be another object nested inside the object
         result = {};
-        for (const key in property.properties) {
-          result[key] = this.typeValueGenerator(
-            property.properties[key],
+        for (const key in propertySchema.properties) {
+          result[key] = this.schemaValueGenerator(
+            propertySchema.properties[key],
             useExample
           );
         }
@@ -55,29 +62,28 @@ class SchemaValueGenerator extends ODGConfigGenerator {
         break;
     }
 
-    const defaultItem = property.default;
-    const enumItems = property.enum;
+    // check for available properties for default and a chance for selection
+    const defaultItem = propertySchema.default;
+    const useDefaultItem = this.chance.bool();
 
     // pick default value if default value was available with the chance of 50%
-    if (defaultItem && this.chance.bool()) {
+    if (defaultItem && useDefaultItem) {
       result = defaultItem;
     }
 
+    // check for available properties for enum
+    const enumItems = propertySchema.enum;
+
     // pick a random element from enum items if enum items were available
     if (enumItems) {
-      result = enumItems[Math.floor(Math.random() * enumItems.length)];
+      const randomIndex = Math.floor(Math.random() * enumItems.length);
+      result = enumItems[randomIndex];
     }
 
     return result;
   }
 
-  // generate a request body object
-  requestBodySchemaValueGenerator(
-    path,
-    method,
-    useExample = false,
-    contentType = 'application/json'
-  ) {
+  requestBodySchemaValueGenerator(path, method, useExample = false) {
     // if the api path for the given method does not have the request body,
     // the generated request body should be empty
     const requestBody = this.api.paths[path]?.[method]?.requestBody;
@@ -87,26 +93,33 @@ class SchemaValueGenerator extends ODGConfigGenerator {
 
     // check for request body required, if it is, then we should generate one absolutely
     const requestBodyRequired = requestBody.required;
+    const useEmptyRequestBody = this.chance.bool({ likelihood: 20 });
+
     // if it is not required, then we can use both empty and non-empty request body
     // so we decide with a probability of 20% to choose between these two options
-    if (!requestBodyRequired) {
-      const useEmptyRequestBody = this.chance.bool({ likelihood: 20 });
-      if (useEmptyRequestBody) {
-        return {};
-      }
+    if (!requestBodyRequired && useEmptyRequestBody) {
+      return {};
     }
 
     // request body schema
-    const schema = requestBody.content[contentType]?.schema;
+    const schema = requestBody.content['application/json']?.schema;
 
     // generated output
-    const output = this.typeValueGenerator(schema, useExample);
+    const output = this.schemaValueGenerator(schema, useExample);
 
     return output;
   }
 
-  // generate query param object
-  queryParamSchemaGenerator(path, method, useExample = false) {
+  /**
+   * @param  {} path the actual path of the api that you want to create its value
+   * @param  {} method can be : head , get , put , patch , post , delete for the correspondent api
+   * @param  {} parameterType can be these three values : query , header , path
+   * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
+   */
+  parameterTypeSchemaValueGenerator(path, method, parameterType, useExample = false) {
+    // output object which is returned in the end of the method call
+    const output = {};
+
     // if the api path for the given method does not have query parameter,
     // the generated query parameter should be empty
     const parameters = this.api.paths[path]?.[method]?.parameters;
@@ -115,76 +128,31 @@ class SchemaValueGenerator extends ODGConfigGenerator {
       return {};
     }
 
-    const output = {};
+    // filtering all parameters to only get all query params
+    const queryParams = parameters.filter(
+      (param) => param.in === parameterType
+    );
 
-    const queryParams = parameters.filter((param) => param.in === 'query');
-
+    // for each param we will check whether it is requored or not.
+    // if it is not required, then we try to complete the operation with empty param
+    // otherwise we check for default value, if it is available we will use it with
+    // a chance of 40% if it is not, then we will generate a new value based on its schema
     for (const param of queryParams) {
-      const paramRequired = param.required;
+      // check for parameter name
       const paramName = param.name;
 
-      if (!paramRequired) {
-        // check for empty param
-        const useEmptyParam = this.chance.bool({ likelihood: 20 });
-        if (useEmptyParam) {
-          return {};
-        }
-        // check for default param
-        const useDefaultParam = this.chance.bool({ likelihood: 40 });
-        if (useDefaultParam) {
-          return { [paramName]: param.schema.default };
-        }
+      // check for parameter schema
+      const paramSchema = param.schema;
+
+      // check wheter it is required or not
+      const paramRequired = param.required;
+      const useEmptyParam = this.chance.bool({ likelihood: 20 });
+
+      if (!paramRequired && useEmptyParam) {
+        return {};
       }
-      output[param.name] = this.typeValueGenerator(param.schema, useExample);
-    }
 
-    return output;
-  }
-
-  // generate header param object
-  headerParamSchemaGenerator(path, method, useExample = false) {
-    const parameters = this.api.paths[path]?.[method]?.parameters;
-
-    if (!parameters) {
-      // no parameters is specified
-      return {};
-    }
-    const output = {};
-
-    const headerParams = parameters.filter((param) => param.in === 'header');
-
-    for (const param of headerParams) {
-      if (!param.required) {
-        const useEmptyParam = this.chance.bool({ likelihood: 20 });
-        if (useEmptyParam) {
-          return {};
-        }
-      }
-      output[param.name] = this.typeValueGenerator(param.schema, useExample);
-    }
-
-    return output;
-  }
-  // generate URL parameter value
-  URLParamSchemaGenerator(path, method, useExample = false) {
-    const parameters = this.api.paths[path]?.[method]?.parameters;
-
-    if (!parameters) {
-      // no parameters is specified
-      return {};
-    }
-    const output = {};
-
-    const pathParams = parameters.filter((param) => param.in === 'path');
-
-    for (const param of pathParams) {
-      if (!param.required) {
-        const useEmptyParam = this.chance.bool({ likelihood: 20 });
-        if (useEmptyParam) {
-          return {};
-        }
-      }
-      output[param.name] = this.typeValueGenerator(param.schema, useExample);
+      output[paramName] = this.schemaValueGenerator(paramSchema, useExample);
     }
 
     return output;
