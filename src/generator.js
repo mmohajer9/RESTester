@@ -177,6 +177,7 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
   constructor(...props) {
     super(...props);
 
+    // initialize responseDictionary Object
     this.responseDictionary = {};
   }
 
@@ -196,20 +197,16 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
     return rd;
   }
 
-  async addToResponseDictionary(object) {
+  async addToResponseDictionary(path, method, object) {
     const rd = await this.loadResponseDictionary();
-    const newObject = {
-      ...rd,
-      ...object,
-    };
-    await this.createResponseDictionary(newObject);
+    rd[path].responses[method].push(object);
+    await this.createResponseDictionary(rd);
   }
 
   async initiateResponseDictionary() {
     const rd = await this.loadResponseDictionary();
     if (!rd) {
-
-      const emptyRd = {}
+      const emptyRd = {};
       const { paths } = this.api;
 
       for (const path in paths) {
@@ -227,12 +224,18 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
       this.createResponseDictionary(emptyRd);
     }
   }
+
+  async responseDictionaryRandomSeek(path, method) {
+    const rd = await this.loadResponseDictionary();
+    const responses = rd[path].responses[method];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    const result = responses[randomIndex];
+    return result;
+  }
 }
 
 class SearchBasedValueGenerator extends ResponseDictionaryTools {
   // TODO: fix this
-  // search in response dictionary
-  // random seeks
   // algorithms for value selections
 }
 
