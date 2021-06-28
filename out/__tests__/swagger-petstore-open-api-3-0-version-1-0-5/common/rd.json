@@ -1,30 +1,119 @@
 {
-    "/pet/findByStatus": {
-      "responses": {
-        "get": [1,2,3,4],
-        "post": [],
-        "put": [],
-        "patch": [],
-        "delete": []
-      }
-    },
-    "/pet": {
-      "responses": {
-        "get": [],
-        "post": [],
-        "put": [],
-        "patch": [],
-        "delete": []
-      }
-    },
-    "/pet/{petId}": {
-      "responses": {
-        "get": [],
-        "post": [],
-        "put": [],
-        "patch": [],
-        "delete": []
-      }
+  "/pet": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/pet/findByStatus": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/pet/findByTags": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/pet/{petId}": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/pet/{petId}/uploadImage": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/store/inventory": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/store/order": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/store/order/{orderId}": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/user": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/user/createWithList": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/user/login": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/user/logout": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
+    }
+  },
+  "/user/{username}": {
+    "responses": {
+      "get": [],
+      "post": [],
+      "put": [],
+      "patch": [],
+      "delete": []
     }
   }
-  
+}

@@ -208,7 +208,21 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
   async initiateResponseDictionary() {
     const rd = await this.loadResponseDictionary();
     if (!rd) {
-      const emptyRd = {};
+
+      const emptyRd = {}
+      const { paths } = this.api;
+
+      for (const path in paths) {
+        emptyRd[path] = {
+          responses: {
+            get: [],
+            post: [],
+            put: [],
+            patch: [],
+            delete: [],
+          },
+        };
+      }
 
       this.createResponseDictionary(emptyRd);
     }
