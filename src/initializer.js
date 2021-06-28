@@ -28,21 +28,13 @@ class Initializer {
     this.graph = {};
     this.chance = {};
 
-    // metadata placeholder
-    this.openApiVersion = '';
-    this.apiInfo = {};
-    this.servers = [];
-
     // initializing parser and validator
     this.#init();
   }
 
   async #init() {
     await this.#initParser(this.resolveHandler, this.rejectHandler);
-    // fetch metadatas
-    this.servers = this.api.servers;
-    this.openApiVersion = this.api.openapi;
-    this.apiInfo = this.api.info;
+
     // call main callback
     this.mainProgram ? this.mainProgram(this) : null;
   }
@@ -65,8 +57,16 @@ class Initializer {
     this.inspect(this, depth);
   }
 
+  showProperty(property, depth) {
+    this.inspect(this[property], depth);
+  }
+
   print(depth) {
     this.inspect(this.api, depth);
+  }
+
+  printProperty(property, depth) {
+    this.inspect(this.api[property], depth);
   }
 
   inspect(obj, depth) {

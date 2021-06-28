@@ -21,11 +21,18 @@ program
 program
   .command('show')
   .option('-d, --depth <level>', 'depth of nesting')
+  .option('-p, --property <name>', 'name of desired property')
   .description('print the actual instance of RESTester')
   .action((options) => {
-    const restester = new RESTester((instance) => {
-      instance.show(options.depth);
-    });
+    if (options.property) {
+      const restester = new RESTester((instance) => {
+        instance.showProperty(options.property, options.depth);
+      });
+    } else {
+      const restester = new RESTester((instance) => {
+        instance.show(options.depth);
+      });
+    }
   });
 
 program
@@ -51,8 +58,9 @@ program
   )
   .description('generate')
   .action((number, options) => {
-    console.log('number : ', number);
-    console.log('example : ', options.useExample);
+    const restester = new RESTester((instance) => {
+      instance.generate(number, options.useExample);
+    });
   });
 
 program.parse(process.argv);

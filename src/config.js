@@ -31,7 +31,7 @@ const configuration = {
   apiTempatePath : (apiName , templateName) => 
     path.resolve('out', '__tests__', apiName, 'templates', templateName, '.ejs'),
   apiResponseDictionaryPath: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'common', 'responseDictionary.json'),
+    path.resolve('out', '__tests__', apiName, 'common', 'rd.json'),
 };
 
 module.exports = configuration;

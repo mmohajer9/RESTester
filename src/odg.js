@@ -121,7 +121,9 @@ class ODGInitializer extends Initializer {
                     commonTagsRate,
                     relatedURLRate
                   );
-                  const selectionRatePercent = +(selectionRate * 100).toFixed(2);
+                  const selectionRatePercent = +(selectionRate * 100).toFixed(
+                    2
+                  );
                   const selected = this.chance.bool({
                     likelihood: selectionRatePercent,
                   });
@@ -306,6 +308,44 @@ class ODGConfigGenerator extends ODGInitializer {
     // create JSON Config File
     await this.createJSONFile(this.odgConfPath, result);
     console.log(chalk.blueBright('ODG Configuration Has Been Created'));
+  }
+
+  // set api call order based on dependecies in odg.json
+  setApiCallOrder() {
+    // first we justify how to call the api in the correct order
+
+    let odgConfig = {};
+    const visitedPaths = [];
+
+    try {
+      odgConfig = require(this.odgConfPath);
+    } catch (error) {
+      console.log(chalk.redBright('No ODG Configuration Has Been Provided'));
+      console.log(chalk.yellowBright('Check ODG Config Directory'));
+      return;
+    }
+
+    // adding nodes to the graph + props corresponding to each node
+    odgConfig.forEach(({ endpoint, props, dependsOn }) => {
+      this.graph.addNode(endpoint, { props, depCount: dependsOn.length });
+    });
+
+    // adding dependencies + checking for cycles
+    odgConfig.forEach(({ endpoint, dependsOn }) => {
+      if (!_.includes(visitedPaths, endpoint)) {
+        visitedPaths.push(endpoint);
+      }
+      if (!_.isEmpty(dependsOn)) {
+        dependsOn.forEach((dependencyEndpoint) => {
+          if (!_.includes(visitedPaths, dependencyEndpoint)) {
+            this.graph.addDependency(endpoint, dependencyEndpoint);
+          }
+        });
+      }
+    });
+    this.apiCallOrder = this.graph.overallOrder();
+    this.odgConfig = odgConfig;
+    console.log(chalk.cyan('API Call Order Has Been Set'));
   }
 }
 

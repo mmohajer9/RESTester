@@ -11,6 +11,10 @@ class SchemaValueGenerator extends ODGConfigGenerator {
     this.httpMethodOrder = ['head', 'post', 'get', 'put', 'patch', 'delete'];
   }
 
+  /**
+   * @param  {} propertySchema the schema of a property or parameter which always has a type property in itself
+   * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
+   */
   schemaTypeValueGenerator(propertySchema, useExample = false) {
     let result = null;
     switch (propertySchema.type) {
@@ -83,6 +87,11 @@ class SchemaValueGenerator extends ODGConfigGenerator {
     return result;
   }
 
+  /**
+   * @param  {} path the actual path of the api that you want to create its value
+   * @param  {} method can be : head , get , put , patch , post , delete for the correspondent api
+   * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
+   */
   requestBodySchemaValueGenerator(path, method, useExample = false) {
     // if the api path for the given method does not have the request body,
     // the generated request body should be empty
@@ -116,7 +125,12 @@ class SchemaValueGenerator extends ODGConfigGenerator {
    * @param  {} parameterType can be these three values : query , header , path
    * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
    */
-  parameterTypeSchemaValueGenerator(path, method, parameterType, useExample = false) {
+  parameterTypeSchemaValueGenerator(
+    path,
+    method,
+    parameterType,
+    useExample = false
+  ) {
     // output object which is returned in the end of the method call
     const output = {};
 
@@ -159,7 +173,11 @@ class SchemaValueGenerator extends ODGConfigGenerator {
   }
 }
 
-class SearchBasedValueGenerator extends SchemaValueGenerator {}
+class SearchBasedValueGenerator extends SchemaValueGenerator {
+  createResponseDictionary(){
+    // const apiName = this.api.
+  }
+}
 
 class TestDataGenerator extends SearchBasedValueGenerator {}
 
