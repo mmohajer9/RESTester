@@ -184,6 +184,8 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
     const apiName = this.api.name;
     const rdPath = config.apiResponseDictionaryPath(apiName);
     await this.createJSONFile(rdPath, object);
+    this.responseDictionary = object;
+    return object;
   }
 
   async loadResponseDictionary() {
@@ -194,7 +196,7 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
     return rd;
   }
 
-  async updateResponseDictionary(object) {
+  async addToResponseDictionary(object) {
     const rd = await this.loadResponseDictionary();
     const newObject = {
       ...rd,

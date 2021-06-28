@@ -4,7 +4,7 @@ const configuration = {
   // handlers
   resolveHandler: console.log,
   rejectHandler: console.error,
-  logHandler : console.log,
+  logHandler: console.log,
 
   // general directories
   testsDir: path.resolve('out', '__tests__'),
@@ -22,16 +22,29 @@ const configuration = {
 
   // test directories
   apiTestsDir: (apiName) => path.resolve('out', '__tests__', apiName),
-  apiCommonDir: (apiName) => path.resolve('out', '__tests__', apiName, 'common'),
-  apiTemplatesDir: (apiName) => path.resolve('out', '__tests__', apiName, 'templates'),
-  apiErrorTestCasesDir: (apiName) => path.resolve('out', '__tests__', apiName, 'erros'),
-  apiNominalTestCasesDir: (apiName) => path.resolve('out', '__tests__', apiName, 'nominals'),
+  apiCommonDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'common'),
+  apiTemplatesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'templates'),
+  apiErrorTestCasesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'errors'),
+  apiNominalTestCasesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'nominals'),
 
   // test file paths
-  apiTempatePath : (apiName , templateName) => 
-    path.resolve('out', '__tests__', apiName, 'templates', templateName, '.ejs'),
+  apiTempatePath: (apiName, templateName) =>
+    path.resolve(
+      'out',
+      '__tests__',
+      apiName,
+      'templates',
+      templateName,
+      '.ejs'
+    ),
   apiResponseDictionaryPath: (apiName) =>
     path.resolve('out', '__tests__', apiName, 'common', 'rd.json'),
+
+  // utilites
 };
 
 module.exports = configuration;

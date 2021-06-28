@@ -75,7 +75,7 @@ class RESTester extends TestCaseGenerator {
     // set the api call order
     this.setApiCallOrder();
 
-    // this.show(3);
+    this.show(1);
   }
 }
 
