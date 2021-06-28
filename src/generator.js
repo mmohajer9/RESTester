@@ -215,6 +215,11 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
   }
 }
 
-class SearchBasedValueGenerator extends ResponseDictionaryTools {}
+class SearchBasedValueGenerator extends ResponseDictionaryTools {
+  // TODO: fix this
+  // search in response dictionary
+  // random seeks
+  // algorithms for value selections
+}
 
 module.exports = SearchBasedValueGenerator;

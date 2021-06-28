@@ -4,7 +4,7 @@
 - [x] Generate ODG config JSON
 - [x] Automate Reading ODG JSON config and make the graph with proper dependencies
 - Implement 2 approaches :
-  - [ ] Schema-based Value Generator
+  - [x] Schema-based Value Generator
   - [ ] Search-based Value Generator (Response Dictionary)
 - Implement Oracles :
   - [ ] Status Code Oracle
