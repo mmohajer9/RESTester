@@ -82,13 +82,18 @@ class TestCaseGenerator extends RESTesterOracle {
   async generateNominals(useExample) {
     const { paths } = this.api;
 
+    const testCase = {
+      path: {},
+      method: {},
+      data: {},
+    };
+
     for (const path in paths) {
       for (const method in paths[method]) {
         // use response dictionary with chance of 80%
         const useResponseDictionary = this.chance.bool({ likelihood: 80 });
 
         // this.
-
       }
     }
 
@@ -123,6 +128,8 @@ class RESTester extends TestCaseGenerator {
       this.generateNominals(useExample);
       this.generateErrors(useExample);
     }
+
+    this.showProperty('api', 8);
   }
 }
 

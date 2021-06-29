@@ -96,6 +96,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
     path,
     method,
     parameterType,
+    property,
     useExample = false
   ) {
     if (parameterType === 'requestBody') {
@@ -122,7 +123,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
       // generated output
       const output = this.propertySchemaValueGenerator(schema, useExample);
 
-      return output;
+      return output[property];
     } else {
       // output object which is returned in the end of the method call
       const output = {};
@@ -165,7 +166,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
         );
       }
 
-      return output;
+      return output[property];
     }
   }
 }
@@ -243,7 +244,7 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
 }
 
 class SearchBasedValueGenerator extends ResponseDictionaryTools {
-  findResponsePropertyValue(path, method, parameterType, property) {
+  findPropertyValueFromResponse(path, method, parameterType, property) {
     const odg = this.odgConfig;
 
     const odgItem = _.find(odg, (item) => item.endpoint === path);
