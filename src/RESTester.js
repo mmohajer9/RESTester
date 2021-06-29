@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const SearchBasedValueGenerator = require('./generator');
 
 class TestCaseGenerator extends SearchBasedValueGenerator {
@@ -19,9 +20,22 @@ class TestCaseGenerator extends SearchBasedValueGenerator {
 }
 
 class RESTesterOracle extends TestCaseGenerator {
-  responseValidatorOracle(path, method, response) {}
 
-  statusCodeOracle(path, method, response) {}
+  async oracle(path, method) {
+    
+  }
+
+  responseValidatorOracle(path, method) {
+    const { paths } = this.api;
+
+    const expectedResponse = this.parseResponse(paths, path, method);
+    const expectedResponseKeys = this.objectKeysArray(expectedResponse);
+    const actualResponseKeys = this.objectKeysArray(actualResponse);
+
+    return _.isEqual(expectedResponseKeys, actualResponseKeys);
+  }
+
+  statusCodeOracle(path, method) {}
 }
 
 class RESTester extends RESTesterOracle {

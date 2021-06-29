@@ -10,7 +10,7 @@
     - [ ] Response dictionary random seek based on the related path and method you have found
 - Implement Oracles :
   - [ ] Status Code Oracle
-  - [ ] Response Validator Oracle
+  - [x] Response Validator Oracle
   - [ ] Final Oracle (Combine previous two orcales)
 - [x] Setting API Call Order
 - [ ] Nominal Tester
