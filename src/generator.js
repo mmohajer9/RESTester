@@ -8,8 +8,6 @@ const ODGConfigGenerator = require('./odg');
 class SchemaValueGenerator extends ODGConfigGenerator {
   constructor(...props) {
     super(...props);
-    // http method order for testing
-    this.httpMethodOrder = ['head', 'post', 'get', 'put', 'patch', 'delete'];
   }
 
   /**
@@ -198,13 +196,6 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
     return rd;
   }
 
-  // append an object to the given path and method related objects in response dictionary
-  async addToResponseDictionary(path, method, object) {
-    const rd = await this.loadResponseDictionary();
-    rd[path].responses[method].push(object);
-    await this.createResponseDictionary(rd);
-  }
-
   // call this method after calling directory setter methods
   // it is actually making or loading response dictionary and use the methods above
   async initiateResponseDictionary() {
@@ -229,6 +220,13 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
     }
   }
 
+  // append an object to the given path and method related objects in response dictionary
+  async addToResponseDictionary(path, method, object) {
+    const rd = await this.loadResponseDictionary();
+    rd[path].responses[method].push(object);
+    await this.createResponseDictionary(rd);
+  }
+
   async responseDictionaryRandomSeek(path, method) {
     const rd = await this.loadResponseDictionary();
     const responses = rd[path].responses[method];
@@ -245,7 +243,133 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
 }
 
 class SearchBasedValueGenerator extends ResponseDictionaryTools {
-  // findRelatedResponse() {}
+  findResponsePropertyValue(path, method, parameterType, property) {
+    const odg = this.odgConfig;
+
+    const odgItem = _.find(odg, (item) => item.endpoint === path);
+    const methodProps = odgItem.props[method];
+
+    if (methodProps) {
+      switch (parameterType) {
+        case 'requestBody':
+          const { requestBody } = methodProps;
+          if (_.isEmpty(requestBody)) {
+            return null;
+          } else {
+            const candidates = requestBody[property];
+            if (_.isEmpty(candidates)) {
+              return null;
+            } else {
+              let isCandidateSelected = false;
+              let candidate = {};
+              while (!isCandidateSelected) {
+                const randomIndex = Math.floor(
+                  Math.random() * candidates.length
+                );
+                candidate = candidates[randomIndex];
+                isCandidateSelected = this.chance.bool({
+                  likelihood: candidate.likelihood,
+                });
+              }
+
+              return this.responseDictionaryRandomSeek(
+                candidate.path,
+                candidate.method
+              )[candidate.field];
+            }
+          }
+          break;
+        case 'path':
+          const { urlParams } = methodProps;
+          if (_.isEmpty(urlParams)) {
+            return null;
+          } else {
+            const candidates = urlParams[property];
+            if (_.isEmpty(candidates)) {
+              return null;
+            } else {
+              let isCandidateSelected = false;
+              let candidate = {};
+              while (!isCandidateSelected) {
+                const randomIndex = Math.floor(
+                  Math.random() * candidates.length
+                );
+                candidate = candidates[randomIndex];
+                isCandidateSelected = this.chance.bool({
+                  likelihood: candidate.likelihood,
+                });
+              }
+
+              return this.responseDictionaryRandomSeek(
+                candidate.path,
+                candidate.method
+              )[candidate.field];
+            }
+          }
+          break;
+        case 'query':
+          const { queryParams } = methodProps;
+          if (_.isEmpty(queryParams)) {
+            return null;
+          } else {
+            const candidates = queryParams[property];
+            if (_.isEmpty(candidates)) {
+              return null;
+            } else {
+              let isCandidateSelected = false;
+              let candidate = {};
+              while (!isCandidateSelected) {
+                const randomIndex = Math.floor(
+                  Math.random() * candidates.length
+                );
+                candidate = candidates[randomIndex];
+                isCandidateSelected = this.chance.bool({
+                  likelihood: candidate.likelihood,
+                });
+              }
+
+              return this.responseDictionaryRandomSeek(
+                candidate.path,
+                candidate.method
+              )[candidate.field];
+            }
+          }
+          break;
+        case 'header':
+          const { headerParams } = methodProps;
+          if (_.isEmpty(headerParams)) {
+            return null;
+          } else {
+            const candidates = headerParams[property];
+            if (_.isEmpty(candidates)) {
+              return null;
+            } else {
+              let isCandidateSelected = false;
+              let candidate = {};
+              while (!isCandidateSelected) {
+                const randomIndex = Math.floor(
+                  Math.random() * candidates.length
+                );
+                candidate = candidates[randomIndex];
+                isCandidateSelected = this.chance.bool({
+                  likelihood: candidate.likelihood,
+                });
+              }
+
+              return this.responseDictionaryRandomSeek(
+                candidate.path,
+                candidate.method
+              )[candidate.field];
+            }
+          }
+          break;
+        default:
+          break;
+      }
+    } else {
+      return null;
+    }
+  }
 }
 
 module.exports = SearchBasedValueGenerator;

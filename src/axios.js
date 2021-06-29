@@ -1,12 +1,11 @@
-import axios from 'axios';
+const axios = require('axios');
 
-const getAxiosInstance = (baseURL, headers = {}) => {
+const getAxiosInstance = (baseURL) => {
   const instance = axios.create({
     baseURL: baseURL,
-    headers: headers,
   });
-  
+
   return instance;
 };
 
-export default getAxiosInstance;
+module.exports = getAxiosInstance;

@@ -5,6 +5,7 @@ const fse = require('fs-extra');
 const ejs = require('ejs');
 const pathModule = require('path');
 const _ = require('lodash');
+const getAxiosInstance = require('./axios');
 
 class Initializer {
   constructor(mainProgram) {
@@ -27,6 +28,7 @@ class Initializer {
     this.httpMethodOrder = [];
     this.graph = {};
     this.chance = {};
+    this.axios = {};
 
     // initializing parser and validator
     this.#init();
@@ -148,6 +150,13 @@ class Initializer {
     const { title, version } = this.api.info;
     const apiName = _.kebabCase(`${title}-version${version}`);
     this.api.name = apiName;
+  }
+
+  setRequestHandler() {
+    const { servers } = this.api;
+    const baseURL = servers[0].url;
+
+    this.axios = getAxiosInstance(baseURL);
   }
 }
 
