@@ -3,63 +3,56 @@ const SearchBasedValueGenerator = require('./generator');
 class TestCaseGenerator extends SearchBasedValueGenerator {
   constructor(...props) {
     super(...props);
+
+    // initialize test case holders
+    this.nominalTestCases = {
+      200: [],
+      400: [],
+      500: [],
+    };
+    this.errorTestCases = {
+      200: [],
+      400: [],
+      500: [],
+    };
   }
 
-  generateSchemaBasedTestData(path, method, useExample = false) {
+  // generate schema-based value for the parameter given to the method
+  generateSchemaBased(path, method, parameterType, useExample = false) {
     // if the method of the path is not existed then it will return null
     if (!this.api.paths[path][method]) {
       return null;
     }
 
-    // generating schema-based request body and parameters
-    const requestBody = this.requestBodySchemaValueGenerator(
-      path,
-      method,
-      'application/json',
-      useExample
-    );
-    const urlParams = this.URLParamSchemaGenerator(path, method, useExample);
-    const queryParams = this.queryParamSchemaGenerator(
-      path,
-      method,
-      useExample
-    );
-    const headers = this.headerParamSchemaGenerator(path, method, useExample);
+    let result = null;
 
-    // stocking all values into a one output as a test data object
-    const testData = { requestBody, urlParams, queryParams, headers };
-    return testData;
-  }
+    switch (parameterType) {
+      case 'requestBody':
+        result = this.requestBodySchemaValueGenerator(path, method, useExample);
+        break;
 
-  generateNominalTestCase(useExample = false) {
-    //TODO response-dictionary -> search-based approach
-    // if it is empty , it won't proceed anymore and will use other approach
-    // this.responseDictionaryRandomSeek('/pet/findByStatus', 'get')
-
-    // schema-based test case generation - random approach
-    // generate one test data for each of the api calls based on the http method order
-    for (const path of this.apiCallOrder) {
-      for (const method of this.httpMethodOrder) {
-        if (!this.api.paths[path][method]) {
-          continue;
-        } else {
-          const testData = this.generateSchemaBasedTestData(
-            path,
-            method,
-            useExample
-          );
-          this.nominalTestCases.push({
-            path,
-            method,
-            data: testData,
-          });
-        }
-      }
+      // default means : query , header , path --> these types are going to be executed
+      default:
+        result = this.parameterTypeSchemaValueGenerator(
+          path,
+          method,
+          parameterType,
+          useExample
+        );
+        break;
     }
+
+    return result;
   }
 }
 
-class RESTester extends TestCaseGenerator {
+class RESTesterOracle extends TestCaseGenerator {
+  responseValidatorOracle(path, method, response) {}
+
+  statusCodeOracle(path, method, response) {}
+}
+
+class RESTester extends RESTesterOracle {
   async generate(number, useExample = false) {
     // create related directories for outputs
     await this.initiateOutputDirectories();
@@ -69,8 +62,6 @@ class RESTester extends TestCaseGenerator {
 
     // set the api call order
     this.setApiCallOrder();
-
-    this.show(6);
   }
 }
 

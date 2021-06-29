@@ -16,7 +16,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
    * @param  {} propertySchema the schema of a property or parameter which always has a type property in itself
    * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
    */
-  schemaTypeValueGenerator(propertySchema, useExample = false) {
+  propertySchemaValueGenerator(propertySchema, useExample = false) {
     let result = null;
     switch (propertySchema.type) {
       case 'integer':
@@ -47,7 +47,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
           index < this.chance.integer({ min: 0, max: 10 });
           index++
         ) {
-          result[index] = this.schemaValueGenerator(
+          result[index] = this.propertySchemaValueGenerator(
             propertySchema.items,
             useExample
           );
@@ -57,7 +57,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
         // this will be another object nested inside the object
         result = {};
         for (const key in propertySchema.properties) {
-          result[key] = this.schemaValueGenerator(
+          result[key] = this.propertySchemaValueGenerator(
             propertySchema.properties[key],
             useExample
           );
@@ -91,86 +91,84 @@ class SchemaValueGenerator extends ODGConfigGenerator {
   /**
    * @param  {} path the actual path of the api that you want to create its value
    * @param  {} method can be : head , get , put , patch , post , delete for the correspondent api
+   * @param  {} parameterType can be these three values : query , header , path , requestBody
    * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
    */
-  requestBodySchemaValueGenerator(path, method, useExample = false) {
-    // if the api path for the given method does not have the request body,
-    // the generated request body should be empty
-    const requestBody = this.api.paths[path]?.[method]?.requestBody;
-    if (!requestBody) {
-      return {};
-    }
-
-    // check for request body required, if it is, then we should generate one absolutely
-    const requestBodyRequired = requestBody.required;
-    const useEmptyRequestBody = this.chance.bool({ likelihood: 20 });
-
-    // if it is not required, then we can use both empty and non-empty request body
-    // so we decide with a probability of 20% to choose between these two options
-    if (!requestBodyRequired && useEmptyRequestBody) {
-      return {};
-    }
-
-    // request body schema
-    const schema = requestBody.content['application/json']?.schema;
-
-    // generated output
-    const output = this.schemaValueGenerator(schema, useExample);
-
-    return output;
-  }
-
-  /**
-   * @param  {} path the actual path of the api that you want to create its value
-   * @param  {} method can be : head , get , put , patch , post , delete for the correspondent api
-   * @param  {} parameterType can be these three values : query , header , path
-   * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
-   */
-  parameterTypeSchemaValueGenerator(
+  parameterSchemaValueGenerator(
     path,
     method,
     parameterType,
     useExample = false
   ) {
-    // output object which is returned in the end of the method call
-    const output = {};
-
-    // if the api path for the given method does not have query parameter,
-    // the generated query parameter should be empty
-    const parameters = this.api.paths[path]?.[method]?.parameters;
-    if (!parameters) {
-      // no parameters is specified
-      return {};
-    }
-
-    // filtering all parameters to only get all query params
-    const queryParams = parameters.filter(
-      (param) => param.in === parameterType
-    );
-
-    // for each param we will check whether it is requored or not.
-    // if it is not required, then we try to complete the operation with empty param
-    // otherwise we check for default value, if it is available we will use it with
-    // a chance of 40% if it is not, then we will generate a new value based on its schema
-    for (const param of queryParams) {
-      // check for parameter name
-      const paramName = param.name;
-
-      // check for parameter schema
-      const paramSchema = param.schema;
-
-      // check wheter it is required or not
-      const paramRequired = param.required;
-      const useEmptyParam = this.chance.bool({ likelihood: 20 });
-
-      if (!paramRequired && useEmptyParam) {
+    if (parameterType === 'requestBody') {
+      // if the api path for the given method does not have the request body,
+      // the generated request body should be empty
+      const requestBody = this.api.paths[path]?.[method]?.requestBody;
+      if (!requestBody) {
         return {};
       }
 
-      output[paramName] = this.schemaValueGenerator(paramSchema, useExample);
-    }
+      // check for request body required, if it is, then we should generate one absolutely
+      const requestBodyRequired = requestBody.required;
+      const useEmptyRequestBody = this.chance.bool({ likelihood: 20 });
 
-    return output;
+      // if it is not required, then we can use both empty and non-empty request body
+      // so we decide with a probability of 20% to choose between these two options
+      if (!requestBodyRequired && useEmptyRequestBody) {
+        return {};
+      }
+
+      // request body schema
+      const schema = requestBody.content['application/json']?.schema;
+
+      // generated output
+      const output = this.propertySchemaValueGenerator(schema, useExample);
+
+      return output;
+    } else {
+      // output object which is returned in the end of the method call
+      const output = {};
+
+      // if the api path for the given method does not have query parameter,
+      // the generated query parameter should be empty
+      const parameters = this.api.paths[path]?.[method]?.parameters;
+      if (!parameters) {
+        // no parameters is specified
+        return {};
+      }
+
+      // filtering all parameters to only get all query params
+      const queryParams = parameters.filter(
+        (param) => param.in === parameterType
+      );
+
+      // for each param we will check whether it is requored or not.
+      // if it is not required, then we try to complete the operation with empty param
+      // otherwise we check for default value, if it is available we will use it with
+      // a chance of 40% if it is not, then we will generate a new value based on its schema
+      for (const param of queryParams) {
+        // check for parameter name
+        const paramName = param.name;
+
+        // check for parameter schema
+        const paramSchema = param.schema;
+
+        // check wheter it is required or not
+        const paramRequired = param.required;
+        const useEmptyParam = this.chance.bool({ likelihood: 20 });
+
+        if (!paramRequired && useEmptyParam) {
+          return {};
+        }
+
+        output[paramName] = this.propertySchemaValueGenerator(
+          paramSchema,
+          useExample
+        );
+      }
+
+      return output;
+    }
   }
 }
 
