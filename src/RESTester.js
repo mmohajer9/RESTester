@@ -16,34 +16,6 @@ class TestCaseGenerator extends SearchBasedValueGenerator {
       500: [],
     };
   }
-
-  // generate schema-based value for the parameter given to the method
-  generateSchemaBased(path, method, parameterType, useExample = false) {
-    // if the method of the path is not existed then it will return null
-    if (!this.api.paths[path][method]) {
-      return null;
-    }
-
-    let result = null;
-
-    switch (parameterType) {
-      case 'requestBody':
-        result = this.requestBodySchemaValueGenerator(path, method, useExample);
-        break;
-
-      // default means : query , header , path --> these types are going to be executed
-      default:
-        result = this.parameterTypeSchemaValueGenerator(
-          path,
-          method,
-          parameterType,
-          useExample
-        );
-        break;
-    }
-
-    return result;
-  }
 }
 
 class RESTesterOracle extends TestCaseGenerator {
