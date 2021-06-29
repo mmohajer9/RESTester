@@ -5,12 +5,14 @@
 - [x] Automate Reading ODG JSON config and make the graph with proper dependencies
 - Implement 2 approaches :
   - [x] Schema-based Value Generator
-  - [ ] Search-based Value Generator (Response Dictionary)
+  - Search-based Value Generator (Response Dictionary)
+    - [ ] Find related response path and method from odjConfig
+    - [ ] Response dictionary random seek based on the related path and method you have found
 - Implement Oracles :
   - [ ] Status Code Oracle
   - [ ] Response Validator Oracle
   - [ ] Final Oracle (Combine previous two orcales)
-- [ ] Setting API Call Order
+- [x] Setting API Call Order
 - [ ] Nominal Tester
 - [ ] Error Tester
-- [ ] Design CLI APIs for interaction with the program
+- Design CLI APIs for interaction with the program

@@ -3,7 +3,6 @@ const SearchBasedValueGenerator = require('./generator');
 class TestCaseGenerator extends SearchBasedValueGenerator {
   constructor(...props) {
     super(...props);
-    // TODO: fix this
   }
 
   generateSchemaBasedTestData(path, method, useExample = false) {
@@ -58,10 +57,6 @@ class TestCaseGenerator extends SearchBasedValueGenerator {
       }
     }
   }
-
-  generateErrorTestCase(useExample) {
-    //TODO mutation of the nominal test cases to generate error test cases
-  }
 }
 
 class RESTester extends TestCaseGenerator {
@@ -75,6 +70,7 @@ class RESTester extends TestCaseGenerator {
     // set the api call order
     this.setApiCallOrder();
 
+    this.show(6);
   }
 }
 

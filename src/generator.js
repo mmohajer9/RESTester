@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const ODGConfigGenerator = require('./odg');
 
 // note that in this modules we are trying to create appropriate values
@@ -177,10 +178,11 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
   constructor(...props) {
     super(...props);
 
-    // initialize responseDictionary Object
+    // initialize response dictionary object on the program side
     this.responseDictionary = {};
   }
 
+  // create or bulk update response dictionary at once
   async createResponseDictionary(object) {
     const apiName = this.api.name;
     const rdPath = config.apiResponseDictionaryPath(apiName);
@@ -189,6 +191,7 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
     return object;
   }
 
+  // load response dictionary from rd.json into the program
   async loadResponseDictionary() {
     const apiName = this.api.name;
     const rdPath = config.apiResponseDictionaryPath(apiName);
@@ -197,12 +200,15 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
     return rd;
   }
 
+  // append an object to the given path and method related objects in response dictionary
   async addToResponseDictionary(path, method, object) {
     const rd = await this.loadResponseDictionary();
     rd[path].responses[method].push(object);
     await this.createResponseDictionary(rd);
   }
 
+  // call this method after calling directory setter methods
+  // it is actually making or loading response dictionary and use the methods above
   async initiateResponseDictionary() {
     const rd = await this.loadResponseDictionary();
     if (!rd) {
@@ -228,15 +234,20 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
   async responseDictionaryRandomSeek(path, method) {
     const rd = await this.loadResponseDictionary();
     const responses = rd[path].responses[method];
-    const randomIndex = Math.floor(Math.random() * responses.length);
-    const result = responses[randomIndex];
-    return result;
+
+    // if there were no responses, returns null
+    if (_.isEmpty(responses)) {
+      return null;
+    } else {
+      const randomIndex = Math.floor(Math.random() * responses.length);
+      const result = responses[randomIndex];
+      return result;
+    }
   }
 }
 
 class SearchBasedValueGenerator extends ResponseDictionaryTools {
-  // TODO: fix this
-  // algorithms for value selections
+  // findRelatedResponse() {}
 }
 
 module.exports = SearchBasedValueGenerator;
