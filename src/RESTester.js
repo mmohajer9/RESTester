@@ -132,9 +132,9 @@ class TestCaseGenerator extends RESTesterOracle {
   async generateNominals(rdRatio, useExample) {
     const { paths } = this.api;
     for (const path in paths) {
-      // const methods = paths[path];
-      const methodsOrder = this.httpMethodOrder;
-      for (const method of methodsOrder) {
+      const methods = this.objectKeysArray(paths[path]);
+      // const methods = this.httpMethodOrder;
+      for (const method of methods) {
         const testData = await this.getTestData(
           path,
           method,

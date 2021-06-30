@@ -12,28 +12,16 @@
               "name": "Dogs"
             },
             "photoUrls": [
-              "Hedgehogs Lettie Glover",
-              "Stick Bug Gilbert Parsons"
+              "Python Vera Brock",
+              "Anole Nellie Brock"
             ],
             "tags": [
               {
-                "id": 599,
-                "name": "Lagoon Triggerfish Garrett Wolfe"
-              },
-              {
-                "id": 70,
-                "name": "Silkworm Madge Greer"
-              },
-              {
-                "id": 425,
-                "name": "Hyrax Lillian Christensen"
-              },
-              {
-                "id": 963,
-                "name": "Gecko Katie Lynch"
+                "id": 397,
+                "name": "Geckos Mabel Crawford"
               }
             ],
-            "status": "pending"
+            "status": "available"
           },
           "urlParams": {},
           "queryParams": {},
@@ -50,29 +38,22 @@
               "name": "Dogs"
             },
             "photoUrls": [
-              "Megaladon Francisco Kennedy",
-              "Raccoon Grace Ramirez",
-              "Cat Angel Burns"
+              "Coati Randall Price",
+              "Dugong Lina Carlson",
+              "Tarantula Andrew Holloway",
+              "Grison Jason Garner"
             ],
             "tags": [
               {
-                "id": 656,
-                "name": "Goat Jim Williamson"
+                "id": 41,
+                "name": "Sheep Seth Grant"
               },
               {
-                "id": 89,
-                "name": "Woodpecker Matthew McDonald"
-              },
-              {
-                "id": 205,
-                "name": "Dogs Leon Bates"
-              },
-              {
-                "id": 307,
-                "name": "Aldabra Tortoise Mitchell Santiago"
+                "id": 62,
+                "name": "Dove Zachary Brooks"
               }
             ],
-            "status": "sold"
+            "status": "available"
           },
           "urlParams": {},
           "queryParams": {},
@@ -91,7 +72,7 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "status": "pending"
+            "status": "sold"
           },
           "headerParams": {}
         }
@@ -115,16 +96,7 @@
   },
   "/pet/{petId}": {
     "responses": {
-      "get": [
-        {
-          "requestBody": {},
-          "urlParams": {
-            "petId": 463
-          },
-          "queryParams": {},
-          "headerParams": {}
-        }
-      ],
+      "get": [],
       "post": [],
       "put": [],
       "patch": [],
@@ -132,12 +104,10 @@
         {
           "requestBody": {},
           "urlParams": {
-            "petId": 537
+            "petId": 790
           },
           "queryParams": {},
-          "headerParams": {
-            "api_key": "Mouse Bernard Bowers"
-          }
+          "headerParams": {}
         }
       ],
       "head": []
@@ -167,20 +137,24 @@
       "put": [],
       "patch": [],
       "delete": [],
-      "head": [
-        {
-          "requestBody": {},
-          "urlParams": {},
-          "queryParams": {},
-          "headerParams": {}
-        }
-      ]
+      "head": []
     }
   },
   "/store/order": {
     "responses": {
       "get": [],
-      "post": [],
+      "post": [
+        {
+          "requestBody": {
+            "id": 10,
+            "petId": 198772,
+            "quantity": 7
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      ],
       "put": [],
       "patch": [],
       "delete": [],
@@ -197,7 +171,7 @@
         {
           "requestBody": {},
           "urlParams": {
-            "orderId": 404
+            "orderId": 773
           },
           "queryParams": {},
           "headerParams": {}
@@ -213,9 +187,7 @@
         {
           "requestBody": {
             "id": 10,
-            "firstName": "John",
-            "lastName": "James",
-            "email": "john@email.com",
+            "username": "theUser",
             "phone": "12345"
           },
           "urlParams": {},
@@ -246,8 +218,7 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "username": "Dormouse Jeremiah Rodriguez",
-            "password": "Crane Fly Elnora Fox"
+            "username": "Tarantula Clayton Franklin"
           },
           "headerParams": {}
         }
@@ -256,14 +227,7 @@
       "put": [],
       "patch": [],
       "delete": [],
-      "head": [
-        {
-          "requestBody": {},
-          "urlParams": {},
-          "queryParams": {},
-          "headerParams": {}
-        }
-      ]
+      "head": []
     }
   },
   "/user/logout": {
@@ -280,14 +244,7 @@
       "put": [],
       "patch": [],
       "delete": [],
-      "head": [
-        {
-          "requestBody": {},
-          "urlParams": {},
-          "queryParams": {},
-          "headerParams": {}
-        }
-      ]
+      "head": []
     }
   },
   "/user/{username}": {
@@ -296,7 +253,7 @@
         {
           "requestBody": {},
           "urlParams": {
-            "username": "Chameleons Kate Gibson"
+            "username": "Cows Linnie Quinn"
           },
           "queryParams": {},
           "headerParams": {}
@@ -309,14 +266,13 @@
             "id": 10,
             "username": "theUser",
             "firstName": "John",
-            "lastName": "James",
             "email": "john@email.com",
             "password": "12345",
             "phone": "12345",
             "userStatus": 1
           },
           "urlParams": {
-            "username": "Collared Lemur Belle Warren"
+            "username": "Geese Marion Sullivan"
           },
           "queryParams": {},
           "headerParams": {}
@@ -327,20 +283,13 @@
         {
           "requestBody": {},
           "urlParams": {
-            "username": "Guinea Tillie Roberts"
+            "username": "Guinea Carolyn Collier"
           },
           "queryParams": {},
           "headerParams": {}
         }
       ],
-      "head": [
-        {
-          "requestBody": {},
-          "urlParams": {},
-          "queryParams": {},
-          "headerParams": {}
-        }
-      ]
+      "head": []
     }
   }
 }

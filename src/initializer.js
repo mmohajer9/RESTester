@@ -87,7 +87,7 @@ class Initializer {
         EOL: '\r\n',
       });
     } catch (err) {
-      this.rejectHandler(err);
+      // this.rejectHandler(err);
     }
   }
 
@@ -96,7 +96,7 @@ class Initializer {
       const object = await fse.readJson(path);
       return object;
     } catch (error) {
-      this.rejectHandler(error);
+      // this.rejectHandler(error);
       return null;
     }
   }
