@@ -8,13 +8,15 @@ const ODGConfigGenerator = require('./odg');
 class SchemaValueGenerator extends ODGConfigGenerator {
   constructor(...props) {
     super(...props);
+
+    this.parameterTypes = ['requestBody', 'query', 'path', 'header'];
   }
 
   /**
    * @param  {} propertySchema the schema of a property or parameter which always has a type property in itself
    * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
    */
-  propertySchemaValueGenerator(propertySchema, useExample = false) {
+  propertySchemaValueGenerator(propertySchema, useExample) {
     let result = null;
     switch (propertySchema.type) {
       case 'integer':
@@ -92,13 +94,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
    * @param  {} parameterType can be these three values : query , header , path , requestBody
    * @param  {} useExample default=False - if it is true, it will use examples which is included in OAS
    */
-  parameterSchemaValueGenerator(
-    path,
-    method,
-    parameterType,
-    property,
-    useExample = false
-  ) {
+  parameterValueGenerator(path, method, parameterType, useExample) {
     if (parameterType === 'requestBody') {
       // if the api path for the given method does not have the request body,
       // the generated request body should be empty
@@ -123,7 +119,7 @@ class SchemaValueGenerator extends ODGConfigGenerator {
       // generated output
       const output = this.propertySchemaValueGenerator(schema, useExample);
 
-      return output[property];
+      return output;
     } else {
       // output object which is returned in the end of the method call
       const output = {};
@@ -166,8 +162,24 @@ class SchemaValueGenerator extends ODGConfigGenerator {
         );
       }
 
-      return output[property];
+      return output;
     }
+  }
+
+  getPropertyValueFromSchema(
+    path,
+    method,
+    parameterType,
+    property,
+    useExample
+  ) {
+    const parameterOutput = this.parameterValueGenerator(
+      path,
+      method,
+      parameterType,
+      useExample
+    );
+    return parameterOutput[property];
   }
 }
 
@@ -228,6 +240,7 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
     await this.createResponseDictionary(rd);
   }
 
+  // get random response object from the response dictionary related to the given path and method
   async responseDictionaryRandomSeek(path, method) {
     const rd = await this.loadResponseDictionary();
     const responses = rd[path].responses[method];
@@ -244,7 +257,7 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
 }
 
 class SearchBasedValueGenerator extends ResponseDictionaryTools {
-  findPropertyValueFromResponse(path, method, parameterType, property) {
+  async findPropertyValueFromResponse(path, method, parameterType, property) {
     const odg = this.odgConfig;
 
     const odgItem = _.find(odg, (item) => item.endpoint === path);
@@ -273,13 +286,14 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
                 });
               }
 
-              return this.responseDictionaryRandomSeek(
+              const responseData = await this.responseDictionaryRandomSeek(
                 candidate.path,
                 candidate.method
-              )[candidate.field];
+              );
+
+              return responseData?.[candidate.field];
             }
           }
-          break;
         case 'path':
           const { urlParams } = methodProps;
           if (_.isEmpty(urlParams)) {
@@ -301,13 +315,14 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
                 });
               }
 
-              return this.responseDictionaryRandomSeek(
+              const responseData = await this.responseDictionaryRandomSeek(
                 candidate.path,
                 candidate.method
-              )[candidate.field];
+              );
+
+              return responseData[candidate.field];
             }
           }
-          break;
         case 'query':
           const { queryParams } = methodProps;
           if (_.isEmpty(queryParams)) {
@@ -329,13 +344,14 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
                 });
               }
 
-              return this.responseDictionaryRandomSeek(
+              const responseData = await this.responseDictionaryRandomSeek(
                 candidate.path,
                 candidate.method
-              )[candidate.field];
+              );
+
+              return responseData[candidate.field];
             }
           }
-          break;
         case 'header':
           const { headerParams } = methodProps;
           if (_.isEmpty(headerParams)) {
@@ -357,13 +373,14 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
                 });
               }
 
-              return this.responseDictionaryRandomSeek(
+              const responseData = await this.responseDictionaryRandomSeek(
                 candidate.path,
                 candidate.method
-              )[candidate.field];
+              );
+
+              return responseData[candidate.field];
             }
           }
-          break;
         default:
           break;
       }
@@ -373,4 +390,93 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
   }
 }
 
-module.exports = SearchBasedValueGenerator;
+class TestDataGenerator extends SearchBasedValueGenerator {
+  async getTestData(path, method, likelihood, useExample) {
+    const odg = this.odgConfig;
+    const odgItem = _.find(odg, (item) => item.endpoint === path);
+    const methodProps = odgItem.props[method];
+
+    const data = {
+      requestBody: {},
+      urlParams: {},
+      queryParams: {},
+      headerParams: {},
+    };
+
+    if (!methodProps) {
+      return data;
+    }
+
+    const { requestBody, urlParams, queryParams, headerParams } = methodProps;
+
+    // keys array for each parameter
+    const requestBodyKeys = this.objectKeysArray(requestBody);
+    const urlParamsKeys = this.objectKeysArray(urlParams);
+    const queryParamsKeys = this.objectKeysArray(queryParams);
+    const headerParamsKeys = this.objectKeysArray(headerParams);
+
+    const allParameters = [
+      {
+        keys: requestBodyKeys,
+        parameterType: 'requestBody',
+        dataKey: 'requestBody',
+      },
+      { keys: urlParamsKeys, parameterType: 'path', dataKey: 'urlParams' },
+      { keys: queryParamsKeys, parameterType: 'query', dataKey: 'queryParams' },
+      {
+        keys: headerParamsKeys,
+        parameterType: 'header',
+        dataKey: 'headerParams',
+      },
+    ];
+
+    for (const param of allParameters) {
+      const { parameterType, keys, dataKey } = param;
+
+      data[dataKey] = {};
+
+      if (_.isEmpty(keys)) {
+        continue;
+      }
+
+      for (const field of keys) {
+        const useResponseDictionary = this.chance.bool({ likelihood });
+        if (useResponseDictionary) {
+          const responseValue = await this.findPropertyValueFromResponse(
+            path,
+            method,
+            parameterType,
+            field
+          );
+          const schemaValue = this.getPropertyValueFromSchema(
+            path,
+            method,
+            parameterType,
+            field,
+            useExample
+          );
+
+          if (responseValue || schemaValue) {
+            data[dataKey][field] = responseValue ? responseValue : schemaValue;
+          }
+        } else {
+          const schemaValue = this.getPropertyValueFromSchema(
+            path,
+            method,
+            parameterType,
+            field,
+            useExample
+          );
+
+          if (schemaValue) {
+            data[dataKey][field] = schemaValue;
+          }
+        }
+      }
+    }
+
+    return data;
+  }
+}
+
+module.exports = TestDataGenerator;

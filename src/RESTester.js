@@ -1,7 +1,7 @@
 const _ = require('lodash');
-const SearchBasedValueGenerator = require('./generator');
+const TestDataGenerator = require('./generator');
 
-class RESTesterOracle extends SearchBasedValueGenerator {
+class RESTesterOracle extends TestDataGenerator {
   constructor(...props) {
     super(...props);
     // http method order for testing
@@ -78,32 +78,18 @@ class TestCaseGenerator extends RESTesterOracle {
       500: [],
     };
   }
-
+  // TODO: FIX THIS
   async generateNominals(useExample) {
-    const { paths } = this.api;
+    // const testCase = {
+    //   path: {},
+    //   method: {},
+    //   data: {},
+    // };
 
-    const testCase = {
-      path: {},
-      method: {},
-      data: {},
-    };
-
-    for (const path in paths) {
-      for (const method in paths[method]) {
-        // use response dictionary with chance of 80%
-        const useResponseDictionary = this.chance.bool({ likelihood: 80 });
-
-        // this.
-      }
-    }
-
-    if (useResponseDictionary) {
-      // use response dictionary random seek
-    } else {
-      // use schema-based value generator
-    }
+    const data = await this.getTestData('/pet', 'post', 50, useExample);
+    console.log(data);
   }
-  async generateErrors(useExample) {}
+  async generateErrors() {}
 }
 
 class RESTester extends TestCaseGenerator {
@@ -126,10 +112,10 @@ class RESTester extends TestCaseGenerator {
 
     for (let index = 0; index < number; index++) {
       this.generateNominals(useExample);
-      this.generateErrors(useExample);
+      this.generateErrors();
     }
 
-    this.showProperty('api', 8);
+    // this.showProperty('api', 8);
   }
 }
 
