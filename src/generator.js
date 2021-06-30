@@ -225,6 +225,7 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
             put: [],
             patch: [],
             delete: [],
+            head: [],
           },
         };
       }
@@ -236,14 +237,16 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
   // append an object to the given path and method related objects in response dictionary
   async addToResponseDictionary(path, method, object) {
     const rd = await this.loadResponseDictionary();
-    rd[path].responses[method].push(object);
+    const items = rd[path].responses[method];
+    items.push(object);
+    rd[path].responses[method] = _.uniqWith(items, _.isEqual);
     await this.createResponseDictionary(rd);
   }
 
   // get random response object from the response dictionary related to the given path and method
   async responseDictionaryRandomSeek(path, method) {
     const rd = await this.loadResponseDictionary();
-    const responses = rd[path].responses[method];
+    const responses = rd?.[path]?.responses?.[method];
 
     // if there were no responses, returns null
     if (_.isEmpty(responses)) {
@@ -324,7 +327,7 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
                 candidate.method
               );
 
-              return responseData[candidate.field];
+              return responseData?.[candidate.field];
             }
           }
         case 'query':
@@ -353,7 +356,7 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
                 candidate.method
               );
 
-              return responseData[candidate.field];
+              return responseData?.[candidate.field];
             }
           }
         case 'header':
@@ -382,7 +385,7 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
                 candidate.method
               );
 
-              return responseData[candidate.field];
+              return responseData?.[candidate.field];
             }
           }
         default:

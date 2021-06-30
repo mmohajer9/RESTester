@@ -129,6 +129,15 @@ class Initializer {
     const apiErrorTestCasesDir = config.apiErrorTestCasesDir(apiName);
     const apiNominalTestCasesDir = config.apiNominalTestCasesDir(apiName);
 
+    const apiNominalJsonTestCasesDir =
+      config.apiNominalJsonTestCasesDir(apiName);
+    const apiNominalJestTestCasesDir =
+      config.apiNominalJestTestCasesDir(apiName);
+    const apiNominalJsTestCasesDir = config.apiNominalJsTestCasesDir(apiName);
+    const apiErrorJsonTestCasesDir = config.apiErrorJsonTestCasesDir(apiName);
+    const apiErrorJestTestCasesDir = config.apiErrorJestTestCasesDir(apiName);
+    const apiErrorJsTestCasesDir = config.apiErrorJsTestCasesDir(apiName);
+
     const allDirs = [
       testsDir,
       logsDir,
@@ -139,6 +148,12 @@ class Initializer {
       apiTemplatesDir,
       apiErrorTestCasesDir,
       apiNominalTestCasesDir,
+      apiNominalJsonTestCasesDir,
+      apiNominalJestTestCasesDir,
+      apiNominalJsTestCasesDir,
+      apiErrorJsonTestCasesDir,
+      apiErrorJestTestCasesDir,
+      apiErrorJsTestCasesDir,
     ];
 
     allDirs.forEach(async (dir) => {

@@ -31,6 +31,19 @@ const configuration = {
   apiNominalTestCasesDir: (apiName) =>
     path.resolve('out', '__tests__', apiName, 'nominals'),
 
+  apiNominalJsonTestCasesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'nominals', 'json'),
+  apiNominalJestTestCasesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'nominals', 'jest'),
+  apiNominalJsTestCasesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'nominals', 'js'),
+  apiErrorJsonTestCasesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'errors', 'json'),
+  apiErrorJestTestCasesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'errors', 'jest'),
+  apiErrorJsTestCasesDir: (apiName) =>
+    path.resolve('out', '__tests__', apiName, 'errors', 'js'),
+
   // test file paths
   apiTempatePath: (apiName, templateName) =>
     path.resolve(

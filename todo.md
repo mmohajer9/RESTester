@@ -6,13 +6,17 @@
 - Implement 2 approaches :
   - [x] Schema-based Value Generator
   - Search-based Value Generator (Response Dictionary)
-    - [ ] Find related response path and method from odjConfig
-    - [ ] Response dictionary random seek based on the related path and method you have found
+    - [x] Find related response path and method from odjConfig
+    - [x] Response dictionary random seek based on the related path and method you have found
 - Implement Oracles :
-  - [ ] Status Code Oracle
+  - [x] Status Code Oracle
   - [x] Response Validator Oracle
-  - [ ] Final Oracle (Combine previous two orcales)
+  - [x] Final Oracle (Combine previous two orcales)
 - [x] Setting API Call Order
-- [ ] Nominal Tester
+- [x] Nominal Tester
 - [ ] Error Tester
+- Test Case Code Generation
+  - [x] JSON Code
+  - [ ] Jest Code
+  - [ ] Javascript Code
 - Design CLI APIs for interaction with the program
