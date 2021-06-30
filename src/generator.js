@@ -263,6 +263,10 @@ class SearchBasedValueGenerator extends ResponseDictionaryTools {
     const odgItem = _.find(odg, (item) => item.endpoint === path);
     const methodProps = odgItem.props[method];
 
+    if (!methodProps) {
+      return null;
+    }
+
     if (methodProps) {
       switch (parameterType) {
         case 'requestBody':

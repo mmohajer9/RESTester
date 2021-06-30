@@ -86,7 +86,7 @@ class TestCaseGenerator extends RESTesterOracle {
     //   data: {},
     // };
 
-    const data = await this.getTestData('/pet', 'post', 50, useExample);
+    const data = await this.getTestData('/pet', 'head', 50, useExample);
     console.log(data);
   }
   async generateErrors() {}
