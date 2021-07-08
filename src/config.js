@@ -7,8 +7,7 @@ const configuration = {
   logHandler: console.log,
 
   // general directories
-  testsDir: path.resolve('out', '__tests__'),
-  logsDir: path.resolve('out', 'logs'),
+  testsDir: path.resolve('out', 'tests'),
   oasConfDir: path.resolve('src', 'OASConfig'),
   odgConfDir: path.resolve('src', 'ODGConfig'),
 
@@ -21,43 +20,37 @@ const configuration = {
   customOdgConfPath: (name) => path.resolve('src', 'ODGConfig', name),
 
   // test directories
-  apiTestsDir: (apiName) => path.resolve('out', '__tests__', apiName),
-  apiCommonDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'common'),
+  apiTestsDir: (apiName) => path.resolve('out', 'tests', apiName),
+  logsDir: (apiName) => path.resolve('out', 'tests', apiName, 'logs'),
+  apiCommonDir: (apiName) => path.resolve('out', 'tests', apiName, 'common'),
   apiTemplatesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'templates'),
+    path.resolve('out', 'tests', apiName, 'templates'),
   apiErrorTestCasesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'errors'),
+    path.resolve('out', 'tests', apiName, 'errors'),
   apiNominalTestCasesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'nominals'),
+    path.resolve('out', 'tests', apiName, 'nominals'),
 
   apiNominalJsonTestCasesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'nominals', 'json'),
+    path.resolve('out', 'tests', apiName, 'nominals', 'json'),
   apiNominalJestTestCasesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'nominals', 'jest'),
+    path.resolve('out', 'tests', apiName, 'nominals', 'jest'),
   apiNominalJsTestCasesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'nominals', 'js'),
+    path.resolve('out', 'tests', apiName, 'nominals', 'js'),
   apiErrorJsonTestCasesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'errors', 'json'),
+    path.resolve('out', 'tests', apiName, 'errors', 'json'),
   apiErrorJestTestCasesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'errors', 'jest'),
+    path.resolve('out', 'tests', apiName, 'errors', 'jest'),
   apiErrorJsTestCasesDir: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'errors', 'js'),
+    path.resolve('out', 'tests', apiName, 'errors', 'js'),
 
   // test file paths
   apiTempatePath: (apiName, templateName) =>
-    path.resolve(
-      'out',
-      '__tests__',
-      apiName,
-      'templates',
-      templateName,
-      '.ejs'
-    ),
+    path.resolve('out', 'tests', apiName, 'templates', templateName, '.ejs'),
   apiResponseDictionaryPath: (apiName) =>
-    path.resolve('out', '__tests__', apiName, 'common', 'rd.json'),
+    path.resolve('out', 'tests', apiName, 'common', 'rd.json'),
 
   // utilites
+  jestTestCasesDir: () => path.resolve('__tests__'),
 };
 
 module.exports = configuration;

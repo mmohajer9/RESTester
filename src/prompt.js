@@ -56,10 +56,20 @@ program
     '-u, --use-example',
     'use the examples that is provided in open api specification to generate test cases'
   )
+  .option('-r, --ratio <number>', 'ratio of using response dictionary')
+  .option(
+    '-a, --all-methods',
+    'use the examples that is provided in open api specification to generate test cases'
+  )
   .description('generate')
   .action((number, options) => {
     const restester = new RESTester((instance) => {
-      instance.generate(number, options.useExample);
+      instance.generate(
+        number,
+        options.ratio,
+        options.useExample,
+        options.allMethods
+      );
     });
   });
 

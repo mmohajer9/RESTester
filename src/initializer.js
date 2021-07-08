@@ -119,11 +119,11 @@ class Initializer {
     const apiName = this.api.name;
 
     const testsDir = config.testsDir;
-    const logsDir = config.logsDir;
     const oasConfDir = config.oasConfDir;
     const odgConfDir = config.odgConfDir;
 
     const apiTestsDir = config.apiTestsDir(apiName);
+    const logsDir = config.logsDir(apiName);
     const apiCommonDir = config.apiCommonDir(apiName);
     const apiTemplatesDir = config.apiTemplatesDir(apiName);
     const apiErrorTestCasesDir = config.apiErrorTestCasesDir(apiName);
@@ -137,6 +137,9 @@ class Initializer {
     const apiErrorJsonTestCasesDir = config.apiErrorJsonTestCasesDir(apiName);
     const apiErrorJestTestCasesDir = config.apiErrorJestTestCasesDir(apiName);
     const apiErrorJsTestCasesDir = config.apiErrorJsTestCasesDir(apiName);
+
+    // for integrating with jest library
+    const jestTestCasesDir = config.jestTestCasesDir(apiName);
 
     const allDirs = [
       testsDir,
@@ -154,6 +157,9 @@ class Initializer {
       apiErrorJsonTestCasesDir,
       apiErrorJestTestCasesDir,
       apiErrorJsTestCasesDir,
+
+      // for integrating with jest library
+      jestTestCasesDir,
     ];
 
     allDirs.forEach(async (dir) => {

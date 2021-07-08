@@ -238,7 +238,7 @@ class ResponseDictionaryTools extends SchemaValueGenerator {
   async addToResponseDictionary(path, method, object) {
     const rd = await this.loadResponseDictionary();
     const items = rd[path].responses[method];
-    items.push(object);
+    _.isArray(object) ? items.push(...object) : items.push(object);
     rd[path].responses[method] = _.uniqWith(items, _.isEqual);
     await this.createResponseDictionary(rd);
   }

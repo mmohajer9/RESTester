@@ -1,153 +1,7 @@
 const _ = require('lodash');
-const TestDataGenerator = require('./generator');
 const pathModule = require('path');
-class RESTesterOracle extends TestDataGenerator {
-  constructor(...props) {
-    super(...props);
-    // http method order for testing
-    this.httpMethodOrder = ['head', 'post', 'get', 'put', 'patch', 'delete'];
-    this.safeMethods = ['head', 'get'];
-    this.nonSafeMethods = ['post', 'put', 'patch', 'delete'];
-
-    // initialize test case holders
-    this.nominalTestCases = {
-      200: [],
-      400: [],
-      500: [],
-      invalidResponse: [],
-    };
-    this.errorTestCases = {
-      200: [],
-      400: [],
-      500: [],
-    };
-  }
-
-  async oracle(testCase) {
-    // destructuring values
-    const { path, method, testData } = testCase;
-    const { data, status } = await this.makeRequest(path, method, testData);
-
-    if (status >= 200 && status < 400) {
-      await this.responseValidatorOracle(testCase, data);
-    }
-    await this.statusCodeOracle(testCase, status);
-  }
-
-  async responseValidatorOracle(testCase, responseData) {
-    const { paths } = this.api;
-    const { path, method } = testCase;
-    // taking the expected response from specification
-    const expectedResponse = this.parseResponse(paths, path, method);
-    const expectedResponseKeys = this.objectKeysArray(expectedResponse);
-    // for json array responses
-    const actualResponse = _.isArrayLike(responseData)
-      ? responseData[0]
-      : responseData;
-    const actualResponseKeys = this.objectKeysArray(actualResponse);
-
-    // performing equality check between two arrays regardless of ordering
-    const difference = _.difference(expectedResponseKeys, actualResponseKeys);
-    const isEqual = _.isEmpty(difference);
-
-    if (!isEqual) {
-      this.nominalTestCases.invalidResponse.push(testCase);
-    }
-  }
-
-  async statusCodeOracle(testCase, status) {
-    const { path, method, testData } = testCase;
-
-    if (status >= 200 && status < 400) {
-      this.nominalTestCases[200].push(testCase);
-      await this.addToResponseDictionary(path, method, testData);
-    } else if (status >= 400 && status < 500) {
-      this.nominalTestCases[400].push(testCase);
-    } else if (status >= 500) {
-      this.nominalTestCases[500].push(testCase);
-      await this.addToResponseDictionary(path, method, testData);
-    }
-  }
-
-  async makeRequest(path, method, testData) {
-    // creating new path variable for url parameters
-    let newPath = path;
-
-    // placing url parameters into the new refined path
-    if (!_.isEmpty(testData.urlParams)) {
-      for (const param in testData.urlParams) {
-        const pattern = `{${param}}`;
-        const replacer = new RegExp(pattern, 'g');
-        newPath = newPath.replace(replacer, testData.urlParams[param]);
-      }
-    }
-
-    const result = {
-      data: null,
-      status: null,
-    };
-
-    try {
-      if (_.includes(this.safeMethods, method)) {
-        const { data, status } = await this.axios[method](newPath, {
-          headers: testData.headerParams,
-          params: testData.queryParams,
-        });
-
-        result.data = data;
-        result.status = status;
-      } else {
-        const { data, status } = await this.axios[method](
-          newPath,
-          testData.requestBody,
-          {
-            headers: testData.headerParams,
-            params: testData.queryParams,
-          }
-        );
-        result.data = data;
-        result.status = status;
-      }
-    } catch (error) {
-      const { status, data } = error.response;
-      result.status = status;
-      result.data = data;
-    }
-
-    console.log(
-      `============================== TEST FOR ${path} > ${method} ==============================`
-    );
-    console.log(`TEST DATA : `, testData);
-    console.log(`NEW PATH : `, newPath);
-    console.log(`RESULT : `, result);
-    return result;
-  }
-}
-
-class TestCaseGenerator extends RESTesterOracle {
-  constructor(...props) {
-    super(...props);
-  }
-
-  async generateNominals(rdRatio, useExample) {
-    const { paths } = this.api;
-    for (const path in paths) {
-      const methods = this.objectKeysArray(paths[path]);
-      // const methods = this.httpMethodOrder;
-      for (const method of methods) {
-        const testData = await this.getTestData(
-          path,
-          method,
-          rdRatio,
-          useExample
-        );
-        const testCase = { path, method, testData };
-        await this.oracle(testCase);
-      }
-    }
-  }
-  async generateErrors() {}
-}
+const TestCaseGenerator = require('./tester');
+const moment = require('moment');
 
 class RESTester extends TestCaseGenerator {
   async setup() {
@@ -164,31 +18,74 @@ class RESTester extends TestCaseGenerator {
     this.setRequestHandler();
   }
 
-  async generate(number, rdRatio = 100, useExample = true) {
+  async generate(
+    number,
+    rdRatio = 100,
+    useExample = false,
+    useAllMethods = false
+  ) {
     await this.setup();
 
     for (let index = 0; index < number; index++) {
-      await this.generateNominals(rdRatio, useExample);
+      // nominal test cases
+      await this.generateNominals(rdRatio, useExample, useAllMethods);
+
+      // error test cases
       await this.generateErrors();
     }
 
+    // code generation
     await this.generateCode('nominal', 'json');
     await this.generateCode('error', 'json');
   }
 
-  async generateCode(mode, type = 'json', name = 'testcase', stamp = _.now()) {
+  async generateCode(mode, type = 'json', name = 'testcase') {
     const { name: apiName } = this.api;
+    const stamp = moment().format('YYYY-MM-DD_HH-mm-ss');
 
     if (mode === 'nominal') {
       // taking the nominal test cases directory
 
+      const successCount = this.nominalTestCases[200].length;
+      const clientErrorCount = this.nominalTestCases[400].length;
+      const serverErrorCount = this.nominalTestCases[500].length;
+      const invalidResposneCount = this.nominalTestCases.invalidResponse.length;
+      const totalTestCases =
+        successCount +
+        clientErrorCount +
+        serverErrorCount +
+        invalidResposneCount;
+
       switch (type) {
         case 'json':
+          const result = {
+            evaluation: {
+              total: totalTestCases,
+              hitRate:
+                +(
+                  (successCount + serverErrorCount + invalidResposneCount) /
+                  totalTestCases
+                ).toFixed(2) * 100,
+              missRate: +(clientErrorCount / totalTestCases).toFixed(2) * 100,
+              coverage:
+                +(
+                  successCount /
+                  (successCount + serverErrorCount + invalidResposneCount)
+                ).toFixed(2) * 100,
+
+              200: successCount,
+              400: clientErrorCount,
+              500: serverErrorCount,
+              invalidResponse: invalidResposneCount,
+            },
+            data: this.nominalTestCases,
+          };
+
           // getting the right path and file name
           const dir = config.apiNominalJsonTestCasesDir(apiName);
           const fileName = `${mode}-${name}-${stamp}.${type}`;
           const path = pathModule.join(dir, fileName);
-          await this.createJSONFile(path, this.nominalTestCases);
+          await this.createJSONFile(path, result);
 
           break;
         case 'jest':
@@ -204,10 +101,23 @@ class RESTester extends TestCaseGenerator {
 
       switch (type) {
         case 'json':
+          const result = {
+            evaluation: {
+              total: 0,
+              hitRate: 0,
+              missRate: 0,
+              coverage: 0,
+              200: 0,
+              400: 0,
+              500: 0,
+              invalidResponse: 0,
+            },
+            data: this.errorTestCases,
+          };
           const dir = config.apiErrorJsonTestCasesDir(apiName);
           const fileName = `${mode}-${name}-${stamp}.${type}`;
           const path = pathModule.join(dir, fileName);
-          await this.createJSONFile(path, this.errorTestCases);
+          await this.createJSONFile(path, result);
 
           break;
         case 'jest':
