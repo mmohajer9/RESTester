@@ -43,18 +43,21 @@ class RESTester extends TestCaseGenerator {
     const { name: apiName } = this.api;
     const stamp = moment().format('YYYY-MM-DD_HH-mm-ss');
 
+    const testCases =
+      mode === 'nominal'
+        ? this.nominalTestCases
+        : mode === 'error'
+        ? this.errorTestCases
+        : null;
+
+    const successCount = testCases[200].length;
+    const clientErrorCount = testCases[400].length;
+    const serverErrorCount = testCases[500].length;
+    const invalidResposneCount = testCases.invalidResponse.length;
+    const totalTestCases = successCount + clientErrorCount + serverErrorCount;
+  
     if (mode === 'nominal') {
       // taking the nominal test cases directory
-
-      const successCount = this.nominalTestCases[200].length;
-      const clientErrorCount = this.nominalTestCases[400].length;
-      const serverErrorCount = this.nominalTestCases[500].length;
-      const invalidResposneCount = this.nominalTestCases.invalidResponse.length;
-      const totalTestCases =
-        successCount +
-        clientErrorCount +
-        serverErrorCount +
-        invalidResposneCount;
 
       switch (type) {
         case 'json':
@@ -78,7 +81,7 @@ class RESTester extends TestCaseGenerator {
               500: serverErrorCount,
               invalidResponse: invalidResposneCount,
             },
-            data: this.nominalTestCases,
+            data: testCases,
           };
 
           // getting the right path and file name
@@ -103,16 +106,25 @@ class RESTester extends TestCaseGenerator {
         case 'json':
           const result = {
             evaluation: {
-              total: 0,
-              hitRate: 0,
-              missRate: 0,
-              coverage: 0,
-              200: 0,
-              400: 0,
-              500: 0,
-              invalidResponse: 0,
+              total: totalTestCases,
+              hitRate:
+                +(
+                  (successCount + serverErrorCount + invalidResposneCount) /
+                  totalTestCases
+                ).toFixed(2) * 100,
+              missRate: +(clientErrorCount / totalTestCases).toFixed(2) * 100,
+              coverage:
+                +(
+                  successCount /
+                  (successCount + serverErrorCount + invalidResposneCount)
+                ).toFixed(2) * 100,
+
+              200: successCount,
+              400: clientErrorCount,
+              500: serverErrorCount,
+              invalidResponse: invalidResposneCount,
             },
-            data: this.errorTestCases,
+            data: testCases,
           };
           const dir = config.apiErrorJsonTestCasesDir(apiName);
           const fileName = `${mode}-${name}-${stamp}.${type}`;

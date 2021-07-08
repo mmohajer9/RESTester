@@ -1,0 +1,118 @@
+{
+  "evaluation": {
+    "200": 2,
+    "400": 5,
+    "500": 0,
+    "total": 7,
+    "hitRate": 28.999999999999996,
+    "missRate": 71,
+    "coverage": 100,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": {}
+          },
+          "queryParams": {
+            "name": "QM2N9m",
+            "status": "Tyrant Flycatcher Ernest Turner"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": -500651200295.7312
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": 6793796708728832
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 863825991145.8816
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": false,
+            "name": "#O9upt1o)5kKuE6)uu",
+            "category": 2378887132610560,
+            "photoUrls": "rC&T1",
+            "tags": {},
+            "status": true
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": "WC)EeX^NXrQ*X2ugY@",
+            "name": 682985384837120,
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [],
+            "tags": [],
+            "status": -936467085918208
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

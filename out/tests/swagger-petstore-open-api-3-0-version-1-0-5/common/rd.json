@@ -9,74 +9,19 @@
             "id": 1,
             "name": "Dogs"
           },
-          "name": "doggie",
-          "photoUrls": [
-            "url1",
-            "url2"
-          ],
-          "tags": [],
-          "status": "available"
-        },
-        {
-          "id": 10,
-          "category": {
-            "id": 1,
-            "name": "Dogs"
-          },
-          "name": "doggie",
-          "photoUrls": [
-            "Duck Rose Malone",
-            "Aye-aye Lettie Mack"
-          ],
-          "tags": [
-            {
-              "id": 782,
-              "name": "Centipede Cora Elliott"
-            },
-            {
-              "id": 828,
-              "name": "Wobbegong Jeanette Powell"
-            },
-            {
-              "id": 117,
-              "name": "Ferrets Thomas Vasquez"
-            }
-          ],
-          "status": "available"
-        },
-        {
-          "id": 10,
-          "category": {
-            "id": 1,
-            "name": "Dogs"
-          },
-          "name": "Lion 1",
-          "photoUrls": [
-            "Yellow Cup Black Coral Andre Richardson"
-          ],
-          "tags": [
-            {
-              "id": 937,
-              "name": "Python Marcus George"
-            }
-          ],
-          "status": "available"
-        },
-        {
-          "id": 10,
-          "category": {
-            "id": 1,
-            "name": "Dogs"
-          },
-          "name": "OpenAPI30",
+          "name": "Cat 3",
           "photoUrls": [
             "url1",
             "url2"
           ],
           "tags": [
             {
-              "id": 386,
-              "name": "Old World Flycatcher Thomas Washington"
+              "id": 750,
+              "name": "Cardinal Leah Sanders"
+            },
+            {
+              "id": 619,
+              "name": "Ferrets Melvin Jimenez"
             }
           ],
           "status": "pending"
@@ -89,37 +34,147 @@
           },
           "name": "doggie",
           "photoUrls": [
-            "Komodo Dragon Mathilda Patrick",
-            "Buffalo Pauline Walters"
+            "Birds Francisco Anderson",
+            "Owl Ronald Lucas",
+            "Raven Hilda Carr",
+            "Chambered Nautilus Rose Howard"
           ],
           "tags": [
             {
-              "id": 520,
-              "name": "Pig Pearl Torres"
+              "id": 971,
+              "name": "Chinchillas Millie Goodwin"
             },
             {
-              "id": 295,
-              "name": "Black-footed Cat Olive Becker"
+              "id": 469,
+              "name": "Nassau Grouper Jeremy Berry"
+            },
+            {
+              "id": 433,
+              "name": "Magellanic Penguin Harold Castillo"
+            },
+            {
+              "id": 324,
+              "name": "Yak Henry Glover"
+            },
+            {
+              "id": 187,
+              "name": "Fly Catherine Wilkerson"
             }
           ],
           "status": "available"
         },
         {
-          "id": 2,
+          "id": 10,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "Cat 3",
+          "photoUrls": [
+            "Death Adder Ricky Fisher",
+            "Gundi Leona Sandoval",
+            "Baboon Lawrence Sanders",
+            "Camel Danny Kelly"
+          ],
+          "tags": [
+            {
+              "id": 445,
+              "name": "Linne's Two-toed Sloth Eula Watson"
+            },
+            {
+              "id": 90,
+              "name": "Ebony Langur Wayne Erickson"
+            },
+            {
+              "id": 884,
+              "name": "Lion Travis Stone"
+            }
+          ],
+          "status": "sold"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 521,
+            "name": "Guinea Adam Figueroa"
+          },
+          "name": "doggie",
+          "photoUrls": [
+            "Gecko Elnora Owens",
+            "Turkeys Isabelle Fletcher",
+            "West Indian Manatee Glenn Hoffman",
+            "Hamsters Tommy Rodriquez"
+          ],
+          "tags": [
+            {
+              "id": 287,
+              "name": "Birds Alejandro Collins"
+            },
+            {
+              "id": 262,
+              "name": "Coati Cora McDonald"
+            },
+            {
+              "id": 981,
+              "name": "Guinea Harvey Stanley"
+            },
+            {
+              "id": 24,
+              "name": "Guinea Gary Butler"
+            },
+            {
+              "id": 873,
+              "name": "Birds Ella Maxwell"
+            },
+            {
+              "id": 250,
+              "name": "Pangolin Shane Peters"
+            },
+            {
+              "id": 368,
+              "name": "Guinea Pigs Ora Fisher"
+            },
+            {
+              "id": 141,
+              "name": "Oceanic Whitetip Shark Edna Moreno"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": -6314,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "Chickens Flora Cain",
+          "photoUrls": [
+            "string"
+          ],
+          "tags": [
+            {
+              "id": 250,
+              "name": "defaultTag"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 10,
           "category": {
             "id": 1,
             "name": "Dogs"
           },
           "name": "doggie",
-          "photoUrls": [
-            "Cotton Rat Danny Cain",
-            "Bearded Dragon Maude Joseph",
-            "Rhea Austin Fleming"
-          ],
+          "photoUrls": [],
           "tags": [
             {
-              "id": 490,
-              "name": "Caribbean Flamingo Mable Garner"
+              "id": 750,
+              "name": "Cardinal Leah Sanders"
+            },
+            {
+              "id": 619,
+              "name": "Ferrets Melvin Jimenez"
             }
           ],
           "status": "sold"
@@ -130,26 +185,119 @@
             "id": 1,
             "name": "Dogs"
           },
-          "name": "doggie",
+          "name": "OpenAPI30",
           "photoUrls": [
-            "Frogmouth Cora Warner"
+            "Bluebanded Goby Leonard Collier",
+            "Kultarr Harriet Rice"
           ],
           "tags": [
             {
-              "id": 606,
-              "name": "Crane Eddie Ortega"
+              "id": 760,
+              "name": "Hamsters Isaiah Silva"
             },
             {
-              "id": 762,
-              "name": "Rock Hyrax Robert Reeves"
+              "id": 920,
+              "name": "Black-footed Cat Madge Foster"
             },
             {
-              "id": 599,
-              "name": "Grison Joel Christensen"
+              "id": 647,
+              "name": "Stick Insects Alfred Bradley"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "doggie",
+          "photoUrls": [],
+          "tags": [
+            {
+              "id": 363,
+              "name": "Macaw Jorge Evans"
             },
             {
-              "id": 914,
-              "name": "Zebu Lawrence Walker"
+              "id": 742,
+              "name": "Blue Spiny Lobster Edwin Russell"
+            },
+            {
+              "id": 282,
+              "name": "Aardwolf Howard Russell"
+            }
+          ],
+          "status": "sold"
+        }
+      ],
+      "put": [
+        {
+          "id": 3,
+          "category": {
+            "id": 2,
+            "name": "Cats"
+          },
+          "name": "Cat 3",
+          "photoUrls": [
+            "url1",
+            "url2"
+          ],
+          "tags": [
+            {
+              "id": 901,
+              "name": "Numbat Isabella Newton"
+            },
+            {
+              "id": 578,
+              "name": "Prairie Dog Hilda Payne"
+            },
+            {
+              "id": 90,
+              "name": "Ocean Sunfish Frances Hunt"
+            }
+          ],
+          "status": "pending"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 2,
+            "name": "Cats"
+          },
+          "name": "doggie",
+          "photoUrls": [],
+          "tags": [
+            {
+              "id": 750,
+              "name": "Cardinal Leah Sanders"
+            },
+            {
+              "id": 619,
+              "name": "Ferrets Melvin Jimenez"
+            }
+          ],
+          "status": "sold"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 2,
+            "name": "Cats"
+          },
+          "name": "Cat 3",
+          "photoUrls": [
+            "Hedgehogs Frances Reed",
+            "American Alligator Max Larson"
+          ],
+          "tags": [
+            {
+              "id": 750,
+              "name": "Cardinal Leah Sanders"
+            },
+            {
+              "id": 619,
+              "name": "Ferrets Melvin Jimenez"
             }
           ],
           "status": "pending"
@@ -162,23 +310,259 @@
           },
           "name": "doggie",
           "photoUrls": [
-            "Frogmouth Cora Warner"
+            "Bee Mitchell Vasquez",
+            "Goats Erik Gill",
+            "Cockatoo Lucy Kelley",
+            "Spiny Mouse Aaron Perez",
+            "Rhea Georgie Kim",
+            "Viper Willie Robinson"
           ],
           "tags": [
             {
-              "id": 909,
-              "name": "Zooplankton Jesus Cannon"
+              "id": 28,
+              "name": "Camel Nettie Park"
             },
             {
-              "id": 23,
-              "name": "Tiger Mable Mathis"
+              "id": 719,
+              "name": "Brown Bear Callie Young"
             },
             {
-              "id": 128,
-              "name": "Kowari Wayne Vega"
+              "id": 773,
+              "name": "Cow David Wood"
+            },
+            {
+              "id": 159,
+              "name": "Dungeness Crab Sadie Gibson"
+            },
+            {
+              "id": 395,
+              "name": "Gerbil Bill Matthews"
+            },
+            {
+              "id": 589,
+              "name": "Hippopotamus Brent Gordon"
+            },
+            {
+              "id": 332,
+              "name": "White Cheeked Gibbon Sarah Chapman"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 958,
+            "name": "Buzzard Andrew Gregory"
+          },
+          "name": "Spectacled Bear Alma Brown",
+          "photoUrls": [
+            "Emu Jeff Reyes",
+            "Badger Chase Ballard"
+          ],
+          "tags": [
+            {
+              "id": 547,
+              "name": "Squirrel Monkey Stanley Jordan"
+            },
+            {
+              "id": 736,
+              "name": "North American Porcupine Laura Mann"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 2,
+            "name": "Cats"
+          },
+          "name": "doggie",
+          "photoUrls": [
+            "Tortoise Norman Todd",
+            "Malayan Tiger Lois Berry",
+            "Chimpanzee Augusta Cobb",
+            "Death Adder Max Young"
+          ],
+          "tags": [
+            {
+              "id": 991,
+              "name": "Gar Clyde Castro"
+            },
+            {
+              "id": 1000,
+              "name": "Guinea Lilly Dennis"
+            },
+            {
+              "id": 889,
+              "name": "Giant Tortoise Brent Howard"
+            },
+            {
+              "id": 824,
+              "name": "Lizards Dustin Doyle"
+            },
+            {
+              "id": 418,
+              "name": "Cardinal Angel Hammond"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "doggie",
+          "photoUrls": [
+            "Goat Gabriel Brooks"
+          ],
+          "tags": [
+            {
+              "id": 5715,
+              "name": "defaultTag"
+            }
+          ],
+          "status": "available"
+        }
+      ],
+      "patch": [],
+      "delete": [],
+      "head": []
+    }
+  },
+  "/pet/findByStatus": {
+    "responses": {
+      "get": [
+        {
+          "id": 3,
+          "category": {
+            "id": 2,
+            "name": "Cats"
+          },
+          "name": "Cat 3",
+          "photoUrls": [
+            "url1",
+            "url2"
+          ],
+          "tags": [
+            {
+              "id": 1,
+              "name": "tag3"
+            },
+            {
+              "id": 2,
+              "name": "tag4"
             }
           ],
           "status": "pending"
+        },
+        {
+          "id": 737,
+          "category": {
+            "id": 521,
+            "name": "Guinea Adam Figueroa"
+          },
+          "name": "Chickens Flora Cain",
+          "photoUrls": [],
+          "tags": [
+            {
+              "id": 971,
+              "name": "Chinchillas Millie Goodwin"
+            },
+            {
+              "id": 469,
+              "name": "Nassau Grouper Jeremy Berry"
+            },
+            {
+              "id": 433,
+              "name": "Magellanic Penguin Harold Castillo"
+            },
+            {
+              "id": 324,
+              "name": "Yak Henry Glover"
+            },
+            {
+              "id": 187,
+              "name": "Fly Catherine Wilkerson"
+            }
+          ],
+          "status": "pending"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "Cat 3",
+          "photoUrls": [
+            "url1",
+            "url2"
+          ],
+          "tags": [
+            {
+              "id": 750,
+              "name": "Cardinal Leah Sanders"
+            },
+            {
+              "id": 619,
+              "name": "Ferrets Melvin Jimenez"
+            }
+          ],
+          "status": "pending"
+        },
+        {
+          "id": 325,
+          "category": {
+            "id": 325,
+            "name": "OpenAPI30"
+          },
+          "name": "OpenAPI30",
+          "photoUrls": [
+            "string"
+          ],
+          "tags": [
+            {
+              "id": 325,
+              "name": "OpenAPI30"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 969,
+          "category": {
+            "id": 198,
+            "name": "Cow Cole Wheeler"
+          },
+          "name": "Spectacled Bear Shane Gordon",
+          "photoUrls": [
+            "Goat Gabriel Brooks"
+          ],
+          "tags": [
+            {
+              "id": 16,
+              "name": "Clam Stella Hamilton"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 374,
+          "category": {
+            "id": 319,
+            "name": "Bee-eater Eliza Gray"
+          },
+          "name": "Echidna Miguel Moran",
+          "photoUrls": [
+            "url1",
+            "url2"
+          ],
+          "tags": [],
+          "status": "available"
         },
         {
           "id": 6,
@@ -213,224 +597,91 @@
           "status": "available"
         },
         {
-          "id": 969,
+          "id": 2738,
           "category": {
-            "id": 1,
-            "name": "Dogs"
+            "id": 0,
+            "name": "string"
           },
-          "name": "doggie",
+          "name": "test01",
           "photoUrls": [
-            "Ringed Seal Chester Hampton",
-            "Woodswallow Connor Jennings",
-            "Crow Bobby Robinson"
+            "string"
           ],
           "tags": [
             {
-              "id": 891,
-              "name": "Mollusk Calvin Pratt"
-            },
-            {
-              "id": 184,
-              "name": "Dove Brett McDonald"
-            }
-          ],
-          "status": "pending"
-        }
-      ],
-      "put": [
-        {
-          "id": 325,
-          "category": {
-            "id": 4,
-            "name": "Lions"
-          },
-          "name": "doggie",
-          "photoUrls": [
-            "Frogmouth Cora Warner"
-          ],
-          "tags": [
-            {
-              "id": 1,
-              "name": "tag1"
-            },
-            {
-              "id": 2,
-              "name": "tag2"
+              "id": 0,
+              "name": "string"
             }
           ],
           "status": "available"
         },
         {
-          "id": 7,
+          "id": -6314,
           "category": {
             "id": 1,
-            "name": "Dogs"
+            "name": "dog"
           },
-          "name": "doggie",
+          "name": "Doggie",
           "photoUrls": [
-            "Fluke Elva Munoz",
-            "Chicken James Rodriquez",
-            "Quoll Verna Davis",
-            "Spiny Mouse Shane Obrien",
-            "Ducks Nathan Young"
+            "http://pet.photo.com/super_pet"
           ],
           "tags": [
             {
-              "id": 325,
-              "name": "OpenAPI30"
+              "id": 250,
+              "name": "defaultTag"
             }
           ],
           "status": "available"
         },
         {
-          "id": 2,
+          "id": 131,
           "category": {
-            "id": 1,
-            "name": "Dogs"
+            "id": 958,
+            "name": "Buzzard Andrew Gregory"
           },
-          "name": "doggie",
+          "name": "Spectacled Bear Alma Brown",
           "photoUrls": [
-            "Stick Insects Myra Hammond",
-            "Burro Phillip Kelly",
-            "Starling Dustin Doyle"
+            "Vole Lydia Harmon",
+            "Halibut Teresa McCormick",
+            "Cougar Jeremiah McKenzie",
+            "Cassowary Frederick Morris"
           ],
           "tags": [
             {
-              "id": 883,
-              "name": "Tasmanian Devil Della Gibbs"
+              "id": 608,
+              "name": "Goat Robert Duncan"
+            },
+            {
+              "id": 152,
+              "name": "Pronghorn Cora Graves"
+            },
+            {
+              "id": 353,
+              "name": "Turkeys Curtis Strickland"
             }
           ],
           "status": "sold"
         },
         {
-          "id": 3,
-          "category": {
-            "id": 4,
-            "name": "Lions"
-          },
-          "name": "doggie",
-          "photoUrls": [
-            "Stick Insects Hunter Dunn",
-            "Sheep Lina Mills",
-            "Dogs Jeanette Morales",
-            "Caracal Isabel Hines"
-          ],
-          "tags": [
-            {
-              "id": 762,
-              "name": "Dingo Lester Williams"
-            }
-          ],
-          "status": "pending"
-        },
-        {
-          "id": 9,
+          "id": 1,
           "category": {
             "id": 1,
             "name": "Dogs"
           },
           "name": "doggie",
           "photoUrls": [
-            "Drongo Michael Aguilar",
-            "Dog Glenn Summers",
-            "Komodo Dragon Lester Vasquez",
-            "Courser Randall Armstrong",
-            "Goat Esther Jefferson",
-            "Red Panda Nathaniel Bryan",
-            "Guinea Jimmy Butler"
+            "Rabbits Eddie Wise"
           ],
           "tags": [
             {
-              "id": 337,
-              "name": "Blue Iguana Alexander Stanley"
-            }
-          ],
-          "status": "available"
-        },
-        {
-          "id": 10,
-          "category": {
-            "id": 1,
-            "name": "Dogs"
-          },
-          "name": "doggie",
-          "photoUrls": [
-            "Lizards Ann Guzman"
-          ],
-          "tags": [
-            {
-              "id": 725,
-              "name": "Northern Seahorse Lois Fuller"
+              "id": 370,
+              "name": "Giant Tortoise Julia Matthews"
             },
             {
-              "id": 652,
-              "name": "Ant Olivia Holmes"
-            },
-            {
-              "id": 77,
-              "name": "Squirrel Monkey Bertie Brooks"
-            },
-            {
-              "id": 704,
-              "name": "Silkworm Lawrence Wilson"
-            },
-            {
-              "id": 44,
-              "name": "Goat Henry Olson"
-            }
-          ],
-          "status": "pending"
-        },
-        {
-          "id": 3,
-          "category": {
-            "id": 1,
-            "name": "Dogs"
-          },
-          "name": "doggie",
-          "photoUrls": [
-            "url1",
-            "url2"
-          ],
-          "tags": [
-            {
-              "id": 771,
-              "name": "Colugo Cody Aguilar"
+              "id": 642,
+              "name": "Hedgehog Brent Thornton"
             }
           ],
           "status": "sold"
-        }
-      ],
-      "patch": [],
-      "delete": [],
-      "head": []
-    }
-  },
-  "/pet/findByStatus": {
-    "responses": {
-      "get": [
-        {
-          "id": 2,
-          "category": {
-            "id": 2,
-            "name": "Cats"
-          },
-          "name": "Cat 2",
-          "photoUrls": [
-            "url1",
-            "url2"
-          ],
-          "tags": [
-            {
-              "id": 1,
-              "name": "tag2"
-            },
-            {
-              "id": 2,
-              "name": "tag3"
-            }
-          ],
-          "status": "available"
         },
         {
           "id": 7,
@@ -479,77 +730,6 @@
           "status": "available"
         },
         {
-          "id": 9,
-          "category": {
-            "id": 4,
-            "name": "Lions"
-          },
-          "name": "Lion 3",
-          "photoUrls": [
-            "url1",
-            "url2"
-          ],
-          "tags": [
-            {
-              "id": 1,
-              "name": "tag3"
-            },
-            {
-              "id": 2,
-              "name": "tag4"
-            }
-          ],
-          "status": "available"
-        },
-        {
-          "id": 325,
-          "category": {
-            "id": 325,
-            "name": "OpenAPI30"
-          },
-          "name": "OpenAPI30",
-          "photoUrls": [
-            "string"
-          ],
-          "tags": [
-            {
-              "id": 325,
-              "name": "OpenAPI30"
-            }
-          ],
-          "status": "available"
-        },
-        {
-          "id": 10,
-          "category": {
-            "id": 1,
-            "name": "Dogs"
-          },
-          "name": "doggie",
-          "photoUrls": [
-            "Frogmouth Cora Warner"
-          ],
-          "tags": [
-            {
-              "id": 961,
-              "name": "Andean Condor Hulda Griffin"
-            },
-            {
-              "id": 266,
-              "name": "King Vulture Dale Cunningham"
-            },
-            {
-              "id": 553,
-              "name": "Badger Alberta Curry"
-            },
-            {
-              "id": 118,
-              "name": "Turtles Jeremy Strickland"
-            }
-          ],
-          "status": "available"
-        },
-        {
           "id": 4,
           "category": {
             "id": 1,
@@ -590,299 +770,141 @@
           "status": "available"
         },
         {
-          "id": 5,
-          "category": {
-            "id": 1,
-            "name": "Dogs"
-          },
-          "name": "Dog 2",
-          "photoUrls": [
-            "url1",
-            "url2"
-          ],
-          "tags": [
-            {
-              "id": 1,
-              "name": "tag2"
-            },
-            {
-              "id": 2,
-              "name": "tag3"
-            }
-          ],
-          "status": "sold"
-        },
-        {
-          "id": 101,
-          "category": {
-            "id": 30,
-            "name": "Smelts Ella Norman"
-          },
-          "name": "Pot Bellied Pig Ellen Bates",
-          "photoUrls": [
-            "Stick Insects Myra Hammond",
-            "Burro Phillip Kelly",
-            "Starling Dustin Doyle"
-          ],
-          "tags": [
-            {
-              "id": 687,
-              "name": "Zebra Fannie Schwartz"
-            }
-          ],
-          "status": "sold"
-        },
-        {
-          "id": 814,
-          "category": {
-            "id": 763,
-            "name": "Red Panda Mittie Collins"
-          },
-          "name": "Pigeons Abbie Guzman",
-          "photoUrls": [
-            "Leopard Jeremiah Harrison",
-            "Common Genet Mina Wagner",
-            "Amur Tiger James Martinez"
-          ],
-          "tags": [
-            {
-              "id": 36,
-              "name": "Pronghorn Howard Copeland"
-            },
-            {
-              "id": 822,
-              "name": "Mandrill Clarence Quinn"
-            }
-          ],
-          "status": "sold"
-        },
-        {
-          "id": 6,
-          "category": {
-            "id": 1,
-            "name": "Dogs"
-          },
-          "name": "Dog 3",
-          "photoUrls": [
-            "url1",
-            "url2"
-          ],
-          "tags": [
-            {
-              "id": 1,
-              "name": "tag3"
-            },
-            {
-              "id": 2,
-              "name": "tag4"
-            }
-          ],
-          "status": "pending"
-        },
-        {
-          "id": 3,
-          "category": {
-            "id": 2,
-            "name": "Cats"
-          },
-          "name": "doggie",
-          "photoUrls": [
-            "Frogmouth Cora Warner"
-          ],
-          "tags": [
-            {
-              "id": 325,
-              "name": "OpenAPI30"
-            }
-          ],
-          "status": "pending"
-        },
-        {
-          "id": 737,
-          "category": {
-            "id": 521,
-            "name": "Guinea Adam Figueroa"
-          },
-          "name": "Chickens Flora Cain",
-          "photoUrls": [
-            "Guinea Fowl Jeffrey Adkins",
-            "Pigeon Callie Boone",
-            "Alpaca Lura Warren"
-          ],
-          "tags": [],
-          "status": "pending"
-        },
-        {
-          "id": 969,
-          "category": {
-            "id": 198,
-            "name": "Cow Cole Wheeler"
-          },
-          "name": "Spectacled Bear Shane Gordon",
-          "photoUrls": [
-            "Goat Gabriel Brooks"
-          ],
-          "tags": [
-            {
-              "id": 16,
-              "name": "Clam Stella Hamilton"
-            }
-          ],
-          "status": "available"
-        },
-        {
-          "id": 374,
-          "category": {
-            "id": 319,
-            "name": "Bee-eater Eliza Gray"
-          },
-          "name": "Echidna Miguel Moran",
-          "photoUrls": [
-            "url1",
-            "url2"
-          ],
-          "tags": [],
-          "status": "available"
-        },
-        {
-          "id": 1,
-          "category": {
-            "id": 776,
-            "name": "Zebra Erik Parks"
-          },
-          "name": "Zebu Lawrence Miles",
-          "photoUrls": [
-            "Octopus Lois Stevens",
-            "Moray Eel Patrick Doyle"
-          ],
-          "tags": [
-            {
-              "id": 325,
-              "name": "OpenAPI30"
-            }
-          ],
-          "status": "available"
-        },
-        {
-          "id": 148,
-          "category": {
-            "id": 929,
-            "name": "Patagonian Toothfish Adrian Maldonado"
-          },
-          "name": "Banteng Jason Howard",
-          "photoUrls": [
-            "Radiated Tortoise Danny George",
-            "Jackal Todd McCarthy",
-            "Ducks Lenora Morrison"
-          ],
-          "tags": [
-            {
-              "id": 637,
-              "name": "Chameleons Adele Watts"
-            },
-            {
-              "id": 713,
-              "name": "Gorilla Daisy Patrick"
-            }
-          ],
-          "status": "available"
-        },
-        {
-          "id": 7,
+          "id": 9,
           "category": {
             "id": 1,
             "name": "Dogs"
           },
           "name": "doggie",
           "photoUrls": [
-            "Fluke Elva Munoz",
-            "Chicken James Rodriquez",
-            "Quoll Verna Davis",
-            "Spiny Mouse Shane Obrien",
-            "Ducks Nathan Young"
+            "Drongo Michael Aguilar",
+            "Dog Glenn Summers",
+            "Komodo Dragon Lester Vasquez",
+            "Courser Randall Armstrong",
+            "Goat Esther Jefferson",
+            "Red Panda Nathaniel Bryan",
+            "Guinea Jimmy Butler"
           ],
           "tags": [
             {
-              "id": 325,
-              "name": "OpenAPI30"
+              "id": 337,
+              "name": "Blue Iguana Alexander Stanley"
             }
           ],
           "status": "available"
         },
         {
-          "id": 2,
+          "id": 1188,
           "category": {
-            "id": 1,
-            "name": "Dogs"
+            "id": 0,
+            "name": "string"
           },
-          "name": "doggie",
+          "name": "test01",
           "photoUrls": [
-            "Cotton Rat Danny Cain",
-            "Bearded Dragon Maude Joseph",
-            "Rhea Austin Fleming"
+            "string"
           ],
           "tags": [
             {
-              "id": 490,
-              "name": "Caribbean Flamingo Mable Garner"
+              "id": 0,
+              "name": "string"
             }
           ],
-          "status": "sold"
+          "status": "available"
         },
         {
-          "id": 3,
+          "id": 3911,
           "category": {
-            "id": 4,
-            "name": "Lions"
+            "id": 0,
+            "name": "string"
           },
-          "name": "doggie",
+          "name": "test01",
           "photoUrls": [
-            "Stick Insects Hunter Dunn",
-            "Sheep Lina Mills",
-            "Dogs Jeanette Morales",
-            "Caracal Isabel Hines"
+            "string"
           ],
           "tags": [
             {
-              "id": 762,
-              "name": "Dingo Lester Williams"
+              "id": 0,
+              "name": "string"
             }
           ],
-          "status": "pending"
+          "status": "available"
+        },
+        {
+          "id": 8419,
+          "category": {
+            "id": 0,
+            "name": "string"
+          },
+          "name": "test02",
+          "photoUrls": [
+            "string"
+          ],
+          "tags": [
+            {
+              "id": 0,
+              "name": "string"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": -9504,
+          "category": {
+            "id": 1,
+            "name": "dog"
+          },
+          "name": "Doggie",
+          "photoUrls": [
+            "http://pet.photo.com/super_pet"
+          ],
+          "tags": [
+            {
+              "id": -4806,
+              "name": "defaultTag"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": -390,
+          "category": {
+            "id": 1,
+            "name": "dog"
+          },
+          "name": "Doggie",
+          "photoUrls": [
+            "http://pet.photo.com/super_pet"
+          ],
+          "tags": [
+            {
+              "id": 5715,
+              "name": "defaultTag"
+            }
+          ],
+          "status": "available"
         },
         {
           "id": 10,
           "category": {
-            "id": 1,
-            "name": "Dogs"
+            "id": 958,
+            "name": "Buzzard Andrew Gregory"
           },
-          "name": "doggie",
+          "name": "Spectacled Bear Alma Brown",
           "photoUrls": [
-            "Lizards Ann Guzman"
+            "Emu Jeff Reyes",
+            "Badger Chase Ballard"
           ],
           "tags": [
             {
-              "id": 725,
-              "name": "Northern Seahorse Lois Fuller"
+              "id": 547,
+              "name": "Squirrel Monkey Stanley Jordan"
             },
             {
-              "id": 652,
-              "name": "Ant Olivia Holmes"
-            },
-            {
-              "id": 77,
-              "name": "Squirrel Monkey Bertie Brooks"
-            },
-            {
-              "id": 704,
-              "name": "Silkworm Lawrence Wilson"
-            },
-            {
-              "id": 44,
-              "name": "Goat Henry Olson"
+              "id": 736,
+              "name": "North American Porcupine Laura Mann"
             }
           ],
-          "status": "pending"
+          "status": "available"
         }
       ],
       "post": [],
@@ -912,22 +934,31 @@
             "id": 1,
             "name": "Dogs"
           },
-          "name": "Rhinoceros Jared Neal",
+          "name": "Arctic Char Samuel Chavez",
           "photoUrls": [
-            "url1",
-            "url2"
+            "Guinea Fowl Jeffrey Adkins",
+            "Pigeon Callie Boone",
+            "Alpaca Lura Warren"
           ],
           "tags": [
             {
-              "id": 1,
-              "name": "tag3"
+              "id": 847,
+              "name": "Chicken Jared Gregory"
             },
             {
-              "id": 2,
-              "name": "tag4"
+              "id": 259,
+              "name": "Kowari Luis Roy"
+            },
+            {
+              "id": 945,
+              "name": "Buzzard Stephen Mathis"
+            },
+            {
+              "id": 328,
+              "name": "Collared Lemur Jeffrey Flores"
             }
           ],
-          "status": "Fossa Alvin Wheeler"
+          "status": "Tyrant Flycatcher Ernest Turner"
         }
       ],
       "put": [],
@@ -950,26 +981,7 @@
   },
   "/store/inventory": {
     "responses": {
-      "get": [
-        {
-          "approved": 57,
-          "placed": 107,
-          "delivered": 50
-        },
-        {
-          "approved": 50,
-          "placed": 107,
-          "pending": 7,
-          "delivered": 50
-        },
-        {
-          "approved": 50,
-          "placed": 100,
-          "pending": 7,
-          "available": 0,
-          "delivered": 50
-        }
-      ],
+      "get": [],
       "post": [],
       "put": [],
       "patch": [],
@@ -980,34 +992,7 @@
   "/store/order": {
     "responses": {
       "get": [],
-      "post": [
-        {
-          "id": 0,
-          "petId": 198772,
-          "quantity": 0,
-          "status": "available",
-          "complete": true
-        },
-        {
-          "id": 10,
-          "petId": 198772,
-          "quantity": 7,
-          "status": "pending",
-          "complete": false
-        },
-        {
-          "id": 10,
-          "petId": 198772,
-          "quantity": 7,
-          "complete": true
-        },
-        {
-          "id": 10,
-          "petId": 198772,
-          "quantity": 0,
-          "complete": true
-        }
-      ],
+      "post": [],
       "put": [],
       "patch": [],
       "delete": [],
@@ -1049,16 +1034,15 @@
   "/user/login": {
     "responses": {
       "get": [
-        "Logged in user session: 8840747476014807040",
-        "Logged in user session: 1841770150442643456",
-        "Logged in user session: 3191484494825271296",
-        "Logged in user session: 6914891555924558848",
-        "Logged in user session: 8902869190715227136",
-        "Logged in user session: 7805825329993782272",
-        "Logged in user session: 3027702248805779456",
-        "Logged in user session: 315727739469550592",
-        "Logged in user session: 6575988516164199424",
-        "Logged in user session: 1096786541553288192"
+        "Logged in user session: 2730895046901841920",
+        "Logged in user session: 8769404290376398848",
+        "Logged in user session: 6520793209922371584",
+        "Logged in user session: 4410387741725881344",
+        "Logged in user session: 7117970196976916480",
+        "Logged in user session: 1634180522595004416",
+        "Logged in user session: 3656522945448113152",
+        "Logged in user session: 3600357255522864128",
+        "Logged in user session: 6382623436300695552"
       ],
       "post": [],
       "put": [],

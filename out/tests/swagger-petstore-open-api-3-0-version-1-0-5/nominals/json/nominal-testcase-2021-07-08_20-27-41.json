@@ -1,26 +1,43 @@
 {
   "evaluation": {
-    "200": 8,
+    "200": 7,
     "400": 7,
-    "500": 4,
+    "500": 5,
     "total": 19,
     "hitRate": 63,
     "missRate": 37,
-    "coverage": 67,
+    "coverage": 57.99999999999999,
     "invalidResponse": 0
   },
   "data": {
     "200": [
       {
         "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 6
+          },
+          "queryParams": {
+            "name": "Arctic Char Samuel Chavez",
+            "status": "Tyrant Flycatcher Ernest Turner"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
         "method": "delete",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 201
+            "petId": 680
           },
           "queryParams": {},
-          "headerParams": {}
+          "headerParams": {
+            "api_key": "Pigeon Rena Riley"
+          }
         }
       },
       {
@@ -29,21 +46,9 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 72
+            "orderId": 792
           },
           "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/findByStatus",
-        "method": "get",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {},
-          "queryParams": {
-            "status": "pending"
-          },
           "headerParams": {}
         }
       },
@@ -52,28 +57,28 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": 969,
+            "id": 10,
             "name": "doggie",
             "category": {
               "id": 1,
               "name": "Dogs"
             },
-            "photoUrls": [
-              "Ringed Seal Chester Hampton",
-              "Woodswallow Connor Jennings",
-              "Crow Bobby Robinson"
-            ],
+            "photoUrls": [],
             "tags": [
               {
-                "id": 891,
-                "name": "Mollusk Calvin Pratt"
+                "id": 363,
+                "name": "Macaw Jorge Evans"
               },
               {
-                "id": 184,
-                "name": "Dove Brett McDonald"
+                "id": 742,
+                "name": "Blue Spiny Lobster Edwin Russell"
+              },
+              {
+                "id": 282,
+                "name": "Aardwolf Howard Russell"
               }
             ],
-            "status": "pending"
+            "status": "sold"
           },
           "urlParams": {},
           "queryParams": {},
@@ -85,34 +90,23 @@
         "method": "put",
         "testData": {
           "requestBody": {
-            "id": 3,
+            "id": 10,
             "name": "doggie",
             "category": {
               "id": 1,
               "name": "Dogs"
             },
             "photoUrls": [
-              "url1",
-              "url2"
+              "Goat Gabriel Brooks"
             ],
             "tags": [
               {
-                "id": 771,
-                "name": "Colugo Cody Aguilar"
+                "id": 5715,
+                "name": "defaultTag"
               }
             ],
-            "status": "sold"
+            "status": "available"
           },
-          "urlParams": {},
-          "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/store/inventory",
-        "method": "get",
-        "testData": {
-          "requestBody": {},
           "urlParams": {},
           "queryParams": {},
           "headerParams": {}
@@ -124,10 +118,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {
-            "username": "Stick Insects Tony Fletcher",
-            "password": "Zebu Scott Morris"
-          },
+          "queryParams": {},
           "headerParams": {}
         }
       },
@@ -145,26 +136,11 @@
     "400": [
       {
         "path": "/pet/{petId}",
-        "method": "post",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {
-            "petId": 10
-          },
-          "queryParams": {
-            "name": "Buffalo Sam Daniel",
-            "status": "Hornbill Caroline Ray"
-          },
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/{petId}",
         "method": "get",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 662
+            "petId": 638
           },
           "queryParams": {},
           "headerParams": {}
@@ -176,7 +152,12 @@
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {},
+          "queryParams": {
+            "tags": [
+              "Longsnout Seahorse Vincent Lowe",
+              "Geese Cynthia Curtis"
+            ]
+          },
           "headerParams": {}
         }
       },
@@ -186,8 +167,18 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 884
+            "orderId": 88
           },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
           "queryParams": {},
           "headerParams": {}
         }
@@ -198,7 +189,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 148
+            "petId": 884
           },
           "queryParams": {
             "additionalMetadata": "available"
@@ -213,9 +204,7 @@
           "requestBody": {
             "id": 10,
             "petId": 198772,
-            "quantity": 7,
-            "shipDate": "Kestrel Claudia Lowe",
-            "status": "placed",
+            "shipDate": "Waxwing Max Peterson",
             "complete": true
           },
           "urlParams": {},
@@ -241,7 +230,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Deer Mouse Jose Bridges"
+            "username": "Megaladon Edwin Manning"
           },
           "queryParams": {},
           "headerParams": {}
@@ -253,14 +242,12 @@
         "testData": {
           "requestBody": {
             "id": 10,
+            "username": "theUser",
             "firstName": "John",
-            "lastName": "James",
-            "email": "john@email.com",
-            "password": "12345",
-            "phone": "12345"
+            "userStatus": 1
           },
           "urlParams": {
-            "username": "African Wild Dog Carl Maxwell"
+            "username": "Bat Manuel Ross"
           },
           "queryParams": {},
           "headerParams": {}
@@ -272,8 +259,18 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Burro Leila Potter"
+            "username": "Mini Donkey Victoria Wise"
           },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
           "queryParams": {},
           "headerParams": {}
         }
