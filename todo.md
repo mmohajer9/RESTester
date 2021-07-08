@@ -14,9 +14,13 @@
   - [x] Final Oracle (Combine previous two orcales)
 - [x] Setting API Call Order
 - [x] Nominal Tester
-- [ ] Error Tester
+- [x] Error Tester
 - Test Case Code Generation
   - [x] JSON Code
   - [ ] Jest Code
   - [ ] Javascript Code
+- Logger
+  - [ ] Log Into Output File
+  - [ ] Better Logging in Terminal
+  - [ ] Configurable Logging in Terminal and File
 - Design CLI APIs for interaction with the program
