@@ -466,6 +466,16 @@ class TestDataGenerator extends SearchBasedValueGenerator {
           if (responseValue || schemaValue) {
             data[dataKey][field] = responseValue ? responseValue : schemaValue;
           }
+
+          // if (!_.isEmpty(responseValue)) {
+          //   console.log(
+          //     '<<<<<<<<<<<<<<<<<<<<<<<< RESPONSE FOUND >>>>>>>>>>>>>>>>>>>>>>>>'
+          //   );
+          //   console.log(responseValue);
+          //   console.log(
+          //     '<<<<<<<<<<<<<<<<<<<<<<<< -------------- >>>>>>>>>>>>>>>>>>>>>>>>'
+          //   );
+          // }
         } else {
           const schemaValue = this.getPropertyValueFromSchema(
             path,

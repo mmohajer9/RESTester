@@ -5,8 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "node main.js generate 1",
-            "name": "node main.js generate 1",
+            "command": "node main.js generate 1 -u",
+            "name": "node main.js generate 1 -u",
             "request": "launch",
             "trace": true,
             "type": "node-terminal"

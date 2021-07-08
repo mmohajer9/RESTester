@@ -20,21 +20,22 @@ class RESTesterOracle extends TestDataGenerator {
       200: [],
       400: [],
       500: [],
+      invalidResponse: [],
     };
   }
 
-  async oracle(testCase) {
+  async oracle(testCase, mode) {
     // destructuring values
     const { path, method, testData } = testCase;
     const { data, status } = await this.makeRequest(path, method, testData);
 
     if (status >= 200 && status < 400) {
-      await this.responseValidatorOracle(testCase, data);
+      await this.responseValidatorOracle(testCase, data, mode);
     }
-    await this.statusCodeOracle(testCase, status, data);
+    await this.statusCodeOracle(testCase, status, data, mode);
   }
 
-  async responseValidatorOracle(testCase, responseData) {
+  async responseValidatorOracle(testCase, responseData, mode) {
     const { paths } = this.api;
     const { path, method } = testCase;
     // taking the expected response from specification
@@ -52,20 +53,37 @@ class RESTesterOracle extends TestDataGenerator {
     const isEmptyResponse = _.isEmpty(actualResponseKeys);
 
     if (!isEqual && !isEmptyResponse) {
-      this.nominalTestCases.invalidResponse.push(testCase);
+      mode === 'nominal'
+        ? this.nominalTestCases.invalidResponse.push(testCase)
+        : mode === 'error'
+        ? this.errorTestCases.invalidResponse.push(testCase)
+        : null;
     }
   }
 
-  async statusCodeOracle(testCase, status, responseData) {
+  async statusCodeOracle(testCase, status, responseData, mode) {
     const { path, method } = testCase;
 
     if (status >= 200 && status < 400) {
-      this.nominalTestCases[200].push(testCase);
+      mode === 'nominal'
+        ? this.nominalTestCases[200].push(testCase)
+        : mode === 'error'
+        ? this.errorTestCases[200].push(testCase)
+        : null;
+
       await this.addToResponseDictionary(path, method, responseData);
     } else if (status >= 400 && status < 500) {
-      this.nominalTestCases[400].push(testCase);
+      mode === 'nominal'
+        ? this.nominalTestCases[400].push(testCase)
+        : mode === 'error'
+        ? this.errorTestCases[400].push(testCase)
+        : null;
     } else if (status >= 500) {
-      this.nominalTestCases[500].push(testCase);
+      mode === 'nominal'
+        ? this.nominalTestCases[500].push(testCase)
+        : mode === 'error'
+        ? this.errorTestCases[500].push(testCase)
+        : null;
     }
   }
 

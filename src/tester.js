@@ -1,10 +1,6 @@
 const RESTesterOracle = require('./oracle');
 
 class NominalTestCaseGenerator extends RESTesterOracle {
-  constructor(...props) {
-    super(...props);
-  }
-
   async generateNominals(rdRatio, useExample, useAllMethods) {
     const { paths } = this.api;
     const apiCallOrder = this.apiCallOrder;
@@ -25,14 +21,25 @@ class NominalTestCaseGenerator extends RESTesterOracle {
           useExample
         );
         const testCase = { path, method, testData };
-        await this.oracle(testCase);
+        await this.oracle(testCase, 'nominal');
       }
     }
   }
 }
 
 class ErrorTestCaseGenerator extends NominalTestCaseGenerator {
-  async generateErrors() {}
+  async generateErrors() {
+    const { 200: successfulTestCases } = this.nominalTestCases;
+
+    for (const testCase of successfulTestCases) {
+      const mutatedTestCase = this.mutate(testCase);
+      await this.oracle(mutatedTestCase, 'error');
+    }
+  }
+
+  mutate(testCase){
+    
+  }
 }
 
 class TestCaseGenerator extends ErrorTestCaseGenerator {}

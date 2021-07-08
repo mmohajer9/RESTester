@@ -127,12 +127,12 @@ class ODGInitializer extends Initializer {
                   const selected = this.chance.bool({
                     likelihood: selectionRatePercent,
                   });
-                  console.log(
-                    'SELECTION RATE : ',
-                    selectionRate,
-                    'SELECTED ? :',
-                    selected
-                  );
+                  // console.log(
+                  //   'SELECTION RATE : ',
+                  //   selectionRate,
+                  //   'SELECTED ? :',
+                  //   selected
+                  // );
                   if (selected) {
                     // adding dependency path to the list
                     dependencies.push(targetPath);
@@ -197,10 +197,10 @@ class ODGInitializer extends Initializer {
       relatedURLRate = 0
     ) => {
       //* logging the values
-      console.log('---------------------------------------------');
-      console.log('FIELD SIMILARITY : ', fieldSimilarityRate);
-      console.log('COMMON TAGS : ', commonTagsRate);
-      console.log('RELATED URL : ', relatedURLRate);
+      // console.log('---------------------------------------------');
+      // console.log('FIELD SIMILARITY : ', fieldSimilarityRate);
+      // console.log('COMMON TAGS : ', commonTagsRate);
+      // console.log('RELATED URL : ', relatedURLRate);
       const totalRate =
         fieldCoef * fieldSimilarityRate +
         tagCoef * commonTagsRate +
