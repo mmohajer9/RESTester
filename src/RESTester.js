@@ -55,7 +55,7 @@ class RESTester extends TestCaseGenerator {
     const serverErrorCount = testCases[500].length;
     const invalidResposneCount = testCases.invalidResponse.length;
     const totalTestCases = successCount + clientErrorCount + serverErrorCount;
-  
+
     if (mode === 'nominal') {
       // taking the nominal test cases directory
 
@@ -65,16 +65,13 @@ class RESTester extends TestCaseGenerator {
             evaluation: {
               total: totalTestCases,
               hitRate:
-                +(
-                  (successCount + serverErrorCount + invalidResposneCount) /
-                  totalTestCases
-                ).toFixed(2) * 100,
+                +((successCount + serverErrorCount) / totalTestCases).toFixed(
+                  2
+                ) * 100,
               missRate: +(clientErrorCount / totalTestCases).toFixed(2) * 100,
               coverage:
-                +(
-                  successCount /
-                  (successCount + serverErrorCount + invalidResposneCount)
-                ).toFixed(2) * 100,
+                +(successCount / (successCount + serverErrorCount)).toFixed(2) *
+                100,
 
               200: successCount,
               400: clientErrorCount,
@@ -108,16 +105,13 @@ class RESTester extends TestCaseGenerator {
             evaluation: {
               total: totalTestCases,
               hitRate:
-                +(
-                  (successCount + serverErrorCount + invalidResposneCount) /
-                  totalTestCases
-                ).toFixed(2) * 100,
+                +((successCount + serverErrorCount) / totalTestCases).toFixed(
+                  2
+                ) * 100,
               missRate: +(clientErrorCount / totalTestCases).toFixed(2) * 100,
-              coverage:
-                +(
-                  successCount /
-                  (successCount + serverErrorCount + invalidResposneCount)
-                ).toFixed(2) * 100,
+              errorCoverage:
+                +(clientErrorCount / (successCount + serverErrorCount + clientErrorCount)).toFixed(2) *
+                100,
 
               200: successCount,
               400: clientErrorCount,

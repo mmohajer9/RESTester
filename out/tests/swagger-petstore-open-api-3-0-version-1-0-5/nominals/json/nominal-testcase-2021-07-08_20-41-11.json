@@ -13,30 +13,15 @@
     "200": [
       {
         "path": "/pet/{petId}",
-        "method": "post",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {
-            "petId": 6
-          },
-          "queryParams": {
-            "name": "Arctic Char Samuel Chavez",
-            "status": "Tyrant Flycatcher Ernest Turner"
-          },
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/{petId}",
         "method": "delete",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 680
+            "petId": 10
           },
           "queryParams": {},
           "headerParams": {
-            "api_key": "Pigeon Rena Riley"
+            "api_key": "Cardinal Edgar Hogan"
           }
         }
       },
@@ -46,9 +31,21 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 792
+            "orderId": 378
           },
           "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "pending"
+          },
           "headerParams": {}
         }
       },
@@ -57,25 +54,25 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": 10,
+            "id": 8,
             "name": "doggie",
             "category": {
               "id": 1,
               "name": "Dogs"
             },
-            "photoUrls": [],
+            "photoUrls": [
+              "Guinea Fowl Jeffrey Adkins",
+              "Pigeon Callie Boone",
+              "Alpaca Lura Warren"
+            ],
             "tags": [
               {
-                "id": 363,
-                "name": "Macaw Jorge Evans"
+                "id": 269,
+                "name": "Cow Loretta Owen"
               },
               {
-                "id": 742,
-                "name": "Blue Spiny Lobster Edwin Russell"
-              },
-              {
-                "id": 282,
-                "name": "Aardwolf Howard Russell"
+                "id": 746,
+                "name": "Python Agnes Beck"
               }
             ],
             "status": "sold"
@@ -91,18 +88,23 @@
         "testData": {
           "requestBody": {
             "id": 10,
-            "name": "doggie",
+            "name": "Lion 2",
             "category": {
               "id": 1,
               "name": "Dogs"
             },
             "photoUrls": [
-              "Goat Gabriel Brooks"
+              "Crane Eva Holmes",
+              "Anaconda Francis Allison",
+              "Dove Evelyn Alvarez",
+              "Tasmanian Devil Rosa Cummings",
+              "Coati Scott Moran",
+              "Yak Robert Williamson"
             ],
             "tags": [
               {
-                "id": 5715,
-                "name": "defaultTag"
+                "id": 788,
+                "name": "Cuban Amazon Parrot Cora Underwood"
               }
             ],
             "status": "available"
@@ -118,7 +120,10 @@
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {},
+          "queryParams": {
+            "username": "Guinea Pigs Mae McDaniel",
+            "password": "Duiker Katie Olson"
+          },
           "headerParams": {}
         }
       },
@@ -136,11 +141,25 @@
     "400": [
       {
         "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 179
+          },
+          "queryParams": {
+            "name": "Snakes Ann Thompson"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
         "method": "get",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 638
+            "petId": 261
           },
           "queryParams": {},
           "headerParams": {}
@@ -154,8 +173,10 @@
           "urlParams": {},
           "queryParams": {
             "tags": [
-              "Longsnout Seahorse Vincent Lowe",
-              "Geese Cynthia Curtis"
+              "Okapi Katharine Hill",
+              "Eagle Helena Campbell",
+              "Andean Condor Mattie Gregory",
+              "Hawaiian Monk Seal Rosa Wells"
             ]
           },
           "headerParams": {}
@@ -167,18 +188,8 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 88
+            "orderId": 70
           },
-          "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/findByStatus",
-        "method": "get",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {},
           "queryParams": {},
           "headerParams": {}
         }
@@ -189,7 +200,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 884
+            "petId": 561
           },
           "queryParams": {
             "additionalMetadata": "available"
@@ -202,9 +213,9 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": 10,
             "petId": 198772,
-            "shipDate": "Waxwing Max Peterson",
+            "quantity": 7,
+            "shipDate": "Ant Maud Douglas",
             "complete": true
           },
           "urlParams": {},
@@ -230,7 +241,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Megaladon Edwin Manning"
+            "username": "Chickens Floyd Salazar"
           },
           "queryParams": {},
           "headerParams": {}
@@ -244,10 +255,14 @@
             "id": 10,
             "username": "theUser",
             "firstName": "John",
+            "lastName": "James",
+            "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
             "userStatus": 1
           },
           "urlParams": {
-            "username": "Bat Manuel Ross"
+            "username": "Fossa Mary Barton"
           },
           "queryParams": {},
           "headerParams": {}
@@ -259,7 +274,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Mini Donkey Victoria Wise"
+            "username": "Fox Ora Stone"
           },
           "queryParams": {},
           "headerParams": {}
@@ -284,8 +299,6 @@
             "username": "theUser",
             "firstName": "John",
             "lastName": "James",
-            "email": "john@email.com",
-            "password": "12345",
             "phone": "12345",
             "userStatus": 1
           },

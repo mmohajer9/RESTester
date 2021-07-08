@@ -229,6 +229,57 @@
             }
           ],
           "status": "sold"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "doggie",
+          "photoUrls": [
+            "Guanaco Alexander Powers",
+            "Seal Earl Romero"
+          ],
+          "tags": [
+            {
+              "id": 170,
+              "name": "Ducks Luke Harvey"
+            },
+            {
+              "id": 883,
+              "name": "Skinks Caleb Cook"
+            },
+            {
+              "id": 985,
+              "name": "Cougar Eliza Wilkerson"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 8,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "doggie",
+          "photoUrls": [
+            "Guinea Fowl Jeffrey Adkins",
+            "Pigeon Callie Boone",
+            "Alpaca Lura Warren"
+          ],
+          "tags": [
+            {
+              "id": 269,
+              "name": "Cow Loretta Owen"
+            },
+            {
+              "id": 746,
+              "name": "Python Agnes Beck"
+            }
+          ],
+          "status": "sold"
         }
       ],
       "put": [
@@ -423,6 +474,29 @@
             {
               "id": 5715,
               "name": "defaultTag"
+            }
+          ],
+          "status": "available"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "Lion 2",
+          "photoUrls": [
+            "Crane Eva Holmes",
+            "Anaconda Francis Allison",
+            "Dove Evelyn Alvarez",
+            "Tasmanian Devil Rosa Cummings",
+            "Coati Scott Moran",
+            "Yak Robert Williamson"
+          ],
+          "tags": [
+            {
+              "id": 788,
+              "name": "Cuban Amazon Parrot Cora Underwood"
             }
           ],
           "status": "available"
@@ -905,6 +979,24 @@
             }
           ],
           "status": "available"
+        },
+        {
+          "id": 10,
+          "category": {
+            "id": 1,
+            "name": "Dogs"
+          },
+          "name": "doggie",
+          "photoUrls": [
+            "Goat Gabriel Brooks"
+          ],
+          "tags": [
+            {
+              "id": 5715,
+              "name": "defaultTag"
+            }
+          ],
+          "status": "available"
         }
       ],
       "post": [],
@@ -959,6 +1051,38 @@
             }
           ],
           "status": "Tyrant Flycatcher Ernest Turner"
+        },
+        {
+          "id": 737,
+          "category": {
+            "id": 521,
+            "name": "Guinea Adam Figueroa"
+          },
+          "name": "Pig Dorothy Rodgers",
+          "photoUrls": [],
+          "tags": [
+            {
+              "id": 971,
+              "name": "Chinchillas Millie Goodwin"
+            },
+            {
+              "id": 469,
+              "name": "Nassau Grouper Jeremy Berry"
+            },
+            {
+              "id": 433,
+              "name": "Magellanic Penguin Harold Castillo"
+            },
+            {
+              "id": 324,
+              "name": "Yak Henry Glover"
+            },
+            {
+              "id": 187,
+              "name": "Fly Catherine Wilkerson"
+            }
+          ],
+          "status": "Garter Snake Steve Spencer"
         }
       ],
       "put": [],
@@ -1042,7 +1166,11 @@
         "Logged in user session: 1634180522595004416",
         "Logged in user session: 3656522945448113152",
         "Logged in user session: 3600357255522864128",
-        "Logged in user session: 6382623436300695552"
+        "Logged in user session: 6382623436300695552",
+        "Logged in user session: 7199425885437787136",
+        "Logged in user session: 4436563095363860480",
+        "Logged in user session: 1081573852240783360",
+        "Logged in user session: 8236066301328772096"
       ],
       "post": [],
       "put": [],

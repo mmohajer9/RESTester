@@ -6,7 +6,7 @@
     "total": 7,
     "hitRate": 28.999999999999996,
     "missRate": 71,
-    "coverage": 100,
+    "errorCoverage": 71,
     "invalidResponse": 0
   },
   "data": {
@@ -17,7 +17,10 @@
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {},
+          "queryParams": {
+            "username": [],
+            "password": true
+          },
           "headerParams": {}
         }
       },
@@ -35,30 +38,15 @@
     "400": [
       {
         "path": "/pet/{petId}",
-        "method": "post",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {
-            "petId": {}
-          },
-          "queryParams": {
-            "name": "QM2N9m",
-            "status": "Tyrant Flycatcher Ernest Turner"
-          },
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/{petId}",
         "method": "delete",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": -500651200295.7312
+            "petId": true
           },
           "queryParams": {},
           "headerParams": {
-            "api_key": 6793796708728832
+            "api_key": "Cardinal Edgar Hogan"
           }
         }
       },
@@ -68,9 +56,21 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 863825991145.8816
+            "orderId": -588007954028.9536
           },
           "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": -1490176069074944
+          },
           "headerParams": {}
         }
       },
@@ -79,12 +79,12 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": false,
-            "name": "#O9upt1o)5kKuE6)uu",
-            "category": 2378887132610560,
-            "photoUrls": "rC&T1",
+            "id": "]p8vojM3tSrD",
+            "name": false,
+            "category": 279942685890.9696,
+            "photoUrls": 3412570123796480,
             "tags": {},
-            "status": true
+            "status": false
           },
           "urlParams": {},
           "queryParams": {},
@@ -96,15 +96,12 @@
         "method": "put",
         "testData": {
           "requestBody": {
-            "id": "WC)EeX^NXrQ*X2ugY@",
-            "name": 682985384837120,
-            "category": {
-              "id": 1,
-              "name": "Dogs"
-            },
-            "photoUrls": [],
-            "tags": [],
-            "status": -936467085918208
+            "id": -1135543278632960,
+            "name": "Lion 2",
+            "category": false,
+            "photoUrls": {},
+            "tags": "8ao)uKc%*d",
+            "status": "available"
           },
           "urlParams": {},
           "queryParams": {},

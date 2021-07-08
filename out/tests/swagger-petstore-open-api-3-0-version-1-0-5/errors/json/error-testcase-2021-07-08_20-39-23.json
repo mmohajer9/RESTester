@@ -1,0 +1,110 @@
+{
+  "evaluation": {
+    "200": 2,
+    "400": 5,
+    "500": 0,
+    "total": 7,
+    "hitRate": 28.999999999999996,
+    "missRate": 71,
+    "errorCoverage": 71,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": "ie^dAI4@9RG]u$BtvFPz"
+          },
+          "queryParams": {
+            "name": "Pig Dorothy Rodgers",
+            "status": "Garter Snake Steve Spencer"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": true
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "7T^rggSkL%[6D#6PD34^"
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 58902751005.9008
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "CeDDJ%mNN5tnXC(^77"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": -2425769045262336,
+            "name": "doggie",
+            "category": 947737713442816,
+            "photoUrls": true,
+            "tags": 18059908402.3808,
+            "status": "S3CO(%3bs5zJE]"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}
