@@ -17,12 +17,10 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 10
+            "petId": 141
           },
           "queryParams": {},
-          "headerParams": {
-            "api_key": "Cardinal Edgar Hogan"
-          }
+          "headerParams": {}
         }
       },
       {
@@ -31,7 +29,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 378
+            "orderId": 484
           },
           "queryParams": {},
           "headerParams": {}
@@ -44,7 +42,7 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "status": "pending"
+            "status": "available"
           },
           "headerParams": {}
         }
@@ -54,28 +52,42 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": 8,
-            "name": "doggie",
+            "id": 10,
+            "name": "Doggie",
             "category": {
               "id": 1,
-              "name": "Dogs"
+              "name": "dog"
             },
             "photoUrls": [
-              "Guinea Fowl Jeffrey Adkins",
-              "Pigeon Callie Boone",
-              "Alpaca Lura Warren"
+              "Echidna Nancy Walsh",
+              "Leafy Seadragon Marcus Klein",
+              "Buffalo Elizabeth Barker",
+              "Hake Edna Francis",
+              "Chicken Louisa Perry"
             ],
             "tags": [
               {
-                "id": 269,
-                "name": "Cow Loretta Owen"
+                "id": 172,
+                "name": "Gorilla Joe Medina"
               },
               {
-                "id": 746,
-                "name": "Python Agnes Beck"
+                "id": 839,
+                "name": "Bushshrike Sue Floyd"
+              },
+              {
+                "id": 380,
+                "name": "Chickens Jordan Houston"
+              },
+              {
+                "id": 862,
+                "name": "Black-footed Cat Warren Ryan"
+              },
+              {
+                "id": 416,
+                "name": "Aardvark Bruce Lucas"
               }
             ],
-            "status": "sold"
+            "status": "available"
           },
           "urlParams": {},
           "queryParams": {},
@@ -88,23 +100,22 @@
         "testData": {
           "requestBody": {
             "id": 10,
-            "name": "Lion 2",
+            "name": "doggie",
             "category": {
               "id": 1,
               "name": "Dogs"
             },
             "photoUrls": [
-              "Crane Eva Holmes",
-              "Anaconda Francis Allison",
-              "Dove Evelyn Alvarez",
-              "Tasmanian Devil Rosa Cummings",
-              "Coati Scott Moran",
-              "Yak Robert Williamson"
+              "http://pet.photo.com/super_pet"
             ],
             "tags": [
               {
-                "id": 788,
-                "name": "Cuban Amazon Parrot Cora Underwood"
+                "id": 378,
+                "name": "Mini Donkey Phillip Williamson"
+              },
+              {
+                "id": 498,
+                "name": "Chinchillas Samuel Porter"
               }
             ],
             "status": "available"
@@ -121,8 +132,7 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "username": "Guinea Pigs Mae McDaniel",
-            "password": "Duiker Katie Olson"
+            "username": "Chinese Water Dragon Agnes Welch"
           },
           "headerParams": {}
         }
@@ -145,10 +155,10 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 179
+            "petId": 529
           },
           "queryParams": {
-            "name": "Snakes Ann Thompson"
+            "name": "Chinchillas Celia Cook"
           },
           "headerParams": {}
         }
@@ -159,7 +169,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 261
+            "petId": 165
           },
           "queryParams": {},
           "headerParams": {}
@@ -172,12 +182,7 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "tags": [
-              "Okapi Katharine Hill",
-              "Eagle Helena Campbell",
-              "Andean Condor Mattie Gregory",
-              "Hawaiian Monk Seal Rosa Wells"
-            ]
+            "tags": []
           },
           "headerParams": {}
         }
@@ -188,7 +193,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 70
+            "orderId": 790
           },
           "queryParams": {},
           "headerParams": {}
@@ -200,10 +205,10 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 561
+            "petId": 991
           },
           "queryParams": {
-            "additionalMetadata": "available"
+            "additionalMetadata": "Dassie Rat Bryan Sims"
           },
           "headerParams": {}
         }
@@ -213,10 +218,11 @@
         "method": "post",
         "testData": {
           "requestBody": {
+            "id": 10,
             "petId": 198772,
             "quantity": 7,
-            "shipDate": "Ant Maud Douglas",
-            "complete": true
+            "shipDate": "Rhea Etta Rodriquez",
+            "status": "delivered"
           },
           "urlParams": {},
           "queryParams": {},
@@ -241,7 +247,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Chickens Floyd Salazar"
+            "username": "Anaconda Minnie Rodriquez"
           },
           "queryParams": {},
           "headerParams": {}
@@ -262,7 +268,7 @@
             "userStatus": 1
           },
           "urlParams": {
-            "username": "Fossa Mary Barton"
+            "username": "Birds Johnny Walters"
           },
           "queryParams": {},
           "headerParams": {}
@@ -274,7 +280,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Fox Ora Stone"
+            "username": "Basilisk Thomas Fowler"
           },
           "queryParams": {},
           "headerParams": {}
@@ -295,10 +301,10 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": 10,
             "username": "theUser",
-            "firstName": "John",
             "lastName": "James",
+            "email": "john@email.com",
+            "password": "12345",
             "phone": "12345",
             "userStatus": 1
           },

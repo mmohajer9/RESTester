@@ -1,26 +1,33 @@
 {
   "evaluation": {
-    "200": 2,
-    "400": 5,
+    "200": 3,
+    "400": 4,
     "500": 0,
     "total": 7,
-    "hitRate": 28.999999999999996,
-    "missRate": 71,
-    "errorCoverage": 71,
+    "hitRate": 43,
+    "missRate": 56.99999999999999,
+    "errorCoverage": 56.99999999999999,
     "invalidResponse": 0
   },
   "data": {
     "200": [
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
       {
         "path": "/user/login",
         "method": "get",
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {
-            "username": [],
-            "password": true
-          },
+          "queryParams": {},
           "headerParams": {}
         }
       },
@@ -42,11 +49,11 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": true
+            "petId": -399174187509.3504
           },
           "queryParams": {},
           "headerParams": {
-            "api_key": "Cardinal Edgar Hogan"
+            "api_key": false
           }
         }
       },
@@ -56,21 +63,9 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": -588007954028.9536
+            "orderId": []
           },
           "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/findByStatus",
-        "method": "get",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {},
-          "queryParams": {
-            "status": -1490176069074944
-          },
           "headerParams": {}
         }
       },
@@ -79,12 +74,12 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": "]p8vojM3tSrD",
-            "name": false,
-            "category": 279942685890.9696,
-            "photoUrls": 3412570123796480,
-            "tags": {},
-            "status": false
+            "id": 2891862658514944,
+            "name": "doggie",
+            "category": true,
+            "photoUrls": {},
+            "tags": false,
+            "status": "available"
           },
           "urlParams": {},
           "queryParams": {},
@@ -96,12 +91,15 @@
         "method": "put",
         "testData": {
           "requestBody": {
-            "id": -1135543278632960,
-            "name": "Lion 2",
-            "category": false,
-            "photoUrls": {},
-            "tags": "8ao)uKc%*d",
-            "status": "available"
+            "id": [],
+            "name": "doggie",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": false,
+            "tags": true,
+            "status": []
           },
           "urlParams": {},
           "queryParams": {},

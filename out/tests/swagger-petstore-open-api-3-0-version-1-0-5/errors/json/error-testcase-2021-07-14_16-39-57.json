@@ -17,7 +17,9 @@
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {},
+          "queryParams": {
+            "username": []
+          },
           "headerParams": {}
         }
       },
@@ -35,21 +37,6 @@
     "400": [
       {
         "path": "/pet/{petId}",
-        "method": "post",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {
-            "petId": "ie^dAI4@9RG]u$BtvFPz"
-          },
-          "queryParams": {
-            "name": "Pig Dorothy Rodgers",
-            "status": "Garter Snake Steve Spencer"
-          },
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/{petId}",
         "method": "delete",
         "testData": {
           "requestBody": {},
@@ -57,9 +44,7 @@
             "petId": true
           },
           "queryParams": {},
-          "headerParams": {
-            "api_key": "7T^rggSkL%[6D#6PD34^"
-          }
+          "headerParams": {}
         }
       },
       {
@@ -68,7 +53,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 58902751005.9008
+            "orderId": ")Y2U)pDn8*HH3$"
           },
           "queryParams": {},
           "headerParams": {}
@@ -81,7 +66,7 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "status": "CeDDJ%mNN5tnXC(^77"
+            "status": "8va)H"
           },
           "headerParams": {}
         }
@@ -91,12 +76,56 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": -2425769045262336,
-            "name": "doggie",
-            "category": 947737713442816,
-            "photoUrls": true,
-            "tags": 18059908402.3808,
-            "status": "S3CO(%3bs5zJE]"
+            "id": [],
+            "name": true,
+            "category": 363550392451072,
+            "photoUrls": [
+              "Echidna Nancy Walsh",
+              "Leafy Seadragon Marcus Klein",
+              "Buffalo Elizabeth Barker",
+              "Hake Edna Francis",
+              "Chicken Louisa Perry"
+            ],
+            "tags": [
+              {
+                "id": 172,
+                "name": "Gorilla Joe Medina"
+              },
+              {
+                "id": 839,
+                "name": "Bushshrike Sue Floyd"
+              },
+              {
+                "id": 380,
+                "name": "Chickens Jordan Houston"
+              },
+              {
+                "id": 862,
+                "name": "Black-footed Cat Warren Ryan"
+              },
+              {
+                "id": 416,
+                "name": "Aardvark Bruce Lucas"
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": "Rps%ubndi4Kw16",
+            "name": "nKd4NTlfXYIuFuMoEOdz",
+            "category": false,
+            "photoUrls": false,
+            "tags": {},
+            "status": 4510446400831488
           },
           "urlParams": {},
           "queryParams": {},

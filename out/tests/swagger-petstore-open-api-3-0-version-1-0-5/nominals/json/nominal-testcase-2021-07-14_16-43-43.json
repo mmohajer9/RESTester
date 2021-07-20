@@ -1,42 +1,27 @@
 {
   "evaluation": {
     "200": 7,
-    "400": 7,
-    "500": 5,
+    "400": 8,
+    "500": 4,
     "total": 19,
-    "hitRate": 63,
-    "missRate": 37,
-    "coverage": 57.99999999999999,
+    "hitRate": 57.99999999999999,
+    "missRate": 42,
+    "coverage": 64,
     "invalidResponse": 0
   },
   "data": {
     "200": [
       {
         "path": "/pet/{petId}",
-        "method": "post",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {
-            "petId": 737
-          },
-          "queryParams": {
-            "name": "Pig Dorothy Rodgers",
-            "status": "Garter Snake Steve Spencer"
-          },
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/{petId}",
         "method": "delete",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 59
+            "petId": 163
           },
           "queryParams": {},
           "headerParams": {
-            "api_key": "Helmetshrike Todd Soto"
+            "api_key": 32
           }
         }
       },
@@ -46,21 +31,9 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 816
+            "orderId": 871
           },
           "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/findByStatus",
-        "method": "get",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {},
-          "queryParams": {
-            "status": "available"
-          },
           "headerParams": {}
         }
       },
@@ -76,25 +49,53 @@
               "name": "Dogs"
             },
             "photoUrls": [
-              "Guanaco Alexander Powers",
-              "Seal Earl Romero"
+              "http://pet.photo.com/super_pet"
             ],
             "tags": [
               {
-                "id": 170,
-                "name": "Ducks Luke Harvey"
-              },
-              {
-                "id": 883,
-                "name": "Skinks Caleb Cook"
-              },
-              {
-                "id": 985,
-                "name": "Cougar Eliza Wilkerson"
+                "id": -2130,
+                "name": "defaultTag"
               }
             ],
             "status": "available"
           },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "name": "doggie",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [
+              "Dogs Carolyn Singleton"
+            ],
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
           "urlParams": {},
           "queryParams": {},
           "headerParams": {}
@@ -124,11 +125,23 @@
     "400": [
       {
         "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 978
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
         "method": "get",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 834
+            "petId": 502
           },
           "queryParams": {},
           "headerParams": {}
@@ -142,10 +155,7 @@
           "urlParams": {},
           "queryParams": {
             "tags": [
-              "Cardinal Olive Soto",
-              "Mullet Clifford Bryant",
-              "Horse Edgar Dixon",
-              "Horse Vincent Tyler"
+              "Hornbill Ola Kelley"
             ]
           },
           "headerParams": {}
@@ -157,40 +167,17 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 367
+            "orderId": 835
           },
           "queryParams": {},
           "headerParams": {}
         }
       },
       {
-        "path": "/pet",
-        "method": "put",
+        "path": "/pet/findByStatus",
+        "method": "get",
         "testData": {
-          "requestBody": {
-            "id": -390,
-            "name": "doggie",
-            "category": {
-              "id": 1,
-              "name": "Dogs"
-            },
-            "photoUrls": [
-              "Hedgehogs Kyle Larson",
-              "Wolf Chad Todd",
-              "Weaver Della Nichols"
-            ],
-            "tags": [
-              {
-                "id": 625,
-                "name": "Warbler Earl Burgess"
-              },
-              {
-                "id": 93,
-                "name": "Zebra Virginia Benson"
-              }
-            ],
-            "status": "sold"
-          },
+          "requestBody": {},
           "urlParams": {},
           "queryParams": {},
           "headerParams": {}
@@ -202,10 +189,10 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 939
+            "petId": 161
           },
           "queryParams": {
-            "additionalMetadata": "available"
+            "additionalMetadata": "Duck Lela Rodriguez"
           },
           "headerParams": {}
         }
@@ -217,8 +204,9 @@
           "requestBody": {
             "id": 10,
             "petId": 198772,
-            "quantity": 7,
-            "shipDate": "Anaconda Edna Quinn"
+            "shipDate": "Llama Belle Moore",
+            "status": "approved",
+            "complete": true
           },
           "urlParams": {},
           "queryParams": {},
@@ -243,7 +231,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Mule Derrick Huff"
+            "username": "Buffalo Gordon Nguyen"
           },
           "queryParams": {},
           "headerParams": {}
@@ -259,10 +247,11 @@
             "firstName": "John",
             "email": "john@email.com",
             "password": "12345",
+            "phone": "12345",
             "userStatus": 1
           },
           "urlParams": {
-            "username": "Chinchillas Anthony Norman"
+            "username": "Bee-eater George Grant"
           },
           "queryParams": {},
           "headerParams": {}
@@ -274,18 +263,8 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Death Adder Alta Collier"
+            "username": "Llama Norman Garza"
           },
-          "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/store/inventory",
-        "method": "get",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {},
           "queryParams": {},
           "headerParams": {}
         }
@@ -300,8 +279,6 @@
             "firstName": "John",
             "lastName": "James",
             "email": "john@email.com",
-            "password": "12345",
-            "phone": "12345",
             "userStatus": 1
           },
           "urlParams": {},
