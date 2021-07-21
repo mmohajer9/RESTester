@@ -1,0 +1,132 @@
+{
+  "evaluation": {
+    "200": 3,
+    "400": 5,
+    "500": 0,
+    "total": 8,
+    "hitRate": 38,
+    "missRate": 63,
+    "errorCoverage": 63,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 79
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "0d7qn8taNe)^U6lS7d"
+          }
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "African Wild Ass Garrett Hill",
+            "password": true
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": true
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": 3203624788295680
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": -8481230232223744,
+            "name": "y4oVJCHpFw^Gq6BLcK",
+            "category": true,
+            "photoUrls": [],
+            "tags": -61359312915.6608,
+            "status": false
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": [],
+            "name": -812424608979.3536,
+            "category": false,
+            "photoUrls": [
+              ""
+            ],
+            "tags": {},
+            "status": "t)he80[rqbk!"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": -193018783911.1168,
+            "petId": "6ULw7O(k1#k(e8h",
+            "quantity": -8439039917031424,
+            "status": 523340869953.1264
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

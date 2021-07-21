@@ -1,0 +1,132 @@
+{
+  "evaluation": {
+    "200": 3,
+    "400": 5,
+    "500": 0,
+    "total": 8,
+    "hitRate": 38,
+    "missRate": 63,
+    "errorCoverage": 63,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "sold"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "password": 420681271056.7936
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": "LX6S6yo"
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "3E&[NK8h"
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": []
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": {},
+            "name": [],
+            "category": "!]t1Y6g2rvP",
+            "photoUrls": [
+              "http://pet.photo.com/super_pet"
+            ],
+            "tags": false,
+            "status": "vKKEB]ewQ"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": -287445026970.0096,
+            "name": "L&lc1Fp",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": -7863085435977728,
+            "tags": -257027510317.8752,
+            "status": true
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "quantity": 469357680603.9552,
+            "complete": {}
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

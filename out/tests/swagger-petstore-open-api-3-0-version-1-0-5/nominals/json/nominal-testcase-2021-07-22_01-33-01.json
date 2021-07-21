@@ -1,0 +1,294 @@
+{
+  "evaluation": {
+    "200": 7,
+    "400": 7,
+    "500": 5,
+    "total": 19,
+    "hitRate": 63,
+    "missRate": 37,
+    "coverage": 57.99999999999999,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 414
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "Rabbit Hulda Wheeler"
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 319
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "sold"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 86,
+            "name": "doggie",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [
+              "string"
+            ],
+            "tags": [],
+            "status": "pending"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 2345,
+            "name": "doggie",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [
+              "string"
+            ],
+            "tags": [
+              {
+                "id": 977,
+                "name": "Sloth Bear Myrtie Curtis"
+              },
+              {
+                "id": 246,
+                "name": "Dunnart Marc Francis"
+              }
+            ],
+            "status": "sold"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 827
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 394
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByTags",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "tags": [
+              "Dunnart Derek Copeland",
+              "Ferrets Michael Lee",
+              "Ponies Lida Sullivan"
+            ]
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 410
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}/uploadImage",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 598
+          },
+          "queryParams": {
+            "additionalMetadata": "Lizards Gertrude Delgado"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "petId": 198772,
+            "quantity": 7,
+            "shipDate": "Black-footed Cat Cole Fowler",
+            "status": "approved"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/createWithList",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [
+      {
+        "path": "/user/{username}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Giant Panda Polly Weber"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "username": "theUser",
+            "firstName": "John",
+            "lastName": "James",
+            "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {
+            "username": "Walrus Mae Cox"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Bustard Nathan Little"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "username": "theUser",
+            "firstName": "John",
+            "lastName": "James",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "invalidResponse": []
+  }
+}

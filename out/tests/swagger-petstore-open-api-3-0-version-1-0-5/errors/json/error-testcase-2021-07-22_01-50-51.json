@@ -1,0 +1,100 @@
+{
+  "evaluation": {
+    "200": 4,
+    "400": 2,
+    "500": 0,
+    "total": 6,
+    "hitRate": 67,
+    "missRate": 33,
+    "errorCoverage": 33,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 963
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": 786008242755.9937
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 8187120539664384
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": {},
+            "name": "SpEwi",
+            "category": false,
+            "photoUrls": "(q5el[NwiTN7Yg",
+            "tags": [],
+            "status": "ITX43Z&tt"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "name": 6727847502675968,
+            "category": false,
+            "photoUrls": "iBB)b*#NmF94nALM[Vy#",
+            "tags": true,
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

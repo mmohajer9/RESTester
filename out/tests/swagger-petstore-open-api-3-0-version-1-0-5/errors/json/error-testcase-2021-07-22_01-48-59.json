@@ -1,0 +1,113 @@
+{
+  "evaluation": {
+    "200": 3,
+    "400": 4,
+    "500": 0,
+    "total": 7,
+    "hitRate": 43,
+    "missRate": 56.99999999999999,
+    "errorCoverage": 56.99999999999999,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 128
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": false
+          },
+          "queryParams": {
+            "name": true,
+            "status": []
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": {}
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": {},
+            "name": true,
+            "category": {},
+            "photoUrls": 2062148448550912,
+            "tags": [],
+            "status": false
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": false,
+            "name": [],
+            "category": {},
+            "photoUrls": [],
+            "tags": {},
+            "status": {}
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

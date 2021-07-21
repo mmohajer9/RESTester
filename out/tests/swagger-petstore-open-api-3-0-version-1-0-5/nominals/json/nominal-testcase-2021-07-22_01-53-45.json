@@ -1,0 +1,305 @@
+{
+  "evaluation": {
+    "200": 9,
+    "400": 6,
+    "500": 4,
+    "total": 19,
+    "hitRate": 68,
+    "missRate": 32,
+    "coverage": 69,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 278
+          },
+          "queryParams": {
+            "name": "Falcon Clayton Stone",
+            "status": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 265
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 324
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "Eagle Maurice Morrison"
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 906
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "sold"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "name": "SmartBear2",
+            "category": {
+              "id": 16,
+              "name": "parrots"
+            },
+            "photoUrls": [
+              "string"
+            ],
+            "tags": [
+              {
+                "id": 0,
+                "name": ""
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "Goose Amanda Swanson",
+            "password": "Anaconda Delia Ford"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/findByTags",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "tags": [
+              {
+                "id": 0,
+                "name": ""
+              }
+            ]
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 739
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 950,
+            "name": "ForTests",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [
+              "https://www.shutterstock.com/image-photo/single-lion-looking-regal-standing-proudly-555551179"
+            ],
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}/uploadImage",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 648
+          },
+          "queryParams": {
+            "additionalMetadata": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "petId": 198772,
+            "quantity": 7,
+            "shipDate": "Tilefish Birdie Arnold",
+            "complete": true
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/createWithList",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [
+      {
+        "path": "/user/{username}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Pot Bellied Pig Janie Moran"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "username": "theUser",
+            "lastName": "James",
+            "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {
+            "username": "Brown Bear Mark Page"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Shelduck Tom Peterson"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "username": "theUser",
+            "firstName": "John",
+            "lastName": "James",
+            "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "invalidResponse": []
+  }
+}

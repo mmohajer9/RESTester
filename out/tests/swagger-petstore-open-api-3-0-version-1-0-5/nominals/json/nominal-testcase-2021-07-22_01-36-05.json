@@ -1,0 +1,311 @@
+{
+  "evaluation": {
+    "200": 8,
+    "400": 6,
+    "500": 5,
+    "total": 19,
+    "hitRate": 68,
+    "missRate": 32,
+    "coverage": 62,
+    "invalidResponse": 1
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 241
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "Fly Eugene Warren"
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 274
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "sold"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "name": "doggie",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [
+              "Alpaca Micheal Grant"
+            ],
+            "tags": [
+              {
+                "id": 7683,
+                "name": "defaultTag"
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 814,
+            "name": "Doggie",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [
+              "Eagle Nannie Bradley",
+              "Fish Alfred Vega",
+              "Newt Willie Neal",
+              "Cat Essie Steele",
+              "Zebra Billy Knight",
+              "Bat Darrell Lyons",
+              "Owl Jayden Gardner"
+            ],
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ],
+            "status": "sold"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "quantity": 7,
+            "status": "approved"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "password": "Orangutan Barry Holmes"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 5304
+          },
+          "queryParams": {
+            "name": "Guanaco Evelyn Ballard"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 25
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByTags",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 184
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}/uploadImage",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 486
+          },
+          "queryParams": {
+            "additionalMetadata": "Starling Rhoda Miles"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/createWithList",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [
+      {
+        "path": "/user/{username}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Donkey Abbie Garza"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "username": "theUser",
+            "firstName": "John",
+            "lastName": "James",
+            "email": "john@email.com",
+            "phone": "12345"
+          },
+          "urlParams": {
+            "username": "Pig Dustin Drake"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Southern White Rhinocerous Daniel Alvarado"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "username": "theUser",
+            "lastName": "James",
+            "email": "john@email.com",
+            "userStatus": 1
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "invalidResponse": [
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "quantity": 7,
+            "status": "approved"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ]
+  }
+}

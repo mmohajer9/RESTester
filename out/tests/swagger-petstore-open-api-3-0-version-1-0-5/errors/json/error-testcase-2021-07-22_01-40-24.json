@@ -1,0 +1,139 @@
+{
+  "evaluation": {
+    "200": 4,
+    "400": 4,
+    "500": 0,
+    "total": 8,
+    "hitRate": 50,
+    "missRate": 50,
+    "errorCoverage": 50,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 278
+          },
+          "queryParams": {
+            "name": {},
+            "status": "ni@a[E#6Aax"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 57
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": -794694176158.5153
+          }
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": {},
+            "password": false
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": "ibpja6^G(!oYH"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": []
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": "I9AwjO5)",
+            "name": "Dogmeat",
+            "category": false,
+            "photoUrls": {},
+            "tags": [
+              {
+                "id": 722,
+                "name": "Hawaiian Honeycreeper Ronald Patton"
+              },
+              {
+                "id": 476,
+                "name": "Python Abbie Vaughn"
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "name": -4899452984754176,
+            "category": "]d0vcL7ZK$P]!Wo9jC$f",
+            "photoUrls": "wNCl$YP",
+            "tags": {},
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

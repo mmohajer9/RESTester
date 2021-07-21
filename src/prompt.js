@@ -73,6 +73,18 @@ program
     });
   });
 
+
+program
+  .command('plot')
+  .description(
+    'plot the statistics about the given open api specification'
+  )
+  .action((options) => {
+    const restester = new RESTester((instance) => {
+      instance.plotResult();
+    });
+  });
+
 program.parse(process.argv);
 
 _.isEmpty(program.args) ? program.help() : null;

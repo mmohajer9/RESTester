@@ -1,0 +1,157 @@
+{
+  "evaluation": {
+    "200": 4,
+    "400": 6,
+    "500": 0,
+    "total": 10,
+    "hitRate": 40,
+    "missRate": 60,
+    "errorCoverage": 60,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 927
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "dfznYWX^fQ"
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 832
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": true,
+            "password": -535958409707.52
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 105
+          },
+          "queryParams": {
+            "name": -583165813771.4688,
+            "status": 2113541712642048
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": -272640496159.9488
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": false
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": false,
+            "name": [],
+            "category": 341947010619.8016,
+            "photoUrls": true,
+            "tags": false,
+            "status": []
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": {},
+            "name": "pet1",
+            "category": 734289092988.1088,
+            "photoUrls": -3757219044655104,
+            "tags": -7267609170935808,
+            "status": {}
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 442928055346.7904,
+            "petId": false,
+            "quantity": "n0aU^ElafnX#ixBJ%MHu",
+            "complete": false
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "evaluation": {
+    "200": 4,
+    "400": 2,
+    "500": 0,
+    "total": 6,
+    "hitRate": 67,
+    "missRate": 33,
+    "errorCoverage": 33,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 59
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": -6788612267966464
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 687
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": 8865956629577728,
+            "password": []
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": "u0![rL^)zlETwP",
+            "name": {},
+            "category": {},
+            "photoUrls": [],
+            "tags": -376456429436928,
+            "status": 3214823898742784
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": [],
+            "name": -1032499798999040,
+            "category": "4D[^!FE9",
+            "photoUrls": "Xa)&xDIf2D1zLARvGRL",
+            "tags": [],
+            "status": "DQ*3(%iO$uFtsVIDZcPv"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

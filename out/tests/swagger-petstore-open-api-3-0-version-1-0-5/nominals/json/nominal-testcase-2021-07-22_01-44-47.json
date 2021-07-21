@@ -1,0 +1,299 @@
+{
+  "evaluation": {
+    "200": 6,
+    "400": 8,
+    "500": 5,
+    "total": 19,
+    "hitRate": 57.99999999999999,
+    "missRate": 42,
+    "coverage": 55.00000000000001,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 126
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "Giant Caribbean Sea Anemone Randy Banks"
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 963
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "pending"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 648,
+            "name": "Dogmeat",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [
+              "string"
+            ],
+            "tags": [
+              {
+                "id": 790,
+                "name": "Grizzly Bear Pearl Young"
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "Cat Carl Cunningham",
+            "password": "Cardinal Clara Riley"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 738
+          },
+          "queryParams": {
+            "name": "Horse Brandon Garcia"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 415
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByTags",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "tags": [
+              {
+                "id": 0,
+                "name": ""
+              }
+            ]
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 389
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 553,
+            "name": "pet1",
+            "category": {
+              "id": 648,
+              "name": "pet1"
+            },
+            "photoUrls": [
+              "Pot Bellied Pig Chester Holmes",
+              "Rabbits Genevieve Cortez"
+            ],
+            "tags": [],
+            "status": "sold"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}/uploadImage",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 329
+          },
+          "queryParams": {
+            "additionalMetadata": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "petId": 198772,
+            "quantity": 7,
+            "shipDate": "Python Lucile Cunningham",
+            "status": "approved"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/createWithList",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [
+      {
+        "path": "/user/{username}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Donkey David Moss"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "username": "theUser",
+            "lastName": "James",
+            "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {
+            "username": "Cricket Estella Carr"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Sugar Gliders Charlie Duncan"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "username": "theUser",
+            "firstName": "John",
+            "lastName": "James",
+            "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "invalidResponse": []
+  }
+}

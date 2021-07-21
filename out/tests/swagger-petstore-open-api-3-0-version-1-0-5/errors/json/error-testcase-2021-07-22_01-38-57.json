@@ -1,0 +1,150 @@
+{
+  "evaluation": {
+    "200": 2,
+    "400": 7,
+    "500": 0,
+    "total": 9,
+    "hitRate": 22,
+    "missRate": 78,
+    "errorCoverage": 78,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": ")GMT!V^er1c6MWvg0D"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 1233
+          },
+          "queryParams": {
+            "name": "Gecko Jeremiah Francis",
+            "status": "7bM@k"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": true
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": -438533316044.3904
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": false
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": {}
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 278,
+            "name": "hxo2[@hvViOkp&2",
+            "category": {
+              "id": 0
+            },
+            "photoUrls": "q3&Sa0",
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ],
+            "status": true
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": "fp*EWcx0p6xw",
+            "name": "doggie",
+            "category": [],
+            "photoUrls": [],
+            "tags": false,
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 2591687712964608,
+            "petId": [],
+            "quantity": []
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "evaluation": {
+    "200": 6,
+    "400": 8,
+    "500": 5,
+    "total": 19,
+    "hitRate": 57.99999999999999,
+    "missRate": 42,
+    "coverage": 55.00000000000001,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 815
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": 765
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 277
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "pending"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 681,
+            "name": "doggie",
+            "category": {
+              "id": 1,
+              "name": "Lionesse"
+            },
+            "photoUrls": [
+              "Gayal Arthur Baker",
+              "Lamprey Mitchell Abbott"
+            ],
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ],
+            "status": "sold"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "Arctic Char Rebecca Wheeler"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 951
+          },
+          "queryParams": {
+            "status": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 50
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByTags",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ]
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 573
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 726,
+            "name": "doggie",
+            "category": {
+              "id": 1,
+              "name": "dog"
+            },
+            "photoUrls": [
+              "string"
+            ],
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}/uploadImage",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 389
+          },
+          "queryParams": {
+            "additionalMetadata": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "petId": 198772,
+            "quantity": 7,
+            "shipDate": "Sugar Gliders Hettie Robinson",
+            "status": "approved"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/createWithList",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [
+      {
+        "path": "/user/{username}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "White Cheeked Gibbon Eugene Adams"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "firstName": "John",
+            "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {
+            "username": "Pot Bellied Pig Curtis Miller"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Cobra Wayne Nash"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "username": "theUser",
+            "email": "john@email.com",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "invalidResponse": []
+  }
+}

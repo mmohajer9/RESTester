@@ -1,0 +1,111 @@
+{
+  "evaluation": {
+    "200": 4,
+    "400": 3,
+    "500": 0,
+    "total": 7,
+    "hitRate": 56.99999999999999,
+    "missRate": 43,
+    "errorCoverage": 43,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 333
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "Dungeness Crab Lloyd Ferguson",
+            "password": 698423440519.9872
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": "L1EIHOQCXytphm!26Bz"
+          },
+          "queryParams": {
+            "name": 139891535406.6944,
+            "status": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": -328942111791.5136
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "Nudibranch Lucinda Vaughn"
+          }
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": {},
+            "name": -883162556347.1873,
+            "category": true,
+            "photoUrls": -7985103640723456,
+            "tags": false,
+            "status": "InY)1A0wnmE6aNL"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

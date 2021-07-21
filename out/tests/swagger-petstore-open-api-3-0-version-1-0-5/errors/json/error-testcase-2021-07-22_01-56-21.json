@@ -12,13 +12,17 @@
   "data": {
     "200": [
       {
-        "path": "/store/inventory",
-        "method": "get",
+        "path": "/pet/{petId}",
+        "method": "delete",
         "testData": {
           "requestBody": {},
-          "urlParams": {},
+          "urlParams": {
+            "petId": 671
+          },
           "queryParams": {},
-          "headerParams": {}
+          "headerParams": {
+            "api_key": -807826760086.3232
+          }
         }
       },
       {
@@ -27,7 +31,9 @@
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {},
+          "queryParams": {
+            "password": true
+          },
           "headerParams": {}
         }
       },
@@ -44,28 +50,26 @@
     ],
     "400": [
       {
-        "path": "/pet/{petId}",
-        "method": "delete",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {
-            "petId": -399174187509.3504
-          },
-          "queryParams": {},
-          "headerParams": {
-            "api_key": false
-          }
-        }
-      },
-      {
         "path": "/store/order/{orderId}",
         "method": "delete",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": []
+            "orderId": true
           },
           "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "kpVk22tu1nF8w2kWAaZ2"
+          },
           "headerParams": {}
         }
       },
@@ -74,12 +78,12 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": 2891862658514944,
-            "name": "doggie",
+            "id": [],
+            "name": -8265557753200640,
             "category": true,
-            "photoUrls": {},
-            "tags": false,
-            "status": "available"
+            "photoUrls": 6048543538151424,
+            "tags": "@)28%ij)BDxisXN4nhx",
+            "status": true
           },
           "urlParams": {},
           "queryParams": {},
@@ -91,15 +95,12 @@
         "method": "put",
         "testData": {
           "requestBody": {
-            "id": [],
+            "id": false,
             "name": "doggie",
-            "category": {
-              "id": 1,
-              "name": "Dogs"
-            },
-            "photoUrls": false,
-            "tags": true,
-            "status": []
+            "category": "s)Pdv4zHWG4WyWUdxp",
+            "photoUrls": "Rk7TXBFC!GTS&GO(4",
+            "tags": 407706070836.8384,
+            "status": "pending"
           },
           "urlParams": {},
           "queryParams": {},

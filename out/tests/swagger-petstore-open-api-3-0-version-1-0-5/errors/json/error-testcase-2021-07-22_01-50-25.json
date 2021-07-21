@@ -1,0 +1,131 @@
+{
+  "evaluation": {
+    "200": 2,
+    "400": 6,
+    "500": 0,
+    "total": 8,
+    "hitRate": 25,
+    "missRate": 75,
+    "errorCoverage": 75,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "Wombat Kevin Johnston"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": false
+          },
+          "queryParams": {
+            "name": 276114572732.0064,
+            "status": 698992118936.3712
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": {}
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": true
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": "o4pon"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": -7344363545821184
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": -6059717306613760,
+            "name": "zhL9QT",
+            "category": "R$riC*A",
+            "photoUrls": [
+              "string"
+            ],
+            "tags": -354938709553.9712,
+            "status": {}
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": true,
+            "name": false,
+            "category": 336985585614.848,
+            "photoUrls": 8264848186015744,
+            "tags": -84814227465.8304,
+            "status": -4970680261017600
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

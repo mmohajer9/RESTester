@@ -24,6 +24,21 @@ class RESTesterOracle extends TestDataGenerator {
     };
   }
 
+  flushTestCases(){
+    this.nominalTestCases = {
+      200: [],
+      400: [],
+      500: [],
+      invalidResponse: [],
+    };
+    this.errorTestCases = {
+      200: [],
+      400: [],
+      500: [],
+      invalidResponse: [],
+    };
+  }
+
   async oracle(testCase, mode) {
     // destructuring values
     const { path, method, testData } = testCase;

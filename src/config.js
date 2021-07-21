@@ -29,6 +29,7 @@ const configuration = {
     path.resolve('out', 'tests', apiName, 'errors'),
   apiNominalTestCasesDir: (apiName) =>
     path.resolve('out', 'tests', apiName, 'nominals'),
+  apiPlotDir: (apiName) => path.resolve('out', 'tests', apiName, 'plot'),
 
   apiNominalJsonTestCasesDir: (apiName) =>
     path.resolve('out', 'tests', apiName, 'nominals', 'json'),

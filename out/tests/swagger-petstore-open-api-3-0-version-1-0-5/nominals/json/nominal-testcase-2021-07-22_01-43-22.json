@@ -13,14 +13,31 @@
     "200": [
       {
         "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 196
+          },
+          "queryParams": {
+            "name": "Butterfly Zachary Reynolds",
+            "status": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
         "method": "delete",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 141
+            "petId": 454
           },
           "queryParams": {},
-          "headerParams": {}
+          "headerParams": {
+            "api_key": 26498
+          }
         }
       },
       {
@@ -29,7 +46,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 484
+            "orderId": 533
           },
           "queryParams": {},
           "headerParams": {}
@@ -52,70 +69,19 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": 10,
-            "name": "Doggie",
-            "category": {
-              "id": 1,
-              "name": "dog"
-            },
-            "photoUrls": [
-              "Echidna Nancy Walsh",
-              "Leafy Seadragon Marcus Klein",
-              "Buffalo Elizabeth Barker",
-              "Hake Edna Francis",
-              "Chicken Louisa Perry"
-            ],
-            "tags": [
-              {
-                "id": 172,
-                "name": "Gorilla Joe Medina"
-              },
-              {
-                "id": 839,
-                "name": "Bushshrike Sue Floyd"
-              },
-              {
-                "id": 380,
-                "name": "Chickens Jordan Houston"
-              },
-              {
-                "id": 862,
-                "name": "Black-footed Cat Warren Ryan"
-              },
-              {
-                "id": 416,
-                "name": "Aardvark Bruce Lucas"
-              }
-            ],
-            "status": "available"
-          },
-          "urlParams": {},
-          "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet",
-        "method": "put",
-        "testData": {
-          "requestBody": {
-            "id": 10,
+            "id": 9661,
             "name": "doggie",
             "category": {
-              "id": 1,
-              "name": "Dogs"
+              "id": 648,
+              "name": "pet1"
             },
             "photoUrls": [
-              "http://pet.photo.com/super_pet"
+              "string"
             ],
             "tags": [
               {
-                "id": 378,
-                "name": "Mini Donkey Phillip Williamson"
-              },
-              {
-                "id": 498,
-                "name": "Chinchillas Samuel Porter"
+                "id": 0,
+                "name": ""
               }
             ],
             "status": "available"
@@ -132,7 +98,7 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "username": "Chinese Water Dragon Agnes Welch"
+            "password": "Bat Sam Hines"
           },
           "headerParams": {}
         }
@@ -151,25 +117,11 @@
     "400": [
       {
         "path": "/pet/{petId}",
-        "method": "post",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {
-            "petId": 529
-          },
-          "queryParams": {
-            "name": "Chinchillas Celia Cook"
-          },
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/{petId}",
         "method": "get",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 165
+            "petId": 390
           },
           "queryParams": {},
           "headerParams": {}
@@ -182,7 +134,12 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "tags": []
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ]
           },
           "headerParams": {}
         }
@@ -193,8 +150,36 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 790
+            "orderId": 261
           },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 85,
+            "name": "doggie",
+            "category": {
+              "id": 648,
+              "name": "pet1"
+            },
+            "photoUrls": [
+              "Bird Cameron Perry",
+              "Cassowary Travis Swanson"
+            ],
+            "tags": [
+              {
+                "id": 0,
+                "name": ""
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
           "queryParams": {},
           "headerParams": {}
         }
@@ -205,10 +190,10 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 991
+            "petId": 278
           },
           "queryParams": {
-            "additionalMetadata": "Dassie Rat Bryan Sims"
+            "additionalMetadata": "Grouper Lloyd Armstrong"
           },
           "headerParams": {}
         }
@@ -219,10 +204,9 @@
         "testData": {
           "requestBody": {
             "id": 10,
-            "petId": 198772,
             "quantity": 7,
-            "shipDate": "Rhea Etta Rodriquez",
-            "status": "delivered"
+            "shipDate": "Coquerel's Sifaka Polly Guerrero",
+            "status": "approved"
           },
           "urlParams": {},
           "queryParams": {},
@@ -247,7 +231,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Anaconda Minnie Rodriquez"
+            "username": "Tamandua Beulah Brock"
           },
           "queryParams": {},
           "headerParams": {}
@@ -261,14 +245,12 @@
             "id": 10,
             "username": "theUser",
             "firstName": "John",
-            "lastName": "James",
             "email": "john@email.com",
-            "password": "12345",
             "phone": "12345",
             "userStatus": 1
           },
           "urlParams": {
-            "username": "Birds Johnny Walters"
+            "username": "Buzzard May Brown"
           },
           "queryParams": {},
           "headerParams": {}
@@ -280,7 +262,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Basilisk Thomas Fowler"
+            "username": "Spotted Moray Willie Lucas"
           },
           "queryParams": {},
           "headerParams": {}
@@ -301,12 +283,11 @@
         "method": "post",
         "testData": {
           "requestBody": {
+            "id": 10,
             "username": "theUser",
-            "lastName": "James",
-            "email": "john@email.com",
+            "firstName": "John",
             "password": "12345",
-            "phone": "12345",
-            "userStatus": 1
+            "phone": "12345"
           },
           "urlParams": {},
           "queryParams": {},

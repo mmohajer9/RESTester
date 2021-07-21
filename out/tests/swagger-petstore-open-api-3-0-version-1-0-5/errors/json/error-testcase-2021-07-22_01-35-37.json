@@ -1,0 +1,97 @@
+{
+  "evaluation": {
+    "200": 2,
+    "400": 4,
+    "500": 0,
+    "total": 6,
+    "hitRate": 33,
+    "missRate": 67,
+    "errorCoverage": 67,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "password": 664692246708224
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": []
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": 4695212991447040
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": {}
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": true
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "name": "Doggie",
+            "category": "w01MTcDcM)3jg",
+            "photoUrls": -2922396776398848,
+            "tags": true,
+            "status": -8041026279178240
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

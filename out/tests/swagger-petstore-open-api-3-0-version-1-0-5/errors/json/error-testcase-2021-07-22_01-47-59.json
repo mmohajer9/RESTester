@@ -1,0 +1,105 @@
+{
+  "evaluation": {
+    "200": 3,
+    "400": 3,
+    "500": 0,
+    "total": 6,
+    "hitRate": 50,
+    "missRate": 50,
+    "errorCoverage": 50,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 919
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": [],
+            "password": -553769381134.336
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": false
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": 552
+          }
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": true,
+            "name": "doggie",
+            "category": 4044504759795712,
+            "photoUrls": [
+              "Malayan Tapir Florence Barnes"
+            ],
+            "tags": "i@&LEUsMv",
+            "status": []
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": {},
+            "name": [],
+            "category": 8785144835997696,
+            "photoUrls": [],
+            "tags": "BD9pq1#igk#WN!8[zU",
+            "status": []
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

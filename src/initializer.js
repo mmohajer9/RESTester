@@ -137,7 +137,7 @@ class Initializer {
     const apiErrorJsonTestCasesDir = config.apiErrorJsonTestCasesDir(apiName);
     const apiErrorJestTestCasesDir = config.apiErrorJestTestCasesDir(apiName);
     const apiErrorJsTestCasesDir = config.apiErrorJsTestCasesDir(apiName);
-
+    const apiPlotDir = config.apiPlotDir(apiName);
     // for integrating with jest library
     const jestTestCasesDir = config.jestTestCasesDir(apiName);
 
@@ -157,7 +157,8 @@ class Initializer {
       apiErrorJsonTestCasesDir,
       apiErrorJestTestCasesDir,
       apiErrorJsTestCasesDir,
-
+      // plotting
+      apiPlotDir,
       // for integrating with jest library
       jestTestCasesDir,
     ];

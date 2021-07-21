@@ -1,0 +1,106 @@
+{
+  "evaluation": {
+    "200": 2,
+    "400": 4,
+    "500": 0,
+    "total": 6,
+    "hitRate": 33,
+    "missRate": 67,
+    "errorCoverage": 67,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "6^Mx2shSm!J82",
+            "password": false
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": -205419941619.3024
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": {}
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": "8zJ2El2Ol6&"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 278,
+            "name": "cClrkmnB@T^4(uAR0R",
+            "category": {
+              "id": 648,
+              "name": "pet1"
+            },
+            "photoUrls": -493391470342.9632,
+            "tags": "kB4e#P4sljq1o4mm",
+            "status": false
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": true,
+            "name": false,
+            "category": {},
+            "photoUrls": "PZGkB7*24a2QJ0nM2l",
+            "tags": "wzu9E@K[9K)XN2h#bK",
+            "status": "pending"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

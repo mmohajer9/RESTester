@@ -1,0 +1,316 @@
+{
+  "evaluation": {
+    "200": 6,
+    "400": 8,
+    "500": 5,
+    "total": 19,
+    "hitRate": 57.99999999999999,
+    "missRate": 42,
+    "coverage": 55.00000000000001,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 367
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": "Buffalo Alexander Fowler"
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 354
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 278,
+            "name": "doggie",
+            "category": {
+              "id": 648,
+              "name": "pet1"
+            },
+            "photoUrls": [
+              "Owl Jack Mendoza",
+              "Bluebanded Goby Mattie Murray",
+              "Goat Adeline Neal",
+              "Tarantula Bill Harrison"
+            ],
+            "tags": [
+              {
+                "id": 642,
+                "name": "Bison Cecelia Barnes"
+              },
+              {
+                "id": 123,
+                "name": "Andean Condor Edith Hughes"
+              },
+              {
+                "id": 9,
+                "name": "Old World Flycatcher Raymond Drake"
+              }
+            ],
+            "status": "available"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 977,
+            "name": "Dogmeat",
+            "category": {
+              "id": 12,
+              "name": "Lions"
+            },
+            "photoUrls": [
+              "Guinea Phoebe Padilla",
+              "Fossa Trevor Saunders",
+              "Lion Sallie Oliver",
+              "Bowerbird Adeline Gill",
+              "Duiker Kate Reynolds",
+              "Lemur Seth Duncan"
+            ],
+            "tags": [
+              {
+                "id": 10,
+                "name": "Regal"
+              }
+            ],
+            "status": "pending"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "Dogmeat",
+            "password": "Gorilla Leila Weaver"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 278
+          },
+          "queryParams": {
+            "status": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 223
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByTags",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "tags": [
+              {
+                "id": 0,
+                "name": "string"
+              }
+            ]
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 436
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}/uploadImage",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 278
+          },
+          "queryParams": {
+            "additionalMetadata": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/order",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "petId": 198772,
+            "quantity": 7,
+            "shipDate": "Spectacled Bear Lilly Cannon",
+            "status": "delivered"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/createWithList",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [
+      {
+        "path": "/user/{username}",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Dunnart Jessie Garcia"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "username": "theUser",
+            "firstName": "John",
+            "lastName": "James",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {
+            "username": "Cuban Amazon Parrot Mathilda Bishop"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/{username}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "username": "Rhea Theodore Harvey"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "username": "theUser",
+            "lastName": "James",
+            "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
+            "userStatus": 1
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "invalidResponse": []
+  }
+}

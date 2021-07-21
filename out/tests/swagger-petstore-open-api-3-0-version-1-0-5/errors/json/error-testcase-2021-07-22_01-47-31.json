@@ -1,0 +1,102 @@
+{
+  "evaluation": {
+    "200": 2,
+    "400": 4,
+    "500": 0,
+    "total": 6,
+    "hitRate": 33,
+    "missRate": 67,
+    "errorCoverage": 67,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "Pronghorn Garrett Wells"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": false
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": 4859923242418176
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": true
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": [],
+            "name": 322826558609.8176,
+            "category": true,
+            "photoUrls": [],
+            "tags": "TU#hP1zX$BSVo^yqGs70",
+            "status": "el6j#X%LYCfNr"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": "D)&zD#3iM3Do9GrqKR(@",
+            "name": "Ix&9xL1V5PW9",
+            "category": false,
+            "photoUrls": [],
+            "tags": true,
+            "status": true
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

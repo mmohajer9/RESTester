@@ -1,0 +1,132 @@
+{
+  "evaluation": {
+    "200": 3,
+    "400": 5,
+    "500": 0,
+    "total": 8,
+    "hitRate": 38,
+    "missRate": 63,
+    "errorCoverage": 63,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 78
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": "Henkel's Leaf-tailed Gecko Ronald Bishop"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 686064860869.4272
+          },
+          "queryParams": {
+            "name": "Cheetah Floyd McBride",
+            "status": "hJ1U$GKLtyk)"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": {}
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": -449037515463.0656
+          }
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": false
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": -924021122138112,
+            "name": true,
+            "category": -329759313625.088,
+            "photoUrls": true,
+            "tags": false,
+            "status": -252602253259.5712
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": true,
+            "name": [],
+            "category": {
+              "id": 15,
+              "name": "Lions"
+            },
+            "photoUrls": -5861879012392960,
+            "tags": "r^@VpuT$uQV0t",
+            "status": 45029027689.2672
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

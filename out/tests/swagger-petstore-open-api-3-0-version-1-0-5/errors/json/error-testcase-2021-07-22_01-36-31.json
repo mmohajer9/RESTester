@@ -1,0 +1,128 @@
+{
+  "evaluation": {
+    "200": 3,
+    "400": 4,
+    "500": 0,
+    "total": 7,
+    "hitRate": 43,
+    "missRate": 56.99999999999999,
+    "errorCoverage": 56.99999999999999,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "pending"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": false
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": "M%L]2^$q9($"
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": 904
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 232681765863.424
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": 10,
+            "name": -534697076378.8288,
+            "category": 3736680624291840,
+            "photoUrls": "Vu!Wmy!6[ZLmwkz[JF",
+            "tags": true,
+            "status": "1^AkK!zcblhepbwSW"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": -745103576530.944,
+            "name": true,
+            "category": true,
+            "photoUrls": [
+              "Zebu Elva Drake",
+              "Donkey Elva Conner",
+              "Climbing Mouse Ellen Strickland",
+              "Anemone Keith Hansen"
+            ],
+            "tags": [
+              {
+                "id": 61,
+                "name": "Crow Gilbert Ramos"
+              },
+              {
+                "id": 882,
+                "name": "Horse Mark Colon"
+              }
+            ],
+            "status": false
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

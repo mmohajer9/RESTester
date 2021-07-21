@@ -17,9 +17,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {
-            "username": []
-          },
+          "queryParams": {},
           "headerParams": {}
         }
       },
@@ -44,7 +42,9 @@
             "petId": true
           },
           "queryParams": {},
-          "headerParams": {}
+          "headerParams": {
+            "api_key": false
+          }
         }
       },
       {
@@ -53,7 +53,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": ")Y2U)pDn8*HH3$"
+            "orderId": 704133214083.4816
           },
           "queryParams": {},
           "headerParams": {}
@@ -66,7 +66,7 @@
           "requestBody": {},
           "urlParams": {},
           "queryParams": {
-            "status": "8va)H"
+            "status": "1E@]@^8DCC#j3s244%JK"
           },
           "headerParams": {}
         }
@@ -76,39 +76,12 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": [],
+            "id": "m($ysrbWO",
             "name": true,
-            "category": 363550392451072,
-            "photoUrls": [
-              "Echidna Nancy Walsh",
-              "Leafy Seadragon Marcus Klein",
-              "Buffalo Elizabeth Barker",
-              "Hake Edna Francis",
-              "Chicken Louisa Perry"
-            ],
-            "tags": [
-              {
-                "id": 172,
-                "name": "Gorilla Joe Medina"
-              },
-              {
-                "id": 839,
-                "name": "Bushshrike Sue Floyd"
-              },
-              {
-                "id": 380,
-                "name": "Chickens Jordan Houston"
-              },
-              {
-                "id": 862,
-                "name": "Black-footed Cat Warren Ryan"
-              },
-              {
-                "id": 416,
-                "name": "Aardvark Bruce Lucas"
-              }
-            ],
-            "status": "available"
+            "category": false,
+            "photoUrls": true,
+            "tags": [],
+            "status": false
           },
           "urlParams": {},
           "queryParams": {},
@@ -120,12 +93,12 @@
         "method": "put",
         "testData": {
           "requestBody": {
-            "id": "Rps%ubndi4Kw16",
-            "name": "nKd4NTlfXYIuFuMoEOdz",
-            "category": false,
-            "photoUrls": false,
+            "id": true,
+            "name": "hdY]YG4a",
+            "category": [],
+            "photoUrls": {},
             "tags": {},
-            "status": 4510446400831488
+            "status": []
           },
           "urlParams": {},
           "queryParams": {},

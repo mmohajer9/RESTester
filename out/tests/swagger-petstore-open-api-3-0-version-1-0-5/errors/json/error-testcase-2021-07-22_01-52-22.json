@@ -1,0 +1,132 @@
+{
+  "evaluation": {
+    "200": 3,
+    "400": 5,
+    "500": 0,
+    "total": 8,
+    "hitRate": 38,
+    "missRate": 63,
+    "errorCoverage": 63,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 538
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "username": {}
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 1683252242808832
+          },
+          "queryParams": {
+            "name": false,
+            "status": true
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": false
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": -5791181589970944
+          }
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "6]#[#GVvLWv]WQLwwTxl"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": [],
+            "name": "doggie",
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": 849112238076.7231,
+            "tags": -2279589036425216,
+            "status": "s#)It("
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "put",
+        "testData": {
+          "requestBody": {
+            "id": true,
+            "name": "EQZ3Z$QewED#R52N",
+            "category": "olqgaMACZTKAE^j(p",
+            "photoUrls": "O3EN)7i19myqa%t72",
+            "tags": [],
+            "status": []
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

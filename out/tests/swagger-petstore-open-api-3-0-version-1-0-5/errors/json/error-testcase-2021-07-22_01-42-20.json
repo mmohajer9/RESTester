@@ -1,0 +1,113 @@
+{
+  "evaluation": {
+    "200": 4,
+    "400": 2,
+    "500": 0,
+    "total": 6,
+    "hitRate": 67,
+    "missRate": 33,
+    "errorCoverage": 33,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": 706
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "pending"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 857086867013.632
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": -531426727218.3808
+          }
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": true,
+            "name": 5472779415584768,
+            "category": {
+              "id": 1,
+              "name": "Dogs"
+            },
+            "photoUrls": [
+              "http://pet.photo.com/super_pet"
+            ],
+            "tags": [
+              {
+                "id": 764,
+                "name": "Madagascar Tree Boa Benjamin Meyer"
+              },
+              {
+                "id": 200,
+                "name": "Fossa Gene Copeland"
+              },
+              {
+                "id": 620,
+                "name": "Brown Bear Vincent Hanson"
+              }
+            ],
+            "status": []
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

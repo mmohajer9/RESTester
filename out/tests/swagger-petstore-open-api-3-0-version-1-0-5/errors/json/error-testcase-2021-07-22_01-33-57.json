@@ -1,0 +1,125 @@
+{
+  "evaluation": {
+    "200": 2,
+    "400": 5,
+    "500": 0,
+    "total": 7,
+    "hitRate": 28.999999999999996,
+    "missRate": 71,
+    "errorCoverage": 71,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "password": "2a%qzEBZ#Ba1S)p@ok"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 55
+          },
+          "queryParams": {
+            "name": false,
+            "status": "Sheep Owen Morton"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": []
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": []
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": false
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": false
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": true,
+            "name": [],
+            "category": 7777794582904832,
+            "photoUrls": {},
+            "tags": [
+              {
+                "id": 570,
+                "name": "Aardwolf Maud Wagner"
+              },
+              {
+                "id": 663,
+                "name": "Raccoon Roxie Mullins"
+              },
+              {
+                "id": 687,
+                "name": "Dinosaur Lelia Snyder"
+              }
+            ],
+            "status": "sTRD0"
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}

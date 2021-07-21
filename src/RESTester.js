@@ -2,6 +2,8 @@ const _ = require('lodash');
 const pathModule = require('path');
 const TestCaseGenerator = require('./tester');
 const moment = require('moment');
+const { plot, stack } = require('nodeplotlib');
+const fse = require('fs-extra');
 
 class RESTester extends TestCaseGenerator {
   async setup() {
@@ -29,14 +31,18 @@ class RESTester extends TestCaseGenerator {
     for (let index = 0; index < number; index++) {
       // nominal test cases
       await this.generateNominals(rdRatio, useExample, useAllMethods);
-
       // error test cases
       await this.generateErrors();
+      // code generation
+      await this.generateCode('nominal', 'json');
+      await this.generateCode('error', 'json');
+      // make test cases properties empty
+      this.flushTestCases();
     }
 
-    // code generation
-    await this.generateCode('nominal', 'json');
-    await this.generateCode('error', 'json');
+    // // code generation
+    // await this.generateCode('nominal', 'json');
+    // await this.generateCode('error', 'json');
   }
 
   async generateCode(mode, type = 'json', name = 'testcase') {
@@ -110,8 +116,10 @@ class RESTester extends TestCaseGenerator {
                 ) * 100,
               missRate: +(clientErrorCount / totalTestCases).toFixed(2) * 100,
               errorCoverage:
-                +(clientErrorCount / (successCount + serverErrorCount + clientErrorCount)).toFixed(2) *
-                100,
+                +(
+                  clientErrorCount /
+                  (successCount + serverErrorCount + clientErrorCount)
+                ).toFixed(2) * 100,
 
               200: successCount,
               400: clientErrorCount,
@@ -135,6 +143,48 @@ class RESTester extends TestCaseGenerator {
           break;
       }
     }
+  }
+
+  async plotResult() {
+    const nominalDir = config.apiNominalJsonTestCasesDir(this.api.name);
+    const errorDir = config.apiErrorJsonTestCasesDir(this.api.name);
+
+    const nominalStats = { coverage: [] };
+    const nominalFiles = await fse.readdir(nominalDir);
+
+    for (const filename of nominalFiles) {
+      const obj = await this.readJSONFile(
+        pathModule.join(nominalDir, filename)
+      );
+      nominalStats.coverage.push(Math.round(obj.evaluation.coverage));
+    }
+
+    const errorStats = { errorCoverage: [] };
+    const errorFiles = await fse.readdir(errorDir);
+    
+    for (const filename of errorFiles) {
+      const obj = await this.readJSONFile(pathModule.join(errorDir, filename));
+      errorStats.errorCoverage.push(Math.round(obj.evaluation.errorCoverage));
+    }
+
+    const nominalData = [
+      {
+        x: _.range(1, nominalFiles.length + 1),
+        y: nominalStats.coverage,
+        type: 'scatter',
+      },
+    ];
+
+    const errorData = [
+      {
+        x: _.range(1, errorFiles.length + 1),
+        y: errorStats.errorCoverage,
+        type: 'scatter',
+      },
+    ];
+    
+    stack(nominalData);
+    plot(errorData);
   }
 }
 

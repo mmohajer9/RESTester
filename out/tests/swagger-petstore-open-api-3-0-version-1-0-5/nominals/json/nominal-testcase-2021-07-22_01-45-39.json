@@ -1,28 +1,41 @@
 {
   "evaluation": {
     "200": 7,
-    "400": 8,
-    "500": 4,
+    "400": 7,
+    "500": 5,
     "total": 19,
-    "hitRate": 57.99999999999999,
-    "missRate": 42,
-    "coverage": 64,
+    "hitRate": 63,
+    "missRate": 37,
+    "coverage": 57.99999999999999,
     "invalidResponse": 0
   },
   "data": {
     "200": [
       {
         "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": 648
+          },
+          "queryParams": {
+            "name": "Kangaroo Rat Michael Marsh",
+            "status": "Leopard Henrietta Duncan"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
         "method": "delete",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 163
+            "petId": 335
           },
           "queryParams": {},
-          "headerParams": {
-            "api_key": 32
-          }
+          "headerParams": {}
         }
       },
       {
@@ -31,7 +44,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 871
+            "orderId": 106
           },
           "queryParams": {},
           "headerParams": {}
@@ -43,18 +56,18 @@
         "testData": {
           "requestBody": {
             "id": 10,
-            "name": "doggie",
+            "name": "pet1",
             "category": {
               "id": 1,
               "name": "Dogs"
             },
             "photoUrls": [
-              "http://pet.photo.com/super_pet"
+              "https://www.gannett-cdn.com/presto/2019/11/18/USAT/8a460703-f390-4290-a27a-c6ed44b811a3-16X9.png?width=660&height=372&fit=crop&format=pjpg&auto=webp"
             ],
             "tags": [
               {
-                "id": -2130,
-                "name": "defaultTag"
+                "id": 0,
+                "name": "string"
               }
             ],
             "status": "available"
@@ -72,11 +85,11 @@
             "id": 10,
             "name": "doggie",
             "category": {
-              "id": 1,
-              "name": "Dogs"
+              "id": 648,
+              "name": "pet1"
             },
             "photoUrls": [
-              "Dogs Carolyn Singleton"
+              "string"
             ],
             "tags": [
               {
@@ -92,22 +105,14 @@
         }
       },
       {
-        "path": "/store/inventory",
-        "method": "get",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {},
-          "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
         "path": "/user/login",
         "method": "get",
         "testData": {
           "requestBody": {},
           "urlParams": {},
-          "queryParams": {},
+          "queryParams": {
+            "username": "Shovelnose Guitarfish Bryan Powers"
+          },
           "headerParams": {}
         }
       },
@@ -125,23 +130,11 @@
     "400": [
       {
         "path": "/pet/{petId}",
-        "method": "post",
-        "testData": {
-          "requestBody": {},
-          "urlParams": {
-            "petId": 978
-          },
-          "queryParams": {},
-          "headerParams": {}
-        }
-      },
-      {
-        "path": "/pet/{petId}",
         "method": "get",
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 502
+            "petId": 461
           },
           "queryParams": {},
           "headerParams": {}
@@ -155,7 +148,10 @@
           "urlParams": {},
           "queryParams": {
             "tags": [
-              "Hornbill Ola Kelley"
+              {
+                "id": 0,
+                "name": "string"
+              }
             ]
           },
           "headerParams": {}
@@ -167,7 +163,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "orderId": 835
+            "orderId": 825
           },
           "queryParams": {},
           "headerParams": {}
@@ -189,10 +185,10 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "petId": 161
+            "petId": 266
           },
           "queryParams": {
-            "additionalMetadata": "Duck Lela Rodriguez"
+            "additionalMetadata": "available"
           },
           "headerParams": {}
         }
@@ -202,11 +198,9 @@
         "method": "post",
         "testData": {
           "requestBody": {
-            "id": 10,
             "petId": 198772,
-            "shipDate": "Llama Belle Moore",
-            "status": "approved",
-            "complete": true
+            "quantity": 7,
+            "shipDate": "Ponies Erik Graves"
           },
           "urlParams": {},
           "queryParams": {},
@@ -231,7 +225,7 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Buffalo Gordon Nguyen"
+            "username": "Dove Jose McCormick"
           },
           "queryParams": {},
           "headerParams": {}
@@ -245,13 +239,12 @@
             "id": 10,
             "username": "theUser",
             "firstName": "John",
-            "email": "john@email.com",
+            "lastName": "James",
             "password": "12345",
-            "phone": "12345",
-            "userStatus": 1
+            "phone": "12345"
           },
           "urlParams": {
-            "username": "Bee-eater George Grant"
+            "username": "Marrus Orthocanna Phoebe Atkins"
           },
           "queryParams": {},
           "headerParams": {}
@@ -263,8 +256,18 @@
         "testData": {
           "requestBody": {},
           "urlParams": {
-            "username": "Llama Norman Garza"
+            "username": "Pelagic Thresher Shark Virginia Fox"
           },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/store/inventory",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
           "queryParams": {},
           "headerParams": {}
         }
@@ -279,6 +282,8 @@
             "firstName": "John",
             "lastName": "James",
             "email": "john@email.com",
+            "password": "12345",
+            "phone": "12345",
             "userStatus": 1
           },
           "urlParams": {},

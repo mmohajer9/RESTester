@@ -1,0 +1,115 @@
+{
+  "evaluation": {
+    "200": 3,
+    "400": 4,
+    "500": 0,
+    "total": 7,
+    "hitRate": 43,
+    "missRate": 56.99999999999999,
+    "errorCoverage": 56.99999999999999,
+    "invalidResponse": 0
+  },
+  "data": {
+    "200": [
+      {
+        "path": "/pet/findByStatus",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "status": "available"
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/login",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {
+            "password": -205735484981.248
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/user/logout",
+        "method": "get",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "400": [
+      {
+        "path": "/pet/{petId}",
+        "method": "post",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": true
+          },
+          "queryParams": {
+            "name": "Butterfly Zachary Reynolds",
+            "status": []
+          },
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet/{petId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "petId": "(1T@P*S2ZumG*9TE%cy"
+          },
+          "queryParams": {},
+          "headerParams": {
+            "api_key": true
+          }
+        }
+      },
+      {
+        "path": "/store/order/{orderId}",
+        "method": "delete",
+        "testData": {
+          "requestBody": {},
+          "urlParams": {
+            "orderId": "ykVeOw#3LJ63ZC"
+          },
+          "queryParams": {},
+          "headerParams": {}
+        }
+      },
+      {
+        "path": "/pet",
+        "method": "post",
+        "testData": {
+          "requestBody": {
+            "id": -726145605566.464,
+            "name": -6456060906831872,
+            "category": {
+              "id": 648,
+              "name": "pet1"
+            },
+            "photoUrls": -742150811680.768,
+            "tags": {},
+            "status": 52423661138.7392
+          },
+          "urlParams": {},
+          "queryParams": {},
+          "headerParams": {}
+        }
+      }
+    ],
+    "500": [],
+    "invalidResponse": []
+  }
+}
