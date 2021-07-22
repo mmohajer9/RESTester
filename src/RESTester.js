@@ -161,7 +161,7 @@ class RESTester extends TestCaseGenerator {
 
     const errorStats = { errorCoverage: [] };
     const errorFiles = await fse.readdir(errorDir);
-    
+
     for (const filename of errorFiles) {
       const obj = await this.readJSONFile(pathModule.join(errorDir, filename));
       errorStats.errorCoverage.push(Math.round(obj.evaluation.errorCoverage));
@@ -171,7 +171,16 @@ class RESTester extends TestCaseGenerator {
       {
         x: _.range(1, nominalFiles.length + 1),
         y: nominalStats.coverage,
+        mode: 'lines+markers',
         type: 'scatter',
+        marker: {
+          color: 'blue',
+          size: 6
+        },
+        line: {
+          color: 'blue',
+          width: 2
+        }
       },
     ];
 
@@ -179,12 +188,48 @@ class RESTester extends TestCaseGenerator {
       {
         x: _.range(1, errorFiles.length + 1),
         y: errorStats.errorCoverage,
+        mode: 'lines+markers',
         type: 'scatter',
+        marker: {
+          color: 'red',
+          size: 6
+        },
+        line: {
+          color: 'red',
+          width: 2
+        }
       },
     ];
-    
-    stack(nominalData);
-    plot(errorData);
+
+    const nominalLayout = {
+      title: 'Nominal Test Cases Coverage',
+      xaxis: {
+        // type: 'log',
+        title: 'Test Case Number',
+        autorange: true,
+      },
+      yaxis: {
+        // type: 'log',
+        title: 'Coverage Percent',
+        autorange: true,
+      },
+    };
+    const errorLayout = {
+      title: 'Error Test Cases Coverage',
+      xaxis: {
+        // type: 'log',
+        title: 'Test Case Number',
+        autorange: true,
+      },
+      yaxis: {
+        // type: 'log',
+        title: 'Error Coverage Percent',
+        autorange: true,
+      },
+    };
+
+    stack(nominalData, nominalLayout);
+    plot(errorData, errorLayout);
   }
 }
 
