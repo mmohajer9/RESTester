@@ -244,13 +244,13 @@ class ODGInitializer extends Initializer {
 
   parseResponse(paths, targetPath, targetMethod) {
     const objectResult =
-      paths[targetPath][targetMethod]?.responses[200]?.content[
+      paths[targetPath][targetMethod]?.responses?.[200]?.content?.[
         'application/json'
-      ].schema?.properties;
+      ]?.schema?.properties;
     const arrayResult =
-      paths[targetPath][targetMethod]?.responses[200]?.content[
+      paths[targetPath][targetMethod]?.responses?.[200]?.content?.[
         'application/json'
-      ].schema?.items?.properties;
+      ]?.schema?.items?.properties;
 
     return objectResult || arrayResult;
   }
