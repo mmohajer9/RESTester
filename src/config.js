@@ -7,51 +7,161 @@ const configuration = {
   logHandler: console.log,
 
   // general directories
-  testsDir: path.resolve('out', 'tests'),
-  oasConfDir: path.resolve('src', 'OASConfig'),
-  odgConfDir: path.resolve('src', 'ODGConfig'),
+  testsDir: path.resolve(path.resolve(__dirname, '..'), 'out', 'tests'),
+  oasConfDir: path.resolve(path.resolve(__dirname, '..'), 'src', 'OASConfig'),
+  odgConfDir: path.resolve(path.resolve(__dirname, '..'), 'src', 'ODGConfig'),
 
   // general default paths
-  oasConfPath: path.resolve('src', 'OASConfig', 'openapi.json'),
-  odgConfPath: path.resolve('src', 'ODGConfig', 'odg.json'),
+  oasConfPath: path.resolve(
+    path.resolve(__dirname, '..'),
+    'src',
+    'OASConfig',
+    'openapi.json'
+  ),
+  odgConfPath: path.resolve(
+    path.resolve(__dirname, '..'),
+    'src',
+    'ODGConfig',
+    'odg.json'
+  ),
 
   // custom paths for config files
-  customOasConfPath: (name) => path.resolve('src', 'OASConfig', name),
-  customOdgConfPath: (name) => path.resolve('src', 'ODGConfig', name),
+  customOasConfPath: (name) =>
+    path.resolve(path.resolve(__dirname, '..'), 'src', 'OASConfig', name),
+  customOdgConfPath: (name) =>
+    path.resolve(path.resolve(__dirname, '..'), 'src', 'ODGConfig', name),
 
   // test directories
-  apiTestsDir: (apiName) => path.resolve('out', 'tests', apiName),
-  logsDir: (apiName) => path.resolve('out', 'tests', apiName, 'logs'),
-  apiCommonDir: (apiName) => path.resolve('out', 'tests', apiName, 'common'),
+  apiTestsDir: (apiName) =>
+    path.resolve(path.resolve(__dirname, '..'), 'out', 'tests', apiName),
+  logsDir: (apiName) =>
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'logs'
+    ),
+  apiCommonDir: (apiName) =>
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'common'
+    ),
   apiTemplatesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'templates'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'templates'
+    ),
   apiErrorTestCasesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'errors'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'errors'
+    ),
   apiNominalTestCasesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'nominals'),
-  apiPlotDir: (apiName) => path.resolve('out', 'tests', apiName, 'plot'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'nominals'
+    ),
+  apiPlotDir: (apiName) =>
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'plot'
+    ),
 
   apiNominalJsonTestCasesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'nominals', 'json'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'nominals',
+      'json'
+    ),
   apiNominalJestTestCasesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'nominals', 'jest'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'nominals',
+      'jest'
+    ),
   apiNominalJsTestCasesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'nominals', 'js'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'nominals',
+      'js'
+    ),
   apiErrorJsonTestCasesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'errors', 'json'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'errors',
+      'json'
+    ),
   apiErrorJestTestCasesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'errors', 'jest'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'errors',
+      'jest'
+    ),
   apiErrorJsTestCasesDir: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'errors', 'js'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'errors',
+      'js'
+    ),
 
   // test file paths
   apiTempatePath: (apiName, templateName) =>
-    path.resolve('out', 'tests', apiName, 'templates', templateName, '.ejs'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'templates',
+      templateName,
+      '.ejs'
+    ),
   apiResponseDictionaryPath: (apiName) =>
-    path.resolve('out', 'tests', apiName, 'common', 'rd.json'),
+    path.resolve(
+      path.resolve(__dirname, '..'),
+      'out',
+      'tests',
+      apiName,
+      'common',
+      'rd.json'
+    ),
 
   // utilites
-  jestTestCasesDir: () => path.resolve('__tests__'),
+  jestTestCasesDir: () =>
+    path.resolve(path.resolve(__dirname, '..'), '__tests__'),
 };
 
 module.exports = configuration;
