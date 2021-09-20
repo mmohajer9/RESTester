@@ -41,13 +41,17 @@ program
     '-r, --raw',
     'initialize raw operation dependency graph - will find no dependencies'
   )
+  .option(
+    '-o, --oas <path>',
+    'provide open api specification file with your desired location'
+  )
   .description(
     'initialize operation dependency graph - will find some dependencies automatically'
   )
   .action((options) => {
     const restester = new RESTester((instance) => {
       instance.createODG(!options.raw);
-    });
+    }, options.oas);
   });
 
 program
@@ -61,24 +65,33 @@ program
     '-a, --all-methods',
     'use the examples that is provided in open api specification to generate test cases'
   )
+  .option(
+    '-o, --oas <path>',
+    'provide open api specification file with your desired location'
+  )
+  .option(
+    '-g, --graph <path>',
+    'provide operation dependency graph configuration file with your desired location'
+  )
   .description('generate')
   .action((number, options) => {
-    const restester = new RESTester((instance) => {
-      instance.generate(
-        number,
-        options.ratio,
-        options.useExample,
-        options.allMethods
-      );
-    });
+    const restester = new RESTester(
+      (instance) => {
+        instance.generate(
+          number,
+          options.ratio,
+          options.useExample,
+          options.allMethods
+        );
+      },
+      options.oas,
+      options.graph
+    );
   });
-
 
 program
   .command('plot')
-  .description(
-    'plot the statistics about the given open api specification'
-  )
+  .description('plot the statistics about the given open api specification')
   .action((options) => {
     const restester = new RESTester((instance) => {
       instance.plotResult();

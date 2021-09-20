@@ -311,15 +311,16 @@ class ODGConfigGenerator extends ODGInitializer {
   }
 
   // set api call order based on dependecies in odg.json
-  setApiCallOrder() {
+  async setApiCallOrder() {
     // first we justify how to call the api in the correct order
 
     let odgConfig = {};
     const visitedPaths = [];
 
     try {
-      odgConfig = require(this.odgConfPath);
+      odgConfig = await this.readJSONFile(this.odgConfPath);
     } catch (error) {
+      console.log(error);
       console.log(chalk.redBright('No ODG Configuration Has Been Provided'));
       console.log(chalk.yellowBright('Check ODG Config Directory'));
       return;

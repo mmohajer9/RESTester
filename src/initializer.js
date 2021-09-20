@@ -8,10 +8,10 @@ const _ = require('lodash');
 const getAxiosInstance = require('./axios');
 
 class Initializer {
-  constructor(mainProgram) {
+  constructor(mainProgram, myOAS = undefined, myODG = undefined) {
     // initializing fields
-    this.oasConfPath = config.oasConfPath;
-    this.odgConfPath = config.odgConfPath;
+    this.oasConfPath = myOAS || config.oasConfPath;
+    this.odgConfPath = myODG || config.odgConfPath;
 
     // attaching main program
     this.mainProgram = mainProgram;

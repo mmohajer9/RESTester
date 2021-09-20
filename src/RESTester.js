@@ -14,7 +14,7 @@ class RESTester extends TestCaseGenerator {
     await this.initiateResponseDictionary();
 
     // set the api call order
-    this.setApiCallOrder();
+    await this.setApiCallOrder();
 
     // set axios instance for sending requests
     this.setRequestHandler();
