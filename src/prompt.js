@@ -45,13 +45,22 @@ program
     '-s, --oas <path>',
     'provide open api specification file with your desired location'
   )
+  .option(
+    '-o, --output <path>',
+    'provide the output path for the generated operation dependency graph json file'
+  )
   .description(
     'initialize operation dependency graph - will find some dependencies automatically'
   )
   .action((options) => {
-    const restester = new RESTester((instance) => {
-      instance.createODG(!options.raw);
-    }, options.oas);
+    const restester = new RESTester(
+      (instance) => {
+        instance.createODG(!options.raw);
+      },
+      options.oas,
+      undefined,
+      options.output
+    );
   });
 
 program

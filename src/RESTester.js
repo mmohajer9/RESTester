@@ -93,7 +93,6 @@ class RESTester extends TestCaseGenerator {
           const path = pathModule.join(dir, fileName);
           await this.createJSONFile(path, result);
           if (this.outputDir) {
-            console.log(this.outputDir);
             const outputPath = pathModule.join(this.outputDir, fileName);
             await this.createJSONFile(outputPath, result);
           }
@@ -138,7 +137,6 @@ class RESTester extends TestCaseGenerator {
           const path = pathModule.join(dir, fileName);
           await this.createJSONFile(path, result);
           if (this.outputDir) {
-            console.log(this.outputDir);
             const outputPath = pathModule.join(this.outputDir, fileName);
             await this.createJSONFile(outputPath, result);
           }

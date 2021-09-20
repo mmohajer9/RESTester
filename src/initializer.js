@@ -17,7 +17,7 @@ class Initializer {
     // initializing fields
     this.oasConfPath = myOAS || config.oasConfPath;
     this.odgConfPath = myODG || config.odgConfPath;
-
+    
     // for outputing in another directory
     this.outputDir = output;
 

@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const Initializer = require('./initializer');
 const stringSimilarity = require('string-similarity');
 const Chance = require('chance');
+const pathModule = require('path');
 
 class ODGInitializer extends Initializer {
   constructor(...props) {
@@ -307,6 +308,10 @@ class ODGConfigGenerator extends ODGInitializer {
     }
     // create JSON Config File
     await this.createJSONFile(this.odgConfPath, result);
+    if (this.outputDir) {
+      const outputPath = pathModule.join(this.outputDir, 'odg.json');
+      await this.createJSONFile(outputPath, result);
+    }
     console.log(chalk.blueBright('ODG Configuration Has Been Created'));
   }
 
