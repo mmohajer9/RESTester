@@ -42,7 +42,7 @@ program
     'initialize raw operation dependency graph - will find no dependencies'
   )
   .option(
-    '-o, --oas <path>',
+    '-s, --oas <path>',
     'provide open api specification file with your desired location'
   )
   .description(
@@ -66,12 +66,16 @@ program
     'use the examples that is provided in open api specification to generate test cases'
   )
   .option(
-    '-o, --oas <path>',
+    '-s, --oas <path>',
     'provide open api specification file with your desired location'
   )
   .option(
     '-g, --graph <path>',
     'provide operation dependency graph configuration file with your desired location'
+  )
+  .option(
+    '-o, --output <path>',
+    'provide the output path for the generated test cases json file'
   )
   .description('generate')
   .action((number, options) => {
@@ -85,7 +89,8 @@ program
         );
       },
       options.oas,
-      options.graph
+      options.graph,
+      options.output
     );
   });
 

@@ -92,6 +92,11 @@ class RESTester extends TestCaseGenerator {
           const fileName = `${mode}-${name}-${stamp}.${type}`;
           const path = pathModule.join(dir, fileName);
           await this.createJSONFile(path, result);
+          if (this.outputDir) {
+            console.log(this.outputDir);
+            const outputPath = pathModule.join(this.outputDir, fileName);
+            await this.createJSONFile(outputPath, result);
+          }
 
           break;
         case 'jest':
@@ -132,6 +137,11 @@ class RESTester extends TestCaseGenerator {
           const fileName = `${mode}-${name}-${stamp}.${type}`;
           const path = pathModule.join(dir, fileName);
           await this.createJSONFile(path, result);
+          if (this.outputDir) {
+            console.log(this.outputDir);
+            const outputPath = pathModule.join(this.outputDir, fileName);
+            await this.createJSONFile(outputPath, result);
+          }
 
           break;
         case 'jest':
@@ -175,12 +185,12 @@ class RESTester extends TestCaseGenerator {
         type: 'scatter',
         marker: {
           color: 'blue',
-          size: 6
+          size: 6,
         },
         line: {
           color: 'blue',
-          width: 2
-        }
+          width: 2,
+        },
       },
     ];
 
@@ -192,12 +202,12 @@ class RESTester extends TestCaseGenerator {
         type: 'scatter',
         marker: {
           color: 'red',
-          size: 6
+          size: 6,
         },
         line: {
           color: 'red',
-          width: 2
-        }
+          width: 2,
+        },
       },
     ];
 
