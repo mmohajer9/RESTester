@@ -5,7 +5,6 @@
       "/pet/findByStatus",
       "/pet/findByTags",
       "/pet/{petId}",
-      "/store/order/{orderId}",
       "/user/{username}"
     ],
     "props": {
@@ -14,12 +13,6 @@
       "post": {
         "requestBody": {
           "id": [
-            {
-              "path": "/pet/findByStatus",
-              "method": "get",
-              "field": "id",
-              "likelihood": 65
-            },
             {
               "path": "/pet/findByTags",
               "method": "get",
@@ -35,7 +28,7 @@
           ],
           "name": [
             {
-              "path": "/pet/findByTags",
+              "path": "/pet/findByStatus",
               "method": "get",
               "field": "name",
               "likelihood": 65
@@ -43,27 +36,46 @@
           ],
           "category": [
             {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "category",
+              "likelihood": 65
+            },
+            {
               "path": "/pet/findByTags",
               "method": "get",
               "field": "category",
               "likelihood": 65
             },
             {
-              "path": "/store/order/{orderId}",
+              "path": "/pet/{petId}",
               "method": "get",
-              "field": "shipDate",
-              "likelihood": 2.86
+              "field": "category",
+              "likelihood": 65
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "password",
+              "likelihood": 1.43
             }
           ],
           "photoUrls": [
             {
-              "path": "/pet/findByStatus",
+              "path": "/pet/findByTags",
               "method": "get",
               "field": "photoUrls",
               "likelihood": 65
             }
           ],
-          "tags": [],
+          "tags": [
+            {
+              "path": "/pet/{petId}",
+              "method": "get",
+              "field": "tags",
+              "likelihood": 65
+            }
+          ],
           "status": [
             {
               "path": "/pet/findByStatus",
@@ -93,13 +105,13 @@
         "requestBody": {
           "id": [
             {
-              "path": "/pet/findByTags",
+              "path": "/pet/findByStatus",
               "method": "get",
               "field": "id",
               "likelihood": 65
             },
             {
-              "path": "/pet/{petId}",
+              "path": "/pet/findByTags",
               "method": "get",
               "field": "id",
               "likelihood": 65
@@ -119,19 +131,13 @@
               "likelihood": 65
             },
             {
-              "path": "/user/{username}",
+              "path": "/pet/{petId}",
               "method": "get",
-              "field": "username",
-              "likelihood": 6
+              "field": "name",
+              "likelihood": 65
             }
           ],
           "category": [
-            {
-              "path": "/pet/findByTags",
-              "method": "get",
-              "field": "category",
-              "likelihood": 65
-            },
             {
               "path": "/pet/{petId}",
               "method": "get",
@@ -141,6 +147,12 @@
           ],
           "photoUrls": [
             {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "photoUrls",
+              "likelihood": 65
+            },
+            {
               "path": "/pet/{petId}",
               "method": "get",
               "field": "photoUrls",
@@ -148,6 +160,12 @@
             }
           ],
           "tags": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "tags",
+              "likelihood": 65
+            },
             {
               "path": "/pet/findByTags",
               "method": "get",
@@ -159,11 +177,23 @@
               "method": "get",
               "field": "tags",
               "likelihood": 65
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "userStatus",
+              "likelihood": 1.67
             }
           ],
           "status": [
             {
               "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status",
+              "likelihood": 65
+            },
+            {
+              "path": "/pet/{petId}",
               "method": "get",
               "field": "status",
               "likelihood": 65
@@ -199,30 +229,14 @@
   },
   {
     "endpoint": "/pet/findByTags",
-    "dependsOn": [
-      "/pet/findByStatus",
-      "/pet/{petId}"
-    ],
+    "dependsOn": [],
     "props": {
       "head": null,
       "get": {
         "requestBody": null,
         "urlParams": null,
         "queryParams": {
-          "tags": [
-            {
-              "path": "/pet/findByStatus",
-              "method": "get",
-              "field": "tags",
-              "likelihood": 70
-            },
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "tags",
-              "likelihood": 59.6
-            }
-          ]
+          "tags": []
         },
         "headerParams": null
       },
@@ -235,8 +249,8 @@
   {
     "endpoint": "/pet/{petId}",
     "dependsOn": [
-      "/pet/findByTags",
       "/pet/findByStatus",
+      "/pet/findByTags",
       "/pet/{petId}"
     ],
     "props": {
@@ -246,10 +260,10 @@
         "urlParams": {
           "petId": [
             {
-              "path": "/pet/findByTags",
+              "path": "/pet/findByStatus",
               "method": "get",
               "field": "id",
-              "likelihood": 49.6
+              "likelihood": 48.89
             }
           ]
         },
@@ -265,17 +279,23 @@
               "method": "get",
               "field": "id",
               "likelihood": 48.89
-            },
-            {
-              "path": "/pet/findByTags",
-              "method": "get",
-              "field": "id",
-              "likelihood": 49.6
             }
           ]
         },
         "queryParams": {
           "name": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "name",
+              "likelihood": 58.89
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "name",
+              "likelihood": 59.6
+            },
             {
               "path": "/pet/{petId}",
               "method": "get",
@@ -289,6 +309,12 @@
               "method": "get",
               "field": "status",
               "likelihood": 58.89
+            },
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status",
+              "likelihood": 59.6
             },
             {
               "path": "/pet/{petId}",
@@ -305,13 +331,11 @@
       "delete": {
         "requestBody": null,
         "urlParams": {
-          "petId": [
-            {
-              "path": "/pet/findByStatus",
-              "method": "get",
-              "field": "id",
-              "likelihood": 48.89
-            },
+          "petId": []
+        },
+        "queryParams": null,
+        "headerParams": {
+          "api_key": [
             {
               "path": "/pet/findByTags",
               "method": "get",
@@ -325,10 +349,6 @@
               "likelihood": 55
             }
           ]
-        },
-        "queryParams": null,
-        "headerParams": {
-          "api_key": []
         }
       }
     }
@@ -348,26 +368,26 @@
         "urlParams": {
           "petId": [
             {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "id",
+              "likelihood": 46.15
+            },
+            {
               "path": "/pet/findByTags",
               "method": "get",
               "field": "id",
               "likelihood": 48.11
-            },
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "id",
-              "likelihood": 55
             }
           ]
         },
         "queryParams": {
           "additionalMetadata": [
             {
-              "path": "/pet/findByStatus",
+              "path": "/pet/{petId}",
               "method": "get",
               "field": "status",
-              "likelihood": 47.97
+              "likelihood": 56.82
             }
           ]
         },
@@ -398,29 +418,14 @@
   {
     "endpoint": "/store/order",
     "dependsOn": [
-      "/pet/{petId}",
-      "/store/order/{orderId}",
-      "/user/{username}"
+      "/store/order/{orderId}"
     ],
     "props": {
       "head": null,
       "get": null,
       "post": {
         "requestBody": {
-          "id": [
-            {
-              "path": "/store/order/{orderId}",
-              "method": "get",
-              "field": "id",
-              "likelihood": 65
-            },
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "id",
-              "likelihood": 12.31
-            }
-          ],
+          "id": [],
           "petId": [
             {
               "path": "/store/order/{orderId}",
@@ -429,7 +434,14 @@
               "likelihood": 65
             }
           ],
-          "quantity": [],
+          "quantity": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "quantity",
+              "likelihood": 65
+            }
+          ],
           "shipDate": [
             {
               "path": "/store/order/{orderId}",
@@ -438,21 +450,15 @@
               "likelihood": 65
             }
           ],
-          "status": [
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "status",
-              "likelihood": 10
-            },
+          "status": [],
+          "complete": [
             {
               "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "status",
+              "field": "complete",
               "likelihood": 65
             }
-          ],
-          "complete": []
+          ]
         },
         "urlParams": null,
         "queryParams": null,
@@ -466,7 +472,7 @@
   {
     "endpoint": "/store/order/{orderId}",
     "dependsOn": [
-      "/store/order/{orderId}"
+      "/user/{username}"
     ],
     "props": {
       "head": null,
@@ -486,10 +492,10 @@
         "urlParams": {
           "orderId": [
             {
-              "path": "/store/order/{orderId}",
+              "path": "/user/{username}",
               "method": "get",
-              "field": "petId",
-              "likelihood": 57
+              "field": "password",
+              "likelihood": 9.74
             }
           ]
         },
@@ -502,7 +508,7 @@
     "endpoint": "/user",
     "dependsOn": [
       "/pet/findByStatus",
-      "/pet/{petId}",
+      "/pet/findByTags",
       "/user/{username}"
     ],
     "props": {
@@ -512,28 +518,28 @@
         "requestBody": {
           "id": [
             {
-              "path": "/pet/{petId}",
+              "path": "/pet/findByStatus",
               "method": "get",
               "field": "id",
-              "likelihood": 10
-            }
-          ],
-          "username": [
+              "likelihood": 13
+            },
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "username",
+              "field": "id",
               "likelihood": 65
             }
           ],
-          "firstName": [],
-          "lastName": [
+          "username": [],
+          "firstName": [
             {
-              "path": "/pet/findByStatus",
+              "path": "/user/{username}",
               "method": "get",
-              "field": "name",
-              "likelihood": 7
-            },
+              "field": "firstName",
+              "likelihood": 65
+            }
+          ],
+          "lastName": [
             {
               "path": "/user/{username}",
               "method": "get",
@@ -541,17 +547,37 @@
               "likelihood": 65
             }
           ],
-          "email": [],
-          "password": [
+          "email": [
             {
               "path": "/user/{username}",
               "method": "get",
-              "field": "password",
+              "field": "email",
               "likelihood": 65
             }
           ],
-          "phone": [],
+          "password": [
+            {
+              "path": "/pet/findByStatus",
+              "method": "get",
+              "field": "category",
+              "likelihood": 4.43
+            }
+          ],
+          "phone": [
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "phone",
+              "likelihood": 65
+            }
+          ],
           "userStatus": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status",
+              "likelihood": 5.71
+            },
             {
               "path": "/user/{username}",
               "method": "get",
@@ -588,23 +614,14 @@
   },
   {
     "endpoint": "/user/login",
-    "dependsOn": [
-      "/user/{username}"
-    ],
+    "dependsOn": [],
     "props": {
       "head": null,
       "get": {
         "requestBody": null,
         "urlParams": null,
         "queryParams": {
-          "username": [
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "username",
-              "likelihood": 62
-            }
-          ],
+          "username": [],
           "password": []
         },
         "headerParams": null
@@ -635,9 +652,10 @@
   {
     "endpoint": "/user/{username}",
     "dependsOn": [
-      "/pet/{petId}",
-      "/user/{username}",
-      "/pet/findByTags"
+      "/pet/findByStatus",
+      "/pet/findByTags",
+      "/store/order/{orderId}",
+      "/user/{username}"
     ],
     "props": {
       "head": null,
@@ -652,45 +670,25 @@
       "post": null,
       "put": {
         "requestBody": {
-          "id": [
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "id",
-              "likelihood": 65
-            }
-          ],
+          "id": [],
           "username": [
             {
-              "path": "/user/{username}",
+              "path": "/pet/findByStatus",
               "method": "get",
-              "field": "username",
-              "likelihood": 65
+              "field": "name",
+              "likelihood": 7.94
             }
           ],
-          "firstName": [
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "firstName",
-              "likelihood": 65
-            }
-          ],
+          "firstName": [],
           "lastName": [
             {
-              "path": "/user/{username}",
+              "path": "/store/order/{orderId}",
               "method": "get",
-              "field": "lastName",
-              "likelihood": 65
+              "field": "status",
+              "likelihood": 8.33
             }
           ],
           "email": [
-            {
-              "path": "/pet/{petId}",
-              "method": "get",
-              "field": "id",
-              "likelihood": 2.31
-            },
             {
               "path": "/user/{username}",
               "method": "get",
@@ -698,7 +696,20 @@
               "likelihood": 65
             }
           ],
-          "password": [],
+          "password": [
+            {
+              "path": "/store/order/{orderId}",
+              "method": "get",
+              "field": "id",
+              "likelihood": 6.67
+            },
+            {
+              "path": "/user/{username}",
+              "method": "get",
+              "field": "password",
+              "likelihood": 65
+            }
+          ],
           "phone": [
             {
               "path": "/user/{username}",
@@ -708,6 +719,12 @@
             }
           ],
           "userStatus": [
+            {
+              "path": "/pet/findByTags",
+              "method": "get",
+              "field": "status",
+              "likelihood": 5.71
+            },
             {
               "path": "/user/{username}",
               "method": "get",
@@ -733,20 +750,7 @@
       "delete": {
         "requestBody": null,
         "urlParams": {
-          "username": [
-            {
-              "path": "/pet/findByTags",
-              "method": "get",
-              "field": "name",
-              "likelihood": 6
-            },
-            {
-              "path": "/user/{username}",
-              "method": "get",
-              "field": "username",
-              "likelihood": 65
-            }
-          ]
+          "username": []
         },
         "queryParams": null,
         "headerParams": null
