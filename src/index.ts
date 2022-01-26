@@ -2,13 +2,17 @@
 import { Command } from 'commander';
 // best utility library
 import _ from 'lodash';
+// importing default setting
+import { Configuration } from './setting';
+// importing the main application
+import RESTester from './app';
 // initiating
 const program = new Command();
 program.version('0.2.0');
 
 program
   .command('print')
-  .option('-d, --depth <level>', 'depth of nesting')
+  .option('-d, --depth <level>', 'depth of nesting', '1')
   .option(
     '-s, --source <path>',
     'paht to open api specification (swagger) file'
@@ -17,7 +21,8 @@ program
     'print the validated and parsed open api specification (swagger)'
   )
   .action((options) => {
-    console.log('options --> ', options);
+    const setting = new Configuration(options.source);
+    const app = new RESTester(setting);
   });
 
 program
@@ -76,10 +81,7 @@ program
     '-n, --number <level>',
     'number of cases in the average of last cases'
   )
-  .option(
-      '-d --directory <path>',
-      'directory of generated test cases'
-  )
+  .option('-d --directory <path>', 'directory of generated test cases')
   .description('plot the statistics about the given open api specification')
   .action((options) => {
     console.log('options --> ', options);
