@@ -1,0 +1,30 @@
+{
+  "name": "restester",
+  "version": "0.2.0",
+  "description": "RESTester: automatic black-box tester for RESTful APIs",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmohajer9/RESTester.git"
+  },
+  "keywords": [
+    "rest-api",
+    "testing-tools",
+    "restful-api",
+    "software-testing",
+    "testcase-generator",
+    "black-box-testing"
+  ],
+  "author": "Mohammad Mahdi Mohajer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mmohajer9/RESTester/issues"
+  },
+  "homepage": "https://github.com/mmohajer9/RESTester#readme"
+}
